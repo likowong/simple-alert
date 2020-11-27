@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.jumper.eureka.consumer</groupId>
-    <artifactId>demo</artifactId>
+    <artifactId>eureka-consumer</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>eureka-consumer</name>
     <description>Demo project for Spring Boot</description>
