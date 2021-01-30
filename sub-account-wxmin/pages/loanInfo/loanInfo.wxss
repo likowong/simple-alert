@@ -1,0 +1,35 @@
+/* pages/loanInfo/loanInfo.wxss */
+.main{
+    padding: 40rpx 0 0 40rpx;
+}
+.tag{
+    position: relative;
+    padding-left: 20rpx;
+    margin-bottom: 40rpx;
+    font-weight: 600;
+}
+.tag:before{
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 6rpx;
+    height: 24rpx;
+    transform: translateY(-50%);
+    background-color: #00a0e8;
+}
+.content{
+    padding: 0 40rpx 0 10rpx;
+}
+.content-list{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20rpx;
+}
+.list-title{
+    font-size: 28rpx;
+    color: #757d82;
+}
+.list-value{
+    font-size: 28rpx;
+}

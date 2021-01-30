@@ -1,0 +1,74 @@
+<!--pages/orderSteps/orderSteps.wxml 提单步骤页面-->
+<view class="main">
+    <view class="steps-box">
+        <van-steps steps="{{steps}}" active="{{active}}"></van-steps>
+    </view>
+
+    <view class="step-input-view" wx:if="{{active == 0}}">
+        <view class="tag">车贷资料</view>
+        <view class="input-box">
+            <view class="input-label">车贷审批机构：</view>
+            <view class="input-value select-organize" bindtap="selectOrganize">
+                <!-- <input type="text" bindinput="inputOrganize" placeholder="请输入车贷审批机构" placeholder-class="font-gray"/> -->
+                <text wx:if="{{!form.applyOrganization}}">请选择车贷审批机构</text>
+                <text wx:else class="selected">{{form.applyOrganization}}</text>
+            </view>
+        </view>
+        <view class="input-box">
+            <view class="input-label">机构批复金额：</view>
+            <view class="input-value">
+                <input type="digit" bindinput="inputCarSuccessMoney" placeholder="请输入批复金额" placeholder-class="font-gray"/>
+            </view>
+            <text class="price-unit">元</text>
+        </view>
+        <view class="input-box input-period-box">
+            <view class="input-label">车贷期数：</view>
+            <view class="period-box">
+                <view class="period {{form.carPeriod == item ? 'active' : ''}}" wx:for="{{carPeriodArr}}" data-period="{{item}}" bindtap="inputCarPeriod" wx:key="*this">{{item}}期</view>
+            </view>
+        </view>
+        <view class="input-box">
+            <view class="input-label">车辆型号：</view>
+            <view class="input-value">
+                <input type="text" bindinput="inputCarType" placeholder="如：宝马一系118i" placeholder-class="font-gray"/>
+            </view>
+        </view>
+        <view class="input-box">
+            <view class="input-label">车辆裸车价：</view>
+            <view class="input-value">
+                <input type="digit" bindinput="inputCarPrice" placeholder="请填写裸车价格" placeholder-class="font-gray"/>
+            </view>
+            <text class="price-unit">元</text>
+        </view>
+        
+        <view class="btn-box {{firstStepBtn ? 'active' : ''}}" bindtap='firstStep'>下一步</view>
+    </view>
+    <view class="step-input-view" wx:else>
+        <view class="tag">上传资料</view>
+        <view class="file-list">
+            <view class="file-title">订车合同（请逐页拍照，如有多页请上传完整）</view>
+            <view class="file-btn-box">
+                <view class="file-btn" wx:for="{{form.carContractUrl}}" wx:key="{{item.url}}">
+                    <image src="{{item.url}}" mode="aspectFill" data-src="{{item.url}}" data-imgs="{{form.carContractUrl}}" bindtap="previewImage"></image>
+                    <text class='delete' data-index="{{index}}" data-imgname="carContractUrl" bindtap="deleteImg">×</text>
+                </view>
+                <view class="file-btn" wx:if="{{form.carContractUrl.length < 6}}" bindtap="uploadContract" data-imgname="carContractUrl">
+                    <view class="add-icon"></view>
+                </view>
+            </view>
+        </view>
+        <view class="file-list file-list-last">
+            <view class="file-title">批复函（请逐页拍照，如有多页请上传完整）</view>
+            <view class="file-btn-box">
+                <view class="file-btn" wx:for="{{form.successReplyUrl}}" wx:key="{{item.url}}">
+                    <image src="{{item.url}}" mode="widthFix" data-src="{{item.url}}" data-imgs="{{form.successReplyUrl}}"bindtap="previewImage"></image>
+                    <text class='delete' data-index="{{index}}" data-imgname="successReplyUrl" bindtap="deleteImg">×</text>
+                </view>
+                <view class="file-btn" wx:if="{{form.successReplyUrl.length < 6}}" bindtap="uploadReply" data-imgname="successReplyUrl">
+                    <view class="add-icon"></view>
+                </view>
+            </view>
+        </view>
+        <view class="btn-box {{lastStepBtn ? 'active' : ''}}" bindtap='lastStep'>生成客户二维码</view>
+    </view>
+</view>

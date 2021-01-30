@@ -1,0 +1,72 @@
+<!--pages/orderDetails/orderDetails.wxml 提单详情页面-->
+<view class="main">
+    <view class="content-account" wx:if="{{orderMsg.name}}">
+        <view class="account-basic">
+            <view class="name-box">
+                <text class="basic-name">客户姓名：{{orderMsg.name}}</text>
+                <text class="order-num">订单号：{{orderMsg.orderNumber}}</text>
+            </view>
+            <view>
+                <text class="basic-price">申请金额：{{orderMsg.applyMoney}}元</text>
+                <text class="basic-period">分期期数：{{orderMsg.applyPeriod}}期</text>
+            </view>
+        </view>
+        <view class="account-msg">
+            <view class="account-info">手机号码：{{orderMsg.phone}}</view>
+            <view class="account-info">身份证号：{{orderMsg.idCard}}</view>
+            <view class="account-info">
+                <text class="font-gray">婚姻状况：</text>
+                <text class="font-gray" wx:if="{{orderMsg.married == '1'}}">未婚</text>
+                <text class="font-gray" wx:elif="{{orderMsg.married == '2'}}">已婚</text>
+                <text class="font-gray" wx:else>离异</text>
+            </view>
+        </view>
+        <view class="account-help">
+            <view class="create-time">创建时间：{{orderMsg.createDate}}</view>
+            <view class="help-call" bindtap="callPhone">
+                <image src="../../images/call-icon.png" class="call-icon" mode="widthFix"></image>
+                <text>拨打客服</text>
+            </view>
+        </view>
+    </view>
+
+    <view class="content-car">
+        <view class="car-list" bindtap="toLoanInfo">车贷资料</view>
+        <view class="car-list" bindtap="toUploadInfo">上传资料</view>
+    </view>
+
+    <view class="content-status">
+        <view class="status-top">
+            <view class="status-title">客户订单状态跟踪</view>
+            <view class="status-subtitle">以下为客户的申请审核流程，若客户有疑问，请协助客户进行申请</view>
+        </view>
+        <view class="status-list">
+            <view class="item {{index == 0 ? 'item-active' : ''}}" wx:for="{{orderProcess}}" wx:for-index="index" wx:for-item="process" wx:key="{{id}}">
+                <view class="step">
+                    <view class="step-content"></view>
+                </view>
+                <view class="item-title">{{process.message}}</view>
+                <!-- <view class="item-subtitle">
+                    <text>销售顾问已发起预审</text>
+                    <text class="company-phone">0755-86955827</text>
+                </view> -->
+                <!-- <view class="item-subtitle" wx:if="{{currentStatus == 'memberAuthorization' && process.expireDate}}">
+                    <text class="expire-date">还剩{{process.expireDate}}自动关闭订单</text>
+                    <text>需要客户扫码授权，尽快让客户授权，点击查看</text><text class="code" bindtap="viewCode">客户授权二维码</text>
+                </view>
+                <view class="item-subtitle" wx:elif="{{index == 0 && !process.expireDate}}">订单超时关闭</view> -->
+
+                <view class="item-subtitle">
+                    <text class="expire-date" wx:if="{{index == 0 && process.expireDate}}">还剩{{process.expireDate}}自动关闭订单</text>
+                    <text wx:elif="{{index == 0 && !process.expireDate}}">订单超时关闭</text>
+
+                    <view wx:if="{{currentStatus == 'memberAuthorization' && process.expireDate}}">
+                        <text>需要客户扫码授权，尽快让客户授权，点击查看</text><text class="code" bindtap="viewCode">客户授权二维码</text>
+                    </view>
+                </view>
+                <view class="item-time">{{process.createDate}}</view>
+            </view>
+        </view>
+    </view>
+</view>
+              

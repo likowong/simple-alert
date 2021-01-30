@@ -1,0 +1,40 @@
+<!--pages/attestDetails/attestDetails.wxml 认证详情页面-->
+<view class="main" style="height:{{winHeight}}px">
+    <view class="main-top" wx:if="{{isCheck == 2}}">
+        <view class="attest-status">审核不通过，若有疑问请咨询 <text bindtap="callPhone">0755-86955827</text></view>
+    </view>
+    <view class="main-content content-msg" wx:if="{{isCheck == 3}}">  <!-- 审核中 -->
+        <view class="content-list">
+            <view class="tag">个人信息</view>
+            <view class="list-box">
+                <view class="list">
+                    <text class="list-title">真实姓名：</text>
+                    <text class="list-value">{{orderMsg.name}}</text>
+                </view>
+                <view class="list">
+                    <text class="list-title">身份证号：</text>
+                    <text class="list-value">{{orderMsg.idCard}}</text>
+                </view>
+            </view>
+        </view>
+
+        <view class="content-list">
+            <view class="tag">个人名片</view>
+            <view class="img-big-box">
+                <view class="img-box">
+                    <image src="{{orderMsg.businessCardUrl}}" mode="aspectFill" data-src="{{orderMsg.businessCardUrl}}" bindtap="previewIdcardImage"></image>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="main-content" wx:else>
+        <image src="../../images/attest-bg.png" class="attest-bg" mode="widthFix"></image>
+    </view>
+    <view class="main-footer review" wx:if="{{isCheck == 3}}">
+        <text>审核中，审核完毕后将发送短信通知您</text>
+    </view>
+    <view wx:else class="main-footer" bindtab="addClerk">
+        <image src="../../images/accept-icon.png" class="accept-icon" mode="widthFix"></image>
+        <text bindtap="attestClerk">认证店员资格</text>
+    </view>
+</view>

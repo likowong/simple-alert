@@ -1,0 +1,28 @@
+{
+  "pages": [
+    "pages/order/order",
+    "pages/orderSteps/orderSteps",
+    "pages/login/login",
+    "pages/attest/attest",
+    "pages/attestDetails/attestDetails",
+    "pages/clerk/clerk",
+    "pages/orderDetails/orderDetails",
+    "pages/code/code",
+    "pages/loanInfo/loanInfo",
+    "pages/uploadInfo/uploadInfo",
+    "pages/applyOrganization/applyOrganization",
+    "pages/fabigbig/fabigbig"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#00a0e9",
+    "navigationBarTitleText": "申请客户贷款",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#eef2f5"
+  },
+  "networkTimeout": {
+    "request": 15000,
+    "uploadFile": 10000
+  },
+  "sitemapLocation": "sitemap.json"
+}

@@ -1,0 +1,67 @@
+/* pages/login/login.wxss */
+.main{
+    position: relative;
+    padding: 40rpx 0 0 40rpx;
+}
+.input-box{
+    position: relative;
+    display: flex;
+    height: 120rpx;
+    border-bottom: 1px solid #e7ebee;
+}
+.input-label{
+    width: 160rpx;
+    font-size: 30rpx;
+    padding-top: 15rpx;
+    line-height: 105rpx;
+}
+.font-gray{
+    color: #d9dfe3;
+}
+.input-value{
+    position: relative;
+    width: calc(100% - 170rpx);
+    padding: 35rpx 0 25rpx;
+}
+.input-tel{
+    padding-right: 200rpx;
+}
+.input-value input{
+    width: 100%;
+    height:60rpx;
+    line-height: 60rpx;
+    font-size: 30rpx;
+}
+.test-code{
+    position: absolute;
+    top: 35rpx;
+    right: 20rpx;
+    width: 200rpx;
+    text-align: center;
+    font-size: 30rpx;
+    color: #d9dfe3;
+    padding-left: 30rpx;
+    line-height: 60rpx;
+    border-left: 1px solid #d9dfe3;
+}
+.test-code.active{
+    color: #00a0e9;
+    border-left-color: #bbbaba;
+}
+.login-box{
+    margin-top: 100rpx;
+    padding-right: 40rpx;
+}
+.btn-box{
+    width: 100%;
+    height: 90rpx;
+    text-align: center;
+    line-height: 90rpx;
+    font-size: 30rpx;
+    border-radius: 45rpx;
+    background-color: #eff3f6;
+}
+.btn-box.active{
+    background-color: #00a0e9;
+    color: #fff;
+}

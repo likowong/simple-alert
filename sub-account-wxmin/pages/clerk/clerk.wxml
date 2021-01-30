@@ -1,0 +1,146 @@
+<!--pages/clerk/clerk.wxml 店员资格认证页面-->
+<view class="main">
+    <view class="tag">个人信息</view>
+    <view>
+        <view class="input-box">
+            <view class="input-label">真实姓名：</view>
+            <view class="input-value">
+                <input type="text" bindinput="inputName" maxlength="18" placeholder="请输入申请人的真实姓名" placeholder-class="font-gray"/>
+            </view>
+        </view>
+        <view class="input-box">
+            <view class="input-label">身份证号：</view>
+            <view class="input-value">
+                <input type="idcard" bindinput="inputIdcard" bindblur="checkIdcard" placeholder="请输入申请人的身份证号" placeholder-class="font-gray" maxlength="18"/>
+            </view>
+        </view>
+    </view>
+    
+    <view class="tag tag-two">个人名片（需拍摄带有姓名的一面）</view>
+    <view class="picture_list">
+        <view wx:if="{{cardUrl}}" class="picture_item up-pic">
+            <image src="{{cardUrl}}" data-src="{{cardUrl}}" mode="aspectFill" class="upload-img" bindtap="previewImage"></image>
+            <text class='del' bindtap='deleteImg'>×</text>
+        </view>
+
+        <view wx:else class='picture_item' bindtap='uploadImg'>
+            <view class="camera-box">
+                <image src="../../images/camera.png" mode="aspectFill" class="camera-icon"></image>
+            </view>
+            <view class="add-image">
+                个人名片
+            </view>
+        </view>
+    </view>
+
+    <view class="checkbox-box">
+        <van-checkbox value="{{ checked }}" checked-color="#22ad38" bind:change="onChange" class="accept-checkbox">我已同意</van-checkbox>
+        <text class="my-data" bindtap="openAcceptPopup">《个人数据查询授权书》</text>
+    </view>
+
+    <!-- 授权内容弹窗 -->
+    <van-popup show="{{ acceptPopup }}" bind:close="closeAcceptPopup" class="contract-popup">
+        <view class="contract-content">
+            <view class="content-title">点个车业务合作合同（商家版）</view>
+            <view class="content-msg">合同编号：</view>
+            <view class="content-msg">甲方：</view>
+            <view class="content-msg">乙方：</view>
+            <view class="content-msg">甲、乙双方本着自愿、平等、诚实信用的原则，根据《中华人民共和国合同法》及相关法律、法规及监管等的规定，经双方友好协商，就乙方为甲方提供居间服务，推荐有消费分期需求客户的事宜特签订本合同，以兹双方共同恪守：</view>
+            <view class="content-msg">第一条 合作各方</view>
+            <view class="content-msg">1.1 甲方系拥有资金渠道资源，为客户在购车过程中产生的包含且不限不购置税、保险、精品及其它汽车衍生服务或费用等支出的消费分期需求提供产品设计、系统建设、大数据风控等技术输出的企业法人组织。</view>
+            <view class="content-msg">1.2 乙方系拥有完全民事行为能力，已阅读、确认合同涉及的权利、义务，并明确了解其应承担的责任及风险的民事主体。</view>
+            <view class="content-msg">第二条 合作内容</view>
+            <view class="content-msg">2.1 甲方向乙方提供金融产品，乙方根据甲方认可的风控标准筛选并向甲方推荐有消费分期需求的客户（以下简称“客户”），乙方指引及协助客户在甲方电子业务平台（点个车电子平台）完成汽车消费分期的申请操作流程，乙方推荐客户获得甲方审核通过并成功放款的，甲方向乙方支付服务费。</view>
+            <view class="content-msg">2.2 除2.1条约定的业务外，乙方可向甲方推荐第三人为甲方提供居间服务，乙方推荐的第三人满足甲方对推荐人要求的，甲方向乙方支付奖励金。</view>
+            <view class="content-msg">第三条 具体要求</view>
+            <view class="content-msg">3.1 乙方推荐的客户来源仅限于在乙方所在职的汽车销售服务4S店中购买汽车的客户。若乙方工作单位发生变动，应及时告知甲方或在甲方业务系统中进行更新。甲方有权根据具体情况决定是否暂停与乙方的业务合作。</view>
+            <view class="content-msg">3.2 乙方应根据甲方电子业务平台要求协助收集客户信息及资料，并按甲方电子业务平台提示完成客户的信息填写、消费分期申请、合同签署等步骤及流程，同时，乙方应确保客户信息及资料的真实、无误。</view>
+            <view class="content-msg">3.3 乙方确认，甲、乙双方之间不存在劳动关系，在乙方提供居间服务过程中所产生的招待、销售费用、劳务成本等支出由乙方承担。</view>
+            <view class="content-msg">3.4 乙方为甲方推荐第三人为甲方提供居间服务时，应符合甲方产品销售制度要求。</view>
+            <view class="content-msg">3.5 甲方将不时调整汽车消费分期产品的费率、期限及产品销售要求、服务费及佣金计费方式等内容，并以《说明/方案》的形式定期通过邮件、群共享等方式公布，乙方须按《说明/方案》的标准及要求向客户推荐甲方产品，向甲方提供居间服务。</view>
+
+            <view class="content-msg">第四条 服务费及奖励金</view>
+            <view class="content-msg">4.1 服务费及奖励金的支付标准以甲方发布的《说明/方案》为准。</view>
+            <view class="content-msg">4.2 服务费及奖励金按月结算，甲方于每月15日前向乙方支付上月的服务费及奖励金。</view>
+
+            <view class="content-msg">第五条 权利和义务</view>
+            <view class="content-msg">5.1 甲方的权利义务</view>
+            <view class="content-msg">（1）甲方有权根据其风险控制标准对客户的还款能力进行审核，并为符合风险控制标准的客户提供消费分期服务。当乙方推荐的客户不符合甲方或资金方的风控标准时，甲方有权予以拒绝。</view>
+            <view class="content-msg">（2）合作期限内，甲方可根据市场需求及自身能力等实际情况，对乙方的销售活动做出各种支持。</view>
+            <view class="content-msg">（3）甲方有权根据国家有关法律法规、部门规章、监管政策的相关规定、乙方业务能力或甲方的标准进行调整、取消、终止与乙方的合作。</view>
+            <view class="content-msg">5.2 乙方的权利义务</view>
+            <view class="content-msg">（1）乙方有权监督甲方受理业务的工作效率。</view>
+            <view class="content-msg">（2）乙方应积极配合甲方不定期反馈与本合同项下合作业务。</view>
+            <view class="content-msg">（3）乙方应按甲方金融产品的费用标准，与客户沟通并协助各方收取款项及费用。</view>
+            <view class="content-msg">（4）乙方应和甲方及时沟通市场信息，包括但不限于本地金融市场情况及当期竞品等，以助于双方的更好合作。</view>
+            <view class="content-msg">（5）乙方通过甲方电子业务平台完成进件录单，对客户录入信息的完整性、真实性应尽到审查职责，并对客户资源做好维护和管理。</view>
+            <view class="content-msg">（6）乙方应授权甲方查询其个人基本信息用于审核乙方的居间服务资格，并协助甲方提示客户授权甲方查询客户个人信息用于完成汽车消费分期信用审核。</view>
+            <view class="content-msg">（7）乙方对外宣传甲方金融产品时不得以甲方公司员工的名义，且宣传方式应符合国家、行业及甲方的要求，对外的宣传手册、宣传标语等应经过甲方审核同意后使用。</view>
+
+
+            <view class="content-msg">第六条 反欺诈条款</view>
+            <view class="content-msg">6.1 乙方在向客户推介购车消费分期业务时应当充分告知业务相关具体情况。所有操作均应当出于客户真实意愿，不得出现损害客户财产权益的行为，此类行为包括但不限于借用其身份信息、虚构冲单需求、给予客户部分回报骗取客户配合、另收预付款、保证金等。</view>
+            <view class="content-msg">6.2 乙方不得代表甲方向客户收取任何款项、或存在虚构还款资料等误导性行为。</view>
+            <view class="content-msg">6.3 乙方不得虚构购车等消费事实、虚构客户身份资料、冒用客户身份信息等。</view>
+            <view class="content-msg">6.4 购车消费分期业务操作均通过甲方或甲方指定的业务系统进行，乙方不得以任何方式侵占、截留贷款本金和利息。</view>
+            <view class="content-msg">6.5 乙方在业务办理中发现有一方或者其他主体存在欺诈行为的，应及时制止并上报甲方，乙方应积极配合甲方对各种类型的欺诈、违约行为进行调查，提供线索、给予便利、配合收集资料。</view>
+            <view class="content-msg">6.6 任一方构成实质欺诈行为，直接或间接造成甲方或甲方客户产生一定损失的，该方应承担相应赔偿责任，其他方保留依法追究该方法律责任的权利。</view>
+            <view class="content-msg">6.7 若客户向甲方或资金方构成实质欺诈行为，直接或间接造成甲方损失的，乙方承担赔偿责任，乙方证明其已尽提示义务的除外。</view>
+
+            <view class="content-msg">第七条 违约责任</view>
+            <view class="content-msg">7.1 任何一方不履行/不完全履行本合同下的义务，违约方应向守约方承担违约责任，并赔偿由于其不履行或不完全履行义务造成的一切损失。本合同约定的损失包括但不限于律师费、调查费、催收费、诉讼费等其他全部费用。</view>
+            <view class="content-msg">7.2 若乙方违反本合同项下义务，甲方有权视情况扣除部分或全部履约服务费及佣金，造成甲方损失的，乙方应承担赔偿责任。</view>
+
+            
+            <view class="content-msg">第八条 保密义务</view>
+            <view class="content-msg">8.1 乙方的保密义务。为完成本合同合作业务，甲方向乙方提供的一切信息及乙方在为甲方提供居间服务时知悉的与甲方有关的信息，包括但不限于销售数据资料、知识产权资料、客户资料、调查数据等，乙方对上述保密信息负有保密义务，未经甲方书面许可，乙方不得擅自进行发表、留存、复制、使用上述保密信息。</view>
+            <view class="content-msg">8.2 甲方的保密义务。乙方向甲方提供的对甲方产品创新、优化的建议、乙方个人信息等。未经甲方书面许可，乙方不得向任何第三方转让、透露、披露或允许任何第三方使用上述保密信息。</view>
+            <view class="content-msg">8.3 本条所约定的保密义务不因合同终止或解除而失效。</view>
+
+            <view class="content-msg">第九条 知识产权</view>
+            <view class="content-msg">9.1 双方一致认可，甲方的电子系统、甲方logo、标识、商标等的知识产权属甲方所有，并未向乙方授权或转让知识产权权益，未经甲方书面授权许可，乙方不得使用。</view>
+            <view class="content-msg">9.2 本合同终止或到期后，乙方应返还、删除、销毁或其他方式停止使用甲方享有知识产权的文件及资料。</view>
+
+            <view class="content-msg">第十条 争议解决</view>
+            <view class="content-msg">10.1 履行本合同产生的一切争议纠纷，双方应先协商解决，协商不成的，任何一方均可向签约地的人民法院提起诉讼。</view>
+            <view class="content-msg">10.2 在争议解决期间，若该争议不影响本合同其他条款的履行，则该其他条款应继续履行。</view>
+
+            <view class="content-msg">第十一条 其他事项</view>
+            <view class="content-msg">11.1 本合同落款所载之地址、联系人、电子邮件、手机等均为送达通知、送达仲裁、诉讼文件之有效方式。任何一方改变上述联系方式的，应当于改变上述联系方式之前五日内书面通知对方。任何一方改变上述联系方式而怠于通知对方的，对方依据本合同首页所载之联系方式发出的通知、送达均视为有效。</view>
+            <view class="content-msg">11.2 若使用网络电子签章的方式签署本协议，则甲、乙双方认可且同意使用互联网信息技术以数据电文形式订立并认同其效力。</view>
+            <view class="content-msg">11.3 合同修改：本合同未尽事宜，双方可以另行协商签订补充协议。补充协议作为本合同的组成部分，与本合同具有同等法律效力。</view>
+            <view class="content-msg">11.4 本合同经各方签署后成立，一式贰份，双方各持有一份，具有同样法律效力。</view>
+            <view class="content-msg">（以下无正文）</view>
+
+
+            <view class="column">
+                <view class="content-msg">甲方：</view>
+                <view class="content-msg">法定代表人：</view>
+                <view class="content-msg">通讯地址：</view>
+                <view class="content-msg">联系电话：</view>
+            </view>
+            
+            <view class="column">
+                <view class="content-msg">乙方：</view>
+                <view class="content-msg">证件号：</view>
+                <view class="content-msg">住所：</view>
+                <view class="content-msg">通讯地址：</view>
+                <view class="content-msg">联系电话：</view>
+                <view class="content-msg">邮箱：</view>
+            </view>
+
+            <view class="column">
+                <view class="content-msg">签署日期：</view>
+                <view class="content-msg">签署地址：深圳市南山</view>
+            </view>
+        </view>
+        <view class="contract-close-box" bindtap="closeAcceptPopup">
+            <view class="contract-close"></view>
+        </view>
+        
+    </van-popup>
+
+    <view class="submit-btn-box">
+        <view class="btn-box {{buttonStatus ? 'active' : ''}}" bindtap="{{!buttonClicked?'nextStep':''}}">提交认证</view>
+    </view>
+</view>

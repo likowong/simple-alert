@@ -1,0 +1,111 @@
+/* pages/order/order.wxss */
+.main{
+    background-color:#eef2f5;
+}
+.main-content{
+    padding: 20rpx 20rpx 120rpx;
+}
+.content-list{
+    position: relative;
+    padding: 30rpx 0 30rpx 80rpx;
+    margin-bottom: 20rpx;
+    border-radius: 10px;
+    box-shadow: 0px 0px 2px 2px #f1f1f1; 
+    background-color: #fff;
+}
+.content-list:nth-last-of-type(1){
+    margin-bottom: 0;
+}
+.order-num{
+    position: relative;
+}
+.order-num:nth-child(1):before{
+    content: '';
+    position: absolute;
+    left: -40rpx;
+    top: 50%;
+    width: 18rpx;
+    height: 18rpx;
+    border-radius: 50%;
+    background-color: #62cefb;
+    transform: translateY(-50%);
+}
+.order-name{
+    font-size: 30rpx;
+    font-weight: 600;
+    margin-bottom: 10rpx;
+}
+.order-msgs{
+  padding: 30rpx 0 10rpx;
+}
+.order-msg{
+    line-height: 44rpx;
+    color: #96a0a6;
+}
+.order-money{
+    color: #f7440e;
+}
+.order-status{
+    position: absolute;
+    top: 25rpx;
+    right: -10rpx;
+    width: 180rpx;
+    height: 44rpx;
+    text-align: center;
+    line-height: 44rpx;
+    background-color: #00a0e9;
+    color: #fff;
+    font-size: 24rpx;
+    border-top-right-radius: 14rpx;
+    border-bottom-left-radius: 14rpx;
+}
+.order-status:after{
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: -9rpx;
+    width: 0;
+    height: 0;
+    border-color: transparent #00a0e9;
+    border-width: 0 0 10rpx 10rpx;
+    border-style: solid;
+    z-index: 5;
+}
+.order-detail{
+    position: absolute;
+    right: 20rpx;
+    bottom: 50rpx;
+    color: #a4a3a1;
+    font-size: 24rpx;
+}
+
+.footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 90rpx;
+    text-align: center;
+    line-height: 90rpx;
+    font-size: 30rpx;
+    color: #fff;
+    background-color: rgba( 0, 160, 233, 1);
+    z-index: 10;
+}
+.attest-bg{
+    width: 100%;
+    height: auto;
+}
+
+.main-order-none{
+    text-align: center;
+    background-color: #fff;
+}
+.order-none{
+    width: 120rpx;
+    height: 155rpx;
+    margin: 270rpx auto 100rpx;
+}
+.subtitle{
+    font-size: 28rpx;
+}

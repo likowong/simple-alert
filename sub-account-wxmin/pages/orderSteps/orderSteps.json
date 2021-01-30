@@ -1,0 +1,7 @@
+{
+    "navigationBarTitleText": "申请客户贷款",
+    "backgroundColor": "#fff",
+    "usingComponents": {
+        "van-steps": "/dist/steps/index"
+    }
+}

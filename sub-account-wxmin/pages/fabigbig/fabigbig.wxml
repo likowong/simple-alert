@@ -1,0 +1,4 @@
+<!--pages/fabigbig/fabigbig.wxml 法大大页面-->
+<view>
+  <web-view src="http://test.api.fabigbig.com:8888/api/extsign.api?app_id=401730&v=2.0&timestamp=20181215174341&transaction_id=1231232131231211312&customer_id=0F51B4FC05D6F856E5EB7A9F131C3E78&contract_id=test123445y65&doc_title=%E8%BD%A6%E9%91%AB%E6%B5%8B%E8%AF%95%E5%90%88%E5%90%8C&sign_keyword=Test1&return_url=https%3A%2F%2Fadmin.diangc.cn&notify_url=https%3A%2F%2Fadmin.diangc.cn&msg_digest=MzBBMzZGNTYzRjFFMjQwMjlFNUU1NDMzNjA4MjIyQzZCMUE1Qjg2NA==">跳转到第三方</web-view>
+</view>

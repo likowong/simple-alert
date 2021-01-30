@@ -1,0 +1,26 @@
+<!--pages/loanInfo/loanInfo.wxml 车贷资料页面-->
+<view class="main">
+    <view class="tag">车贷资料</view>
+    <view class="content">
+        <view class="content-list">
+            <text class="list-title">车贷审批机构：</text>
+            <text class="list-value">{{orderMsg.applyOrganization}}</text>
+        </view>
+        <view class="content-list">
+            <text class="list-title">机构批复金额：</text>
+            <text class="list-value">{{orderMsg.carSuccessMoney}}元</text>
+        </view>
+        <view class="content-list">
+            <text class="list-title">车贷期数：</text>
+            <text class="list-value">{{orderMsg.carPeriod}}期</text>
+        </view>
+        <view class="content-list">
+            <text class="list-title">购买车辆型号：</text>
+            <text class="list-value">{{orderMsg.carType}}</text>
+        </view>
+        <view class="content-list">
+            <text class="list-title">车辆裸车价：</text>
+            <text class="list-value">{{orderMsg.carPrice}}元</text>
+        </view>
+    </view>
+</view>

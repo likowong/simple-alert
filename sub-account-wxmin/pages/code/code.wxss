@@ -1,0 +1,80 @@
+/* pages/trialCode/trialCode.wxss */
+.main{
+    position: relative;
+    padding-top: 54rpx;
+}
+.main-content{
+    position: relative;
+    width: 614rpx;
+    height: 875rpx;
+    margin: 0 auto;
+    text-align: center;
+    padding: 50rpx;
+}
+.code-bg{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -10;
+}
+.img-code{
+    width: 504rpx;
+    height: 504rpx;
+    margin-bottom: 20rpx;
+}
+.img-tip{
+    font-size: 30rpx;
+    margin-bottom: 40rpx;
+}
+.img-share{
+    font-size: 30rpx;
+    color: #4c8ede;
+}
+.go-home{
+    position: absolute;
+    left: 50%;
+    bottom: 120rpx;
+    width: 80%;
+    height: 90rpx;
+    line-height: 90rpx;
+    text-align: center;
+    font-size: 36rpx;
+    background-color: #00a0e9;
+    color: #fff;
+    border-radius: 45rpx;
+    transform: translateX(-50%);
+}
+.right-arrow{
+    position: relative;
+    padding-right: 10px;
+    height: 34rpx;
+    line-height: 34rpx;
+    color: #fff;
+}
+.right-arrow:before{
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 6px;
+    height: 6px;
+    margin-top: -3px;
+    border-top: 1px solid #fff;
+    border-right: 1px solid #fff;
+    transform: rotate(45deg);
+}
+.van-popup.code-popup{
+  background-color: rgba(255,255,255,0);
+}
+.canvas-code{
+    width: 260px;
+    height: 400px;
+}
+.icon-box{
+  margin-top: 10px;
+  text-align: center;
+}
+  
+  
