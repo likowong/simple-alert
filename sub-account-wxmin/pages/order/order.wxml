@@ -23,4 +23,3 @@
 
 <view class="footer" wx:if="{{!isDisable && token}}" bindtap="navigateOrderSteps">主页</view>
 <view class="footer" wx:if="{{!isDisable && token}}" bindtap="navigateOrderSteps">我的</view>
-<view class="footer" wx:elif="{{isDisable}}">工号已停用，请联系0755-86955827</view>

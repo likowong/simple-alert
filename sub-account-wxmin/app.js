@@ -38,23 +38,8 @@ App({
         url: '/pages/login/login'
       })
     }else{
-      wxRequest.post('/sell/getSell',this.globalData.token)
-      .then(res=>{
-        let isCheck = res.data.content.isCheck;
-        if(isCheck == 4){   // 店员未认证
-          wx.reLaunch({  
-            url: '/pages/attest/attest'
-          })
-        }else if(isCheck == 2 || isCheck == 3){  // 查看认证信息
-          wx.setStorageSync('isCheck',isCheck)
-          wx.reLaunch({  
-            url: '/pages/attestDetails/attestDetails'
-          })
-        }else{
-          wx.reLaunch({  
-            url: '/pages/order/order'
-          })
-        }
+      wx.reLaunch({
+        url: '/pages/order/order'
       })
     }
   },

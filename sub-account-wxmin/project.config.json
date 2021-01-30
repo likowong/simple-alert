@@ -42,7 +42,7 @@
   "compileType": "miniprogram",
   "libVersion": "2.4.0",
   "appid": "wx802c7780b4d8a811",
-  "projectname": "priceless-additional-sell",
+  "projectname": "sub-account-wxmin",
   "debugOptions": {
     "hidedInDevtools": []
   },
