@@ -41,13 +41,23 @@ class Request {
             case 500:
                 wx.showToast({
                     icon: 'none',
-                    title: res.data.message,
+                    title: res.data.msg,
                 })
                 return false;
             case 403:   // token失效
-              wx.reLaunch({
-                url: '/pages/login/login'
+              wx.showToast({
+                icon: 'none',
+                title: "登录失效,请重新登录",
+                success:function(){
+                      setTimeout(function () {
+                          wx.reLaunch({
+                              url: '/pages/login/login'
+                          })
+                      }, 2000) //延迟时间
+                }
               })
+
+              return false;
             default:
               wx.showToast({
                 icon: 'none',
@@ -67,12 +77,11 @@ class Request {
     request({ url, method, header = {}, data }) {
         return new Promise((resolve, reject) => {
             wx.request({
-                url: (this._baseUrl || '') + url + '?token=' + this.constructor(),
+                url: (this._baseUrl || '') + url,
                 method: method || METHOD.GET,
                 data: data,
                 header: {
-                    ...this._header,
-                    ...header
+                    token:header,
                 },
                 success: res => this.intercept(res) && resolve(res),
                 fail: res => this.fail() && reject

@@ -1,0 +1,37 @@
+/* pages/order/order.wxss */
+.main{
+    background-color:#eef2f5;
+}
+.main-content .main-insurances {
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    flex-direction: row;
+    padding: 20rpx;
+    align-items: center;
+    font-size: 30rpx;
+    color: #333;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.main-content .title {
+    font-size: 36rpx;
+    font-weight: bold;
+    padding: 20rpx;
+}
+.main-content .insurance-item {
+    min-width: 48%;
+    box-sizing: border-box;
+    border-radius: 6rpx;
+    -webkit-border-radius: 6rpx;
+    -moz-border-radius: 6rpx;
+    -ms-border-radius: 6rpx;
+    -o-border-radius: 6rpx;
+    border: 1rpx solid rgb(122, 119, 119);
+    text-align: center;
+    font-size: 30rpx;
+    padding: 20rpx 10rpx;
+    margin-top: 20rpx;
+    margin-left: 1%;
+    margin-right: 1%;
+}

@@ -1,0 +1,27 @@
+/* pages/order/order.wxss */
+.main{
+    background-color:#eef2f5;
+}
+.main-content .main-content-item {
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    flex-direction: row;
+    border-bottom: #ccc solid 1rpx;
+    padding: 20rpx;
+    align-items: center;
+    font-size: 30rpx;
+    color: #333;
+}
+.main-content .title {
+    font-size: 36rpx;
+    font-weight: bold;
+    padding: 20rpx;
+}
+.main-content .main-content-item .label {
+    padding-left: 20rpx;
+    width: 220rpx;
+}
+.main-content .main-content-item .desc {
+    flex:1;
+}

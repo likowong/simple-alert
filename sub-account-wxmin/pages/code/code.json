@@ -1,6 +1,0 @@
-{
-  "backgroundColor": "#fff",
-  "usingComponents": {
-    "van-popup": "/dist/popup/index"
-  }
-}

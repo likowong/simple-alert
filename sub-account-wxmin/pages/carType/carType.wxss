@@ -1,0 +1,49 @@
+/* pages/applyOrganization/applyOrganization.wxss */
+
+.list{
+    border-bottom: 1px solid #e7ebee;
+}
+.list .list-item-title {
+    font-size: 30rpx;
+    font-weight: bold;
+    padding: 20rpx;
+    flex: 1;
+}
+.list .list-item-name {
+    padding-left: 40rpx;
+    height: 110rpx;
+    line-height: 110rpx;
+}
+.list-item-type {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.list-item-icon {
+    border-right: 2px solid #343c99;
+    border-top: 2px solid #343c99;
+    width: 26rpx;
+    height: 26rpx;
+    border-left: 2px solid transparent;
+    border-bottom: 2px solid transparent;
+    margin-right: 20rpx;
+}
+.list-item-type .up {
+      transform: rotate(-45deg);
+      -webkit-transform: rotate(-45deg);
+      -moz-transform: rotate(-45deg);
+      -ms-transform: rotate(-45deg);
+      -o-transform: rotate(-45deg);
+      margin-top: 13rpx;
+}
+.list-item-type .down {
+      transform: rotate(135deg);
+      -webkit-transform: rotate(135deg);
+      -moz-transform: rotate(135deg);
+      -ms-transform: rotate(135deg);
+      -o-transform: rotate(135deg);
+      margin-bottom: 13rpx;
+}
+.list-item-content.item-hide {
+    display: none;
+}

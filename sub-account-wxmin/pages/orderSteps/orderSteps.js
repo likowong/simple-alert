@@ -17,21 +17,51 @@ Page({
       }
     ],
     form: {
-      applyOrganization: '',    //车贷机构
-      carSuccessMoney: '',       // 批复金额
-      carType: '',          // 车辆型号
-      carPrice: '',       // 裸车价
-      carPeriod: 12,        // 车贷期数
-      carContractUrl: [],        // 订车合同
-      successReplyUrl: []     // 批复函
+      orderprice: '',      //订单金额
+      productid: '',       // 险种Id
+      productname: '',     // 险种名
+      isincludeprice:'', //代步险价格
+      isinclude: '',       // 是否包含代步险
+      isfree: '',        // 是否店内赠送
+      carage: '',        // 车龄
+      insuranceperiod: '',     // 投保期限
+      name: '',           // 车主姓名
+      idcard: '',         // 车主身份证号
+      phone: '',//车主手机号
+      carbrand: '',//车辆品牌
+      operationmode: '',//营运性质1:非运营车,2:营运车
+      carnumber: '',//车架号
+      carenginenumber: '',//发动机号
+      carbuytime: '',//车辆购置日期
+      carbuyprice: '',//购车价
+      extmsg: '',//扩展信息
+      imagemsg: '',//图片信息
+      isincludedata:''//代步险资料
     },
+    carTypeName: '',
     active: 0,
     firstStepBtn: false,   //第一步按钮的状态
     lastStepBtn: false,   //最后一步按钮的状态
     carPeriodArr: [12,18,24,36,48,60],     // 车贷可选择的期数
     contractIndex: 0,      // 订车合同的下标
     replyIndex: 0,          // 批复函图片下标
-    phone: ''               // 客户手机号
+    phone: '',              // 客户手机号
+    carAge: [
+      {value: '1', text: '新车（0-12个月车龄）'},
+      {value: '2', text: '次新车（13-24个月车龄）'},
+      {value: '3', text: '二手车（25-36个月车龄）'}
+    ],
+    insurePeriod: [
+      {value: '12', text: '12个月'},
+      {value: '24', text: '24个月'},
+      {value: '36', text: '36个月'},
+      {value: '48', text: '48个月'},
+      {value: '60', text: '60个月'}
+    ],
+    operationNature: [
+      {value: '1', text: '非运营车'},
+      {value: '2', text: '运营车'}
+    ],
   },
 
   /**
@@ -45,13 +75,14 @@ Page({
   },
 
   onShow: function () {
-    // 设置车贷机构
-    let organize = wx.getStorageSync('organize');
-    if(organize){
+    // 设置车型
+    let carType = wx.getStorageSync('carType');
+    if(carType){
       this.setData({
-        ['form.applyOrganization']: organize
+        ['form.carTypeId']: carType.id,
+        ['form.carTypeName']: carType.name
       })
-      wx.removeStorageSync('organize');
+      wx.removeStorageSync('carType');
     }
     this.activeFirstBtn();
   },
@@ -82,7 +113,37 @@ Page({
       })
     }
   },
+   // 选择车辆年限
+   inputCarAge: function(e) {
+    let carAge = e.target.dataset.carage;
+    this.setData({
+      ['form.carAge']: carAge
+    })
+  }, 
+
+   // 选择投保期限
+  inputInsurePeriod: function(e) {
+   let insurePeriod = e.target.dataset.period;
+   this.setData({
+     ['form.insurePeriod']: insurePeriod
+   })
+ }, 
   
+  // 输入数据
+  inputData: function(e) {
+    this.setData({
+      ['form.'+ e.target.dataset.name]: e.detail.value
+    })
+    this.activeFirstBtn();
+  },
+  
+  // 选择车辆品牌
+  selectCarType: function(){
+    wx.navigateTo({
+      url: '../carType/carType'
+    })
+  },
+
   // 输入车贷机构
   inputOrganize: function(e) {
     this.setData({
@@ -97,6 +158,7 @@ Page({
       url: '../applyOrganization/applyOrganization'
     })
   },
+
 
   // 输入批复金额
   inputCarSuccessMoney: function(e) {

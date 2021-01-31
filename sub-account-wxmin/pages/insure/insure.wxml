@@ -1,0 +1,25 @@
+<!--pages/order/order.wxml 提单列表页-->
+<view class="main" style="min-height:{{winHeight}}px" >
+    <view class="main-content">
+        <view class="title">选择险种</view>
+        <view class="choose-item">
+            <view class="insurance-item">GAP险</view>
+            <view class="insurance-item">大事故损失补偿险</view>
+        </view>
+        <view class="choose-item">
+            <view class="label">是否需要搭配代步险</view>
+            <view class="check">
+                <checkbox value="dbx" checked="false"/>
+            </view>
+        </view>
+        <view class="choose-item">
+            <view class="label">是否为店内赠送（勾选该项则客户无须支付）</view>
+            <view class="check">
+                <checkbox value="zs" checked="false"/>
+            </view>
+        </view>
+        <view class="confirm">
+            <button bindtap="navigateOrderSteps" type="primary">确 定</button>
+        </view>
+    </view>
+</view>

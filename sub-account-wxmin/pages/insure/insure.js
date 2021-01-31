@@ -25,13 +25,32 @@ Page({
     var winMsg = wx.getSystemInfoSync();
     let token = wx.getStorageSync("token");
     this.setData({
-      winHeight: winMsg.windowHeight
+      winHeight: winMsg.windowHeight,
+      token: token
     });
     
+    if(token){
       wxRequest.post('/app/suborderinfo/list',"",token)
       .then(res=>{
-        console.log(res.data)
+        let isCheck = res.data.content.isCheck;
+        if(isCheck == 4){   // 店员未认证
+          wx.reLaunch({  
+            url: '/pages/attest/attest'
+          })
+        }else if(isCheck == 2 || isCheck == 3){  // 查看认证信息
+          wx.setStorageSync('isCheck',isCheck)
+          wx.reLaunch({
+            url: '/pages/attestDetails/attestDetails'
+          })
+        }else{
+          this.loadData(this.data.startPage,this.data.pageSize);
+        }
       })
+    }else{   // 没有登录情况
+      wx.reLaunch({  //跳转到登录页面
+        url: '/pages/login/login'
+      })
+    }
   },
 
   /**
@@ -71,29 +90,12 @@ Page({
       this.loadData(this.data.startPage,this.data.pageSize);
     }
   },
-  // 发起提单
-  navigateAddOrder() {
-    wx.navigateTo({
-      url: '../insure/insure'
-    })
-  },
 
-// 跳转到主页
-  navigateIndex() {
-    if(wx.getStorageSync('activeIndex')){    // 判断是否有指示步骤的下标
-      wx.removeStorageSync('activeIndex');
-    }
+
+  // 发起提单
+  navigateOrderSteps() {
     wx.navigateTo({
-      url: '../order/order'
-    })
-  },
-  // 跳转我的
-  navigateMine() {
-    if(wx.getStorageSync('activeIndex')){    // 判断是否有指示步骤的下标
-      wx.removeStorageSync('activeIndex');
-    }
-    wx.navigateTo({
-      url: '../mine/mine'
+      url: '../orderSteps/orderSteps'
     })
   },
 
@@ -109,7 +111,7 @@ Page({
     sendData.serviceName = 'ApiOrderServiceImpl';
     sendData.methodName = 'listOrderInfos';
     return new Promise((resolve,reject) => {
-      wxRequest.post('/app/suborderinfo/list',sendData)
+      wxRequest.post('/api/miniProgram',sendData)
       .then(res => {
         resolve();
         if(res.data.status == 9){   // 停用状态

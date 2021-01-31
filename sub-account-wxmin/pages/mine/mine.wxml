@@ -1,0 +1,30 @@
+<!--pages/order/order.wxml 提单列表页-->
+<view class="main" style="min-height:{{winHeight}}px" >
+    <view class="main-header">
+        <view class="image"></view>
+        <view class="content">
+            <view class="storeName">深圳宝马4S店</view>
+            <view class="userInfo">
+                <view class="name">李四</view>
+                <view class="phone">13115987456</view>
+            </view>
+        </view>
+    </view>
+    <view class="main-content">
+        <view class="main-content-item">
+            <view class="desc">基本信息</view>
+            <view class="icon">></view>
+        </view>
+        <view class="main-content-item">
+            <view class="desc">价格设置</view>
+            <view class="icon">></view>
+        </view>
+        <view class="quit">
+            <button type="primary">退出登录</button>
+        </view>
+    </view>
+</view>
+<view class="footer">
+    <view class="footer-btn" bindtap="navigateIndex">主页</view>
+    <view class="footer-btn" bindtap="navigateMine">我的</view>
+</view>

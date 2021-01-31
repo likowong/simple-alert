@@ -1,0 +1,22 @@
+<view class="main">
+    
+    <view class="list" wx:for="{{carType}}" wx:key="{{index+'-'+item.id}}" wx:for-item="item">
+        
+        <view class="list-item-type" data-id="{{item.id}}" bindtap="listToggle">
+            <view class="list-item-title">{{item.text}}</view>
+            <view class="list-item-icon {{item.hide ? 'down' : 'up'}}" >
+            </view>
+        </view>
+        <view class="list-item-content {{item.hide ? 'item-hide' : ''}}">
+            <view class="list-item-name" 
+                data-id="{{child.id}}" 
+                data-name="{{child.text}}" 
+                wx:for="{{item.children}}" 
+                wx:for-index="idx"
+                data-index="{{index+'-'+child.id}}"
+                wx:key="{{index+'-'+child.id}}" 
+                wx:for-item="child" 
+                bindtap="selectCarType">{{child.text}}</view>
+        </view>
+    </view>
+</view>

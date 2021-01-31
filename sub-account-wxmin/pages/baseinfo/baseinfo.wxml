@@ -1,0 +1,18 @@
+<!--pages/order/order.wxml 提单列表页-->
+<view class="main" style="min-height:{{winHeight}}px" >
+    <view class="main-content">
+        <view class="title">店内信息</view>
+        <view class="main-content-item">
+            <view class="label">门店名称</view>
+            <view class="desc">宝源行</view>
+        </view>
+        <view class="main-content-item">
+            <view class="label">负责人</view>
+            <view class="desc">王五</view>
+        </view>
+        <view class="main-content-item">
+            <view class="label">手机号</view>
+            <view class="desc">13115987456</view>
+        </view>
+    </view>
+</view>

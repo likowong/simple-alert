@@ -1,6 +1,10 @@
 {
   "pages": [
     "pages/order/order",
+    "pages/sendOrder/sendOrder",
+    "pages/priceSetting/insurance",
+    "pages/baseinfo/baseinfo",
+    "pages/mine/mine",
     "pages/orderSteps/orderSteps",
     "pages/login/login",
     "pages/attest/attest",

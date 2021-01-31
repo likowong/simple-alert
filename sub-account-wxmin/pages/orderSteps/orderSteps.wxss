@@ -26,7 +26,7 @@
 .input-box{
     position: relative;
     display: flex;
-    height: 120rpx;
+    min-height: 120rpx;
     border-bottom: 1px solid #e7ebee;
 }
 .input-label{
@@ -125,12 +125,6 @@
     color: #fff;
     background-color: #00a0e9;
 }
-.radio-group{
-    line-height: 60rpx;
-}
-.radio-group radio{
-    margin-right: 30rpx;
-}
 
 .file-list{
     padding: 46rpx 0;
@@ -207,4 +201,46 @@
     text-align: center;
     background-color:rgba(0,0,0,.3);
     border-bottom-left-radius: 16rpx;
+}
+.car-age-box{
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    display: flex;
+    min-height: 120rpx;
+    border-bottom: 1px solid #e7ebee;
+    padding: 35rpx 0 25rpx;
+}
+.carAge{
+    height: 53rpx;
+    text-align: center;
+    line-height: 53rpx;
+    border-radius: 25rpx;
+    margin-right: 20rpx;
+    margin-bottom: 24rpx;
+    background-color: #eff3f6;
+    padding-left: 25rpx;
+    padding-right: 25rpx;
+}
+.carAge.active{
+    color: #fff;
+    background-color: #00a0e9;
+}
+.radio-group {
+    line-height: 60rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.radio-group > label > view {
+    display: inline;
+}
+.input-value .date-picker {
+    width: 90%;
+}
+.input-value .date-picker view {
+
+    height: 60rpx;
+    line-height: 60rpx;
+    font-size: 30rpx;
 }

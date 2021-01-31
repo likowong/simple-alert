@@ -1,0 +1,98 @@
+/* pages/order/order.wxss */
+.main{
+    background-color:#eef2f5;
+}
+.main-header {
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+    padding: 20rpx;
+    display: flex;
+    height: 180rpx;
+    box-sizing: border-box;
+    border-bottom: 1rpx solid #ccc;
+}
+
+.main-header .image {
+    width:140rpx;
+    height: 140rpx;
+    margin-right: 16rpx;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    background-color: rgba( 0, 160, 233, 1);
+}
+.main-header .content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.main-header .storeName {
+    font-size: 30rpx;
+    font-weight: bold;
+    color: black;
+    flex: 1;
+}
+.main-header .userInfo {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    align-items: center;
+}
+.main-header .userInfo .phone{
+    padding-left: 10rpx;
+}
+.main-content .main-content-item {
+    border-bottom: 1rpx solid #ccc;
+    height: 80rpx;
+    line-height: 80rpx;
+    display: flex;
+    justify-content: space-between;
+    font-size: 34rpx;
+    font-weight: bold;
+}
+.main-content .main-content-item .desc {
+    padding-left: 20rpx;
+}
+.main-content .main-content-item .icon {
+    padding-right: 20rpx;
+}
+.main-content .quit {
+    margin: 40rpx 20rpx;
+}
+.footer{
+    position: fixed;
+    display: flex;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 90rpx;
+    text-align: center;
+    line-height: 90rpx;
+    background-color: rgba( 0, 160, 233, 1);
+    z-index: 10;
+}
+.footer-btn {
+    flex: 1;
+    font-size: 30rpx;
+    color: #fff;
+}
+.attest-bg{
+    width: 100%;
+    height: auto;
+}
+
+.main-order-none{
+    text-align: center;
+    background-color: #fff;
+}
+.order-none{
+    width: 120rpx;
+    height: 155rpx;
+    margin: 270rpx auto 100rpx;
+}
+.subtitle{
+    font-size: 28rpx;
+}
