@@ -119,11 +119,12 @@ const uploadImgs = (data) =>{
   let token = wx.getStorageSync("token");
 
   wx.uploadFile({
-    url: baseUrl + '/api/fileUpload?token=' + token, 
+    url: baseUrl + '/app/oss/upload',
     filePath: data[i],
     name: 'file',//这里根据自己的实际情况改
     header: {  
       "Content-Type": "multipart/form-data",
+      "token": token,
     },
     success: (res) => {
       success++;//图片上传成功，图片上传成功的变量+1

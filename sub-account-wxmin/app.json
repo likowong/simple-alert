@@ -1,21 +1,16 @@
 {
   "pages": [
     "pages/order/order",
+    "pages/sign/sign",
     "pages/sendOrder/sendOrder",
-    "pages/priceSetting/insurance",
+    "pages/priceSetting/priceSetting",
     "pages/baseinfo/baseinfo",
     "pages/mine/mine",
     "pages/orderSteps/orderSteps",
     "pages/login/login",
-    "pages/attest/attest",
-    "pages/attestDetails/attestDetails",
-    "pages/clerk/clerk",
     "pages/orderDetails/orderDetails",
-    "pages/code/code",
-    "pages/loanInfo/loanInfo",
-    "pages/uploadInfo/uploadInfo",
-    "pages/applyOrganization/applyOrganization",
-    "pages/fabigbig/fabigbig"
+    "pages/priceCarType/priceCarType",
+    "pages/myOrder/myOrder"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,0 +1,5 @@
+<!--pages/order/order.wxml 提单列表页-->
+<view class="main" style="min-height:{{winHeight}}px" >
+   <web-view src="http://47.107.179.11:7005/notify.html?orderNo=123456789">e签宝</web-view>
+</view>
+

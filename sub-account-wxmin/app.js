@@ -3,37 +3,17 @@ import wxRequest from '/utils/request'
 import util from '/utils/util'
 App({
   onLaunch: function () {
-    // 拦截统一配置
-    this.configReq();
+    this.loadPage();
+    this.updateVersion();
   },
   globalData: {
     userInfo: null,
     token: ''
   },
-  configReq(){
-    // 获取用户的openid
-    wx.login({
-      success(res) {
-        if(res.code){
-          wx.request({
-            url: 'https://api.weixin.qq.com/sns/jscode2session?appid=wxa31c64427655531c&secret=1fcc0c8477cfbfe0732ea36d27f1e248&js_code='+res.code+'&grant_type=authorization_code',//获取openid的url，请求微信服务器
-            data: {},
-            header: {
-              'content-type': 'application/json'
-            },
-            success: function(res) {
-              let openid = res.data.openid;
-              wx.setStorageSync('openid', openid);
-            }
-          })
-        }
-      }
-    })
-    this.loadPage();
-  },
   loadPage() {
     this.globalData.token = wx.getStorageSync("token");
-    if(!this.globalData.token){     //如果不存在token
+    //如果不存在token
+    if(!this.globalData.token){
       wx.reLaunch({  //跳转到登录页面
         url: '/pages/login/login'
       })

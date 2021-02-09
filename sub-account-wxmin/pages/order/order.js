@@ -1,161 +1,143 @@
 // pages/order/order.js
 import wxRequest from '../../utils/request'
 import util from '../../utils/util'
+
 Page({
 
-  /**
-   * 页面的初始数据
-   */
-  data: {
-    winHeight: 0,  //窗口高度
-    orderMsgs: [],   // 渲染的列表数据
-    isFirstPage: true,    // orderMsgs是否为空
-    startPage: 0,    //请求第几页
-    pageSize: 10,     //每页显示的数量
-    loadingMore: true,    //下拉的时候是否请求接口
-    isDisable: false,      // 店员是否被禁用
-    noOrder: false,
-    token: ''
-  },
+    /**
+     * 页面的初始数据
+     */
+    data: {
+        winHeight: 0,  //窗口高度
+        orderMsgs: [],   // 渲染的列表数据
+        isFirstPage: true,    // orderMsgs是否为空
+        startPage: 0,    //请求第几页
+        pageSize: 10,     //每页显示的数量
+        loadingMore: true,    //下拉的时候是否请求接口
+        noOrder: false,
+        token: ''
+    },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    var winMsg = wx.getSystemInfoSync();
-    let token = wx.getStorageSync("token");
-    this.setData({
-      winHeight: winMsg.windowHeight
-    });
-    
-      wxRequest.post('/app/suborderinfo/list',"",token)
-      .then(res=>{
-        console.log(res.data)
-      })
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作     
-   */
-  onPullDownRefresh: function () {
-    // 显示顶部刷新图标
-    wx.showNavigationBarLoading();
-    this.setData({
-      orderMsgs: [],
-      isFirstPage: true,
-      startPage: 0,
-      loadingMore: true
-    })
-    this.loadData(0,this.data.pageSize).then(()=>{
-      // 隐藏导航栏加载框
-      wx.hideNavigationBarLoading();
-      // 停止下拉动作
-      wx.stopPullDownRefresh();
-
-      this.setData({
-        startPage: 0
-      })
-      
-    });
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-    let startPage = this.data.startPage + this.data.pageSize;
-    this.setData({
-      startPage: startPage
-    })
-    if(this.data.loadingMore){
-      this.loadData(this.data.startPage,this.data.pageSize);
-    }
-  },
-  // 发起提单
-  navigateAddOrder() {
-    wx.navigateTo({
-      url: '../insure/insure'
-    })
-  },
-
-// 跳转到主页
-  navigateIndex() {
-    if(wx.getStorageSync('activeIndex')){    // 判断是否有指示步骤的下标
-      wx.removeStorageSync('activeIndex');
-    }
-    wx.navigateTo({
-      url: '../order/order'
-    })
-  },
-  // 跳转我的
-  navigateMine() {
-    if(wx.getStorageSync('activeIndex')){    // 判断是否有指示步骤的下标
-      wx.removeStorageSync('activeIndex');
-    }
-    wx.navigateTo({
-      url: '../mine/mine'
-    })
-  },
-
-  // 加载提单列表
-  loadData: function(startPage,pageSize){
-    let sendData = {};
-    let reqbody = {};
-    let page = {};
-    page.startPage = startPage;
-    page.pageSize = pageSize;
-    reqbody.page = page;
-    sendData.reqbody = reqbody;
-    sendData.serviceName = 'ApiOrderServiceImpl';
-    sendData.methodName = 'listOrderInfos';
-    return new Promise((resolve,reject) => {
-      wxRequest.post('/app/suborderinfo/list',sendData)
-      .then(res => {
-        resolve();
-        if(res.data.status == 9){   // 停用状态
-          this.setData({
-            isDisable: true
-          })
-        }else{
-          this.setData({
-            isDisable: false
-          })
-          let orders = res.data.content;
-          if(orders && orders.length > 0){    // 请求数据不为空
-            for(let index in orders){
-              let createTime = util.formatTime(orders[index].createTime);
-              orders[index].createTime = createTime;
-            }
-            let orderMsgs = [];
-            this.data.isFirstPage ? orderMsgs = orders : orderMsgs = this.data.orderMsgs.concat(orders);
-
-            this.setData({
-              noOrder: false,
-              isFirstPage: false,
-              orderMsgs: orderMsgs
+    /**
+     * 生命周期函数--监听页面加载
+     */
+    onLoad: function (options) {
+        //如果不存在token
+        if (!wx.getStorageSync("token")) {
+            wx.reLaunch({  //跳转到登录页面
+                url: '/pages/login/login'
             })
-            if(orders.length < this.data.pageSize){   //当返回的数据少于每页设定加载的数量的时候，关闭下拉加载功能
-              this.setData({
-                loadingMore: false
-              })
-            }
-          }else{
+        } else {
+            debugger
+            let winMsg = wx.getSystemInfoSync();
+            let token = wx.getStorageSync("token");
             this.setData({
-              noOrder: true,
-              loadingMore: false
-            })
-          }
+                winHeight: winMsg.windowHeight
+            });
+            // 获取订单信息
+            let url = '/app/suborderinfo/list?limit=3&page=1'
+            wxRequest.post(url, "", token)
+                .then(res => {
+                    this.setData({
+                        orderMsgs: res.data.page.list
+                    })
+                })
         }
-      })
-    })
-  },
+    },
+    /**
+     * 页面相关事件处理函数--监听用户下拉动作
+     */
+    onPullDownRefresh: function () {
 
-  //跳转到提单详情页面
-  navigateOrderDetails(e) {
-    let orderNumber = e.currentTarget.dataset.order;
-    wx.setStorageSync('orderNumber', orderNumber);
-    wx.navigateTo({
-      url: '../orderDetails/orderDetails'
-    })
-  }
+        //如果不存在token
+        if (!wx.getStorageSync("token")) {
+            wx.reLaunch({  //跳转到登录页面
+                url: '/pages/login/login'
+            })
+        } else {
+            debugger
+            // 显示顶部刷新图标
+            wx.showNavigationBarLoading();
+            var winMsg = wx.getSystemInfoSync();
+            let token = wx.getStorageSync("token");
+            this.setData({
+                winHeight: winMsg.windowHeight
+            });
+            // 获取订单信息
+            let url = '/app/suborderinfo/list?limit=3&page=1'
+            wxRequest.post(url, "", token)
+                .then(res => {
+                    this.setData({
+                        orderMsgs: res.data.page.list
+                    })
+                })
+            // 隐藏导航栏加载框
+            wx.hideNavigationBarLoading();
+            // 停止下拉动作
+            wx.stopPullDownRefresh();
+        }
+    },
+    // 发起提单
+    navigateAddOrder() {
+        // wx.navigateTo({
+        //   url: '../insure/insure'
+        // })
+
+        wx.login({
+            success(res) {
+                if (res.code) {
+                    console.log(res.code)
+                } else {
+                    console.log('登录失败！' + res.errMsg)
+                }
+            }
+        })
+        var timestamp = Date.parse(new Date());
+        wx.requestPayment(
+            {
+                'appId': 'wx2ce30f132b289dcf',
+                'nonceStr': 'uIsSwdQc6bEkuriarJe5CEXLcgWJdZ3D',
+                'package': 'prepay_id=wx08165001788863445194b40cb0bef00000',
+                'signType': 'MD5',
+                'timeStamp': '1612774202069',
+                'paySign': 'D73C35549D21515B039F6272B821A29F',
+                'success': function (res) {
+                    console.log(res)
+                },
+                'fail': function (res) {
+                    console.log(res)
+                },
+                'complete': function (res) {
+                    console.log(res)
+                }
+            })
+    },
+
+    // 跳转我的
+    navigateMine() {
+        if (wx.getStorageSync('activeIndex')) {    // 判断是否有指示步骤的下标
+            wx.removeStorageSync('activeIndex');
+        }
+        wx.reLaunch({
+            url: '../mine/mine'
+        })
+    },
+    //跳转到提单详情页面
+    navigateOrderDetails(e) {
+        let orderNumber = e.currentTarget.dataset.order;
+        wx.setStorageSync('orderNumber', orderNumber);
+        wx.navigateTo({
+            url: '../orderDetails/orderDetails'
+        })
+    },
+    navigatePriceSetting(e) {
+        wx.navigateTo({
+            url: '../priceSetting/priceSetting'
+        })
+    },
+    myOrderList(e) {
+        wx.navigateTo({
+            url: '../myOrder/myOrder'
+        })
+    }
 })

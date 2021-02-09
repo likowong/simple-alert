@@ -4,15 +4,23 @@
         <view class="title">店内信息</view>
         <view class="main-content-item">
             <view class="label">门店名称</view>
-            <view class="desc">宝源行</view>
+            <view class="desc">{{appUser.dealername}}</view>
+        </view>
+        <view class="main-content-item">
+            <view class="label">联系地址</view>
+            <view class="desc">{{appUser.address}}</view>
+        </view>
+        <view class="main-content-item">
+            <view class="label">联系电话</view>
+            <view class="desc">{{appUser.contactphone}}</view>
         </view>
         <view class="main-content-item">
             <view class="label">负责人</view>
-            <view class="desc">王五</view>
+            <view class="desc">{{appUser.contactname}}</view>
         </view>
         <view class="main-content-item">
-            <view class="label">手机号</view>
-            <view class="desc">13115987456</view>
+            <view class="label">负责人手机号</view>
+            <view class="desc">{{appUser.contactphone}}</view>
         </view>
     </view>
 </view>

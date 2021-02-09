@@ -41,7 +41,7 @@
             <view class="status-subtitle">以下为客户的申请审核流程，若客户有疑问，请协助客户进行申请</view>
         </view>
         <view class="status-list">
-            <view class="item {{index == 0 ? 'item-active' : ''}}" wx:for="{{orderProcess}}" wx:for-index="index" wx:for-item="process" wx:key="{{id}}">
+            <view class="item {{index == 0 ? 'item-active' : ''}}" wx:for="{{orderProcess}}" wx:for-index="index" wx:for-item="process" wx:key="id">
                 <view class="step">
                     <view class="step-content"></view>
                 </view>

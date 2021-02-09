@@ -23,7 +23,7 @@
     "compileHotReLoad": false,
     "useMultiFrameRuntime": true,
     "useApiHook": true,
-    "useApiHostProcess": false,
+    "useApiHostProcess": true,
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],
@@ -39,9 +39,9 @@
     "packNpmRelationList": [],
     "minifyWXSS": true
   },
-  "compileType": "miniprogram",
+  "compileType": "GAP焕新车",
   "libVersion": "2.4.0",
-  "appid": "wx802c7780b4d8a811",
+  "appid": "wx2ce30f132b289dcf",
   "projectname": "sub-account-wxmin",
   "debugOptions": {
     "hidedInDevtools": []

@@ -1,15 +1,7 @@
 <!--pages/order/order.wxml 提单列表页-->
-<view class="main" style="min-height:{{winHeight}}px">
-    <view class="main-header">
-        <!-- <image class="order-none" src="../../images/order-none.png"></image> -->
-    </view>
-    <view class="main-operate">
-        <button type="default" bindtap="navigateAddOrder" plain="true" size="mini">发起订单</button>
-        <button type="default" bindtap="navigatePriceSetting" plain="true" size="mini">价格设置</button>
-        <button type="default" bindtap="myOrderList" plain="true" size="mini">我的订单</button>
-    </view>
+<view class="main" style="min-height:{{winHeight}}px" >
+
     <view class="main-content">
-        <view class="main-content-title">最近订单</view>
         <view class="order-list" wx:for="{{orderMsgs}}" wx:for-item="orderInfo" wx:key="index">
             <view class="order-list-item">
                 <view class="order-list-item-label">订单号:</view>
@@ -36,9 +28,5 @@
             </view>
         </view>
     </view>
-</view>
-<view class="footer">
-    <view class="footer-btn">主页</view>
-    <view class="footer-btn" bindtap="navigateMine">我的</view>
 </view>
 

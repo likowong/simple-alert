@@ -7,14 +7,14 @@ const METHOD = {
 
 class Request {
     // _h5BaseUrl = 'http://172.22.5.126:8090'
-    _h5BaseUrl = 'https://diangc.cn/order'
+    _h5BaseUrl = 'https://admin.vanntech.cn/'
     _header = {
         'content-type': 'application/json',
         'token': null
     }
 
-    // _baseUrl = 'http://172.22.5.49:8081'
-    _baseUrl = 'http://localhost'
+    // _baseUrl = 'https://admin.vanntech.cn'
+    _baseUrl = 'http://192.168.1.5'
 
     _token = ''
 

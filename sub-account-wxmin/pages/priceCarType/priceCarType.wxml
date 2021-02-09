@@ -1,0 +1,19 @@
+<view class="main">
+
+    <view class="list" wx:for="{{brandList}}" wx:key="{{index+'-'+item.id}}" wx:for-item="item">
+
+        <view class="list-item-type" data-brandname="{{item.brandname}}" data-brandid="{{item.brandid}}"
+              data-index="{{index+'-'+item.id}}" bindtap="listToggle">
+            <view class="list-item-title">{{item.brandname}}</view>
+            <view class="list-item-icon {{itemHide ? 'down' : 'up'}}">
+            </view>
+        </view>
+        <view class="list-item-content {{itemHide ? 'item-hide' : ''}}">
+            <view wx:for="{{item.carTypeList}}" wx:for-index="idx" wx:key="{{index+'-'+child.id}}" wx:for-item="child">
+                <view class="list-item-name" bindtap="updatePrice" data-id="{{child.id}}">{{child.cartypename}}
+                    {{child.yearofprice}}个月  {{child.price}} 修改
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
