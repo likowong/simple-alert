@@ -10,7 +10,8 @@
     "pages/login/login",
     "pages/orderDetails/orderDetails",
     "pages/priceCarType/priceCarType",
-    "pages/myOrder/myOrder"
+    "pages/myOrder/myOrder",
+    "pages/carType/carType"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,0 +1,6 @@
+<!--pages/login/login.wxml-->
+<view class="main" style="min-height:{{winHeight}}px">
+    <view class="input-box">
+        <web-view src="{{signUrl}}">e签宝</web-view>
+    </view>
+</view>

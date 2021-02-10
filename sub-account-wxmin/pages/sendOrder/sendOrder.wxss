@@ -44,3 +44,18 @@
 .main-content .confirm {
     margin: 40rpx 20rpx;
 }
+.carAge{
+    height: 53rpx;
+    text-align: center;
+    line-height: 53rpx;
+    border-radius: 25rpx;
+    margin-right: 20rpx;
+    margin-bottom: 24rpx;
+    background-color: #eff3f6;
+    padding-left: 25rpx;
+    padding-right: 25rpx;
+}
+.carAge.active{
+    color: #fff;
+    background-color: #00a0e9;
+}

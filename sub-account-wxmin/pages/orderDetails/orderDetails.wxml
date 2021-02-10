@@ -1,72 +1,83 @@
-<!--pages/orderDetails/orderDetails.wxml 提单详情页面-->
-<view class="main">
-    <view class="content-account" wx:if="{{orderMsg.name}}">
-        <view class="account-basic">
-            <view class="name-box">
-                <text class="basic-name">客户姓名：{{orderMsg.name}}</text>
-                <text class="order-num">订单号：{{orderMsg.orderNumber}}</text>
-            </view>
-            <view>
-                <text class="basic-price">申请金额：{{orderMsg.applyMoney}}元</text>
-                <text class="basic-period">分期期数：{{orderMsg.applyPeriod}}期</text>
-            </view>
-        </view>
-        <view class="account-msg">
-            <view class="account-info">手机号码：{{orderMsg.phone}}</view>
-            <view class="account-info">身份证号：{{orderMsg.idCard}}</view>
-            <view class="account-info">
-                <text class="font-gray">婚姻状况：</text>
-                <text class="font-gray" wx:if="{{orderMsg.married == '1'}}">未婚</text>
-                <text class="font-gray" wx:elif="{{orderMsg.married == '2'}}">已婚</text>
-                <text class="font-gray" wx:else>离异</text>
-            </view>
-        </view>
-        <view class="account-help">
-            <view class="create-time">创建时间：{{orderMsg.createDate}}</view>
-            <view class="help-call" bindtap="callPhone">
-                <image src="../../images/call-icon.png" class="call-icon" mode="widthFix"></image>
-                <text>拨打客服</text>
-            </view>
-        </view>
-    </view>
+<!--pages/order/order.wxml 提单列表页-->
+<view class="main" style="min-height:{{winHeight}}px">
 
-    <view class="content-car">
-        <view class="car-list" bindtap="toLoanInfo">车贷资料</view>
-        <view class="car-list" bindtap="toUploadInfo">上传资料</view>
-    </view>
-
-    <view class="content-status">
-        <view class="status-top">
-            <view class="status-title">客户订单状态跟踪</view>
-            <view class="status-subtitle">以下为客户的申请审核流程，若客户有疑问，请协助客户进行申请</view>
-        </view>
-        <view class="status-list">
-            <view class="item {{index == 0 ? 'item-active' : ''}}" wx:for="{{orderProcess}}" wx:for-index="index" wx:for-item="process" wx:key="id">
-                <view class="step">
-                    <view class="step-content"></view>
+    <view class="main-content">
+        <view class="order-list-item-label">订单信息:</view>
+        <view class="order-list">
+            <view bindtap="navigateOrderDetails" data-orderNo="{{orderInfo.ordernum}}">
+                <view class="order-list-item">
+                    <view class="order-list-item-label">订单号:</view>
+                    <view class="order-list-item-desc">{{orderInfo.ordernum}}</view>
                 </view>
-                <view class="item-title">{{process.message}}</view>
-                <!-- <view class="item-subtitle">
-                    <text>销售顾问已发起预审</text>
-                    <text class="company-phone">0755-86955827</text>
-                </view> -->
-                <!-- <view class="item-subtitle" wx:if="{{currentStatus == 'memberAuthorization' && process.expireDate}}">
-                    <text class="expire-date">还剩{{process.expireDate}}自动关闭订单</text>
-                    <text>需要客户扫码授权，尽快让客户授权，点击查看</text><text class="code" bindtap="viewCode">客户授权二维码</text>
+                <view class="order-list-item">
+                    <view class="order-list-item-label">时间:</view>
+                    <view class="order-list-item-desc">{{orderInfo.createtime}}</view>
                 </view>
-                <view class="item-subtitle" wx:elif="{{index == 0 && !process.expireDate}}">订单超时关闭</view> -->
+                <view class="order-list-item">
+                    <view class="order-list-item-label">车主姓名:</view>
+                    <view class="order-list-item-desc">{{orderInfo.name}}</view>
+                </view>
+                <view class="order-list-item">
+                    <view class="order-list-item-label">车架号:</view>
+                    <view class="order-list-item-desc">{{orderInfo.carframenumber}}</view>
+                </view>
+                <view class="order-list-item">
+                    <view class="order-list-item-label">状态:</view>
+                    <view class="order-list-item-desc" wx:if="{{orderInfo.orderstatus == '1'}}">待签约</view>
+                    <view class="order-list-item-desc" wx:if="{{orderInfo.orderstatus == '2'}}">待付款</view>
+                    <view class="order-list-item-desc" wx:if="{{orderInfo.orderstatus == '3'}}">已付款</view>
+                    <view class="order-list-item-desc" wx:if="{{orderInfo.orderstatus == '4'}}">已退款</view>
+                </view>
+            </view>
+        </view>
 
-                <view class="item-subtitle">
-                    <text class="expire-date" wx:if="{{index == 0 && process.expireDate}}">还剩{{process.expireDate}}自动关闭订单</text>
-                    <text wx:elif="{{index == 0 && !process.expireDate}}">订单超时关闭</text>
 
-                    <view wx:if="{{currentStatus == 'memberAuthorization' && process.expireDate}}">
-                        <text>需要客户扫码授权，尽快让客户授权，点击查看</text><text class="code" bindtap="viewCode">客户授权二维码</text>
+        <view class="order-list-item-label">购买信息:</view>
+        <view class="order-list">
+            <view bindtap="navigateOrderDetails" data-orderNo="{{orderInfo.ordernum}}">
+                <view class="order-list-item">
+                    <view class="order-list-item-label">购买服务:</view>
+                    <view class="order-list-item-desc">{{orderInfo.producetype}}</view>
+                </view>
+                <view class="order-list-item">
+                    <view class="order-list-item-label">服务期限 :</view>
+                    <view class="order-list-item-desc">{{orderInfo.insuranceperiod}}个月</view>
+                </view>
+                <view class="order-list-item">
+                    <view class="order-list-item-desc">点击查看汽车置换服务协议:</view>
+                </view>
+                <view wx:if="{{orderInfo.dbxyear != ''}}">
+                    <view class="order-list-item">
+                        <view class="order-list-item-label">购买服务2:</view>
+                        <view class="order-list-item-desc">代步车补偿服务</view>
+                    </view>
+                    <view class="order-list-item">
+                        <view class="order-list-item-label">服务期限 :</view>
+                        <view class="order-list-item-desc">{{orderInfo.dbxyear}}个月</view>
+                    </view>
+                    <view class="order-list-item">
+                        <view class="order-list-item-label">点击查看代步车补偿服务协议:</view>
                     </view>
                 </view>
-                <view class="item-time">{{process.createDate}}</view>
             </view>
+        </view>
+    </view>
+    <view wx:if="{{isUser == true}}">
+        <view class="footer" wx:if="{{orderInfo.orderstatus == '1'}}">
+            <view class="footer-btn" bindtap="navigateToSign" wx:if="{{orderInfo.orderstatus == '1'}}">点击进入签约页面{{orderInfo.dbxyear != ''?'(包含代步险)':''}}</view>
+        </view>
+    </view>
+    <view wx:if="{{isUser == true}}">
+        <view class="footer" wx:if="{{orderInfo.orderstatus == '2'}}">
+            <view class="footer-btn" bindtap="navigateToPay" wx:if="{{orderInfo.orderstatus == '2'}}">支付费用</view>
+        </view>
+    </view>
+    <view wx:if="{{isUser == false}}">
+        <view class="footer">
+            <viem class="footer-btn">
+                <button open-type="share">点击转发至客户</button>
+            </viem>
         </view>
     </view>
 </view>
-              
+

@@ -7,48 +7,53 @@
     <view class="step-input-view" wx:if="{{active == 0}}">
         <view class="tag">车辆年限</view>
         <view class="car-age-box">
-            <view class="carAge {{form.carAge == item.value ? 'active' : ''}}" wx:for="{{carAge}}" data-carage="{{item.value}}" bindtap="inputCarAge" wx:key="{{value}}">{{form.carage}}</view>
+            <view class="carAge {{form.carAge == item.producetypenum ? 'active' : ''}}"
+                  wx:for="{{productList.subProductRates}}" data-producetypenum="{{item.producetypenum}}"
+                  bindtap="inputCarAge" wx:key="{{value}}">{{item.producttype}}
+            </view>
         </view>
         <view class="tag">投保期限</view>
         <view class="car-age-box">
-            <view class="carAge {{form.insurePeriod == item.value ? 'active' : ''}}" wx:for="{{insurePeriod}}" data-period="{{item.value}}" bindtap="inputInsurePeriod" wx:key="{{value}}">{{form.insuranceperiod}}</view>
+            <view class="carAge {{form.insuranceperiod == item.value ? 'active' : ''}}" wx:for="{{insurePeriod}}"
+                  data-insuranceperiod="{{item.value}}" bindtap="inputInsurePeriod" wx:key="{{value}}">{{item.text}}
+            </view>
         </view>
         <view class="tag">车主信息</view>
         <view class="input-box">
             <view class="input-label">姓名：</view>
             <view class="input-value">
-                <input type="text" bindinput="inputData" data-name="name"   placeholder-class="font-gray"/>
+                <input type="text" bindinput="inputData" data-name="name" placeholder-class="font-gray"/>
             </view>
         </view>
         <view class="input-box">
             <view class="input-label">身份证号：</view>
             <view class="input-value">
-                <input type="idcard" bindinput="inputData" data-name="idCard"  placeholder-class="font-gray"/>
+                <input type="idcard" bindinput="inputData" data-name="idcard" placeholder-class="font-gray"/>
             </view>
         </view>
         <view class="input-box">
             <view class="input-label">手机号：</view>
             <view class="input-value">
-                <input type="text" bindinput="inputData" data-name="telephone"  placeholder-class="font-gray"/>
+                <input type="text" bindinput="inputData" data-name="phone" placeholder-class="font-gray"/>
             </view>
         </view>
         <view class="tag">投保车辆信息</view>
         <view class="input-box">
             <view class="input-label">车辆品牌：</view>
             <view class="input-value select-organize" bindtap="selectCarType">
-                <text wx:if="{{!form.carTypeId}}">请选择车辆品牌</text>
-                <text wx:else class="selected">{{form.carTypeName}}</text>
+                <text wx:if="{{!form.cartype}}">请选择车辆品牌</text>
+                <text wx:else class="selected">{{form.carbrand}}-{{form.cartype}}</text>
             </view>
         </view>
-         <view class="input-box">
+        <view class="input-box">
             <view class="input-label">运营性质：</view>
             <view class="input-value">
-                <radio-group class="radio-group" bindchange="inputData" data-name="operationNature">
+                <radio-group class="radio-group" bindchange="inputData" data-name="operationmode">
                     <label wx:for="{{operationNature}}" wx:key="{{item.value}}">
-                    <view>
-                        <radio value="{{item.value}}"/>
-                    </view>
-                    <view>{{item.text}}</view>
+                        <view>
+                            <radio value="{{item.value}}"/>
+                        </view>
+                        <view>{{item.text}}</view>
                     </label>
                 </radio-group>
             </view>
@@ -56,59 +61,80 @@
         <view class="input-box">
             <view class="input-label">车架号：</view>
             <view class="input-value">
-                <input type="text" bindinput="inputData" data-name="frameNumber"  placeholder-class="font-gray"/>
+                <input type="text" bindinput="inputData" data-name="carframenumber" placeholder-class="font-gray"/>
             </view>
         </view>
         <view class="input-box">
             <view class="input-label">发动机号：</view>
             <view class="input-value">
-                <input type="text" bindinput="inputData" data-name="EngineNumber"  placeholder-class="font-gray"/>
+                <input type="text" bindinput="inputData" data-name="carenginenumber" placeholder-class="font-gray"/>
+            </view>
+        </view>
+        <view class="input-box">
+            <view class="input-label">车牌号：</view>
+            <view class="input-value">
+                <input type="text" bindinput="inputData" data-name="carnumber" placeholder-class="font-gray"/>
             </view>
         </view>
         <view class="input-box">
             <view class="input-label">车辆购置日期：</view>
             <view class="input-value">
-                <picker mode="date" value="{{form.getCarDate}}" class="date-picker" data-name="getCarDate" bindchange="inputData">
-                    <view class="picker">{{ form.getCarDate }}</view>
+                <picker mode="date" value="{{form.getCarDate}}" class="date-picker" data-name="carbuytime"
+                        bindchange="inputData">
+                    <view class="picker">{{ form.carbuytime }}</view>
                 </picker>
             </view>
         </view>
         <view class="input-box">
-            <view class="input-label">车辆购置价格：</view>
+            <view class="input-label">车辆发票价格(含税)：</view>
             <view class="input-value">
-                <input type="text" bindinput="inputData" data-name="getCarPrice"  placeholder-class="font-gray"/>
+                <input type="text" bindinput="inputData" data-name="carbuyprice" placeholder-class="font-gray"/>
             </view>
         </view>
-
-        
+        <view class="input-box">
+            <view class="input-label">保险公司：</view>
+            <view class="input-value">
+                <input type="text" bindinput="inputData" data-name="productcompany" placeholder-class="font-gray"/>
+            </view>
+        </view>
+        <view class="input-box">
+            <view class="input-label">保险类型：</view>
+            <view class="input-value">
+                <input type="text" disabled="disabled" value="车损险"/>
+            </view>
+        </view>
         <view class="btn-box {{firstStepBtn ? 'active' : ''}}" bindtap='firstStep'>下一步</view>
     </view>
     <view class="step-input-view" wx:else>
         <view class="tag">上传资料</view>
         <view class="file-list">
-            <view class="file-title">订车合同（请逐页拍照，如有多页请上传完整）</view>
+            <view class="file-title">购车发票,合格证/行驶证,身份证人像面,身份证国徽面</view>
             <view class="file-btn-box">
-                <view class="file-btn" wx:for="{{form.carContractUrl}}" wx:key="{{item.url}}">
-                    <image src="{{item.url}}" mode="aspectFill" data-src="{{item.url}}" data-imgs="{{form.carContractUrl}}" bindtap="previewImage"></image>
-                    <text class='delete' data-index="{{index}}" data-imgname="carContractUrl" bindtap="deleteImg">×</text>
+                <view class="file-btn" wx:for="{{form.imagemsg}}" wx:key="{{item.url}}">
+                    <image src="{{item.url}}" mode="aspectFill" data-src="{{item.url}}" data-imgs="{{form.imagemsg}}"
+                           bindtap="previewImage"></image>
+                    <text class='delete' data-index="{{index}}" data-imgname="imagemsg" bindtap="deleteImg">×</text>
                 </view>
-                <view class="file-btn" wx:if="{{form.carContractUrl.length < 6}}" bindtap="uploadContract" data-imgname="carContractUrl">
+                <view class="file-btn" wx:if="{{form.imagemsg.length < 4}}" bindtap="uploadContract"
+                      data-imgname="imagemsg">
                     <view class="add-icon"></view>
                 </view>
             </view>
         </view>
-        <view class="file-list file-list-last">
-            <view class="file-title">批复函（请逐页拍照，如有多页请上传完整）</view>
-            <view class="file-btn-box">
-                <view class="file-btn" wx:for="{{form.successReplyUrl}}" wx:key="{{item.url}}">
-                    <image src="{{item.url}}" mode="widthFix" data-src="{{item.url}}" data-imgs="{{form.successReplyUrl}}"bindtap="previewImage"></image>
-                    <text class='delete' data-index="{{index}}" data-imgname="successReplyUrl" bindtap="deleteImg">×</text>
+        <view class="file-list file-list-last" wx:if="{{form.dbxyear}}">
+            <view class="file-title">车辆拍摄示意图</view>
+            <view class="file-btn-box" >
+                <view class="file-btn" wx:for="{{form.dbxImagemsg}}" wx:key="{{item.url}}">
+                    <image src="{{item.url}}" mode="aspectFill" data-src="{{item.url}}" data-imgs="{{form.dbxImagemsg}}"
+                           bindtap="previewImage"></image>
+                    <text class='delete' data-index="{{index}}" data-imgname="dbxImagemsg" bindtap="deleteImg">×</text>
                 </view>
-                <view class="file-btn" wx:if="{{form.successReplyUrl.length < 6}}" bindtap="uploadReply" data-imgname="successReplyUrl">
+                <view class="file-btn" wx:if="{{form.dbxImagemsg.length < 3}}" bindtap="uploadReply"
+                      data-imgname="dbxImagemsg">
                     <view class="add-icon"></view>
                 </view>
             </view>
         </view>
-        <view class="btn-box {{lastStepBtn ? 'active' : ''}}" bindtap='lastStep'>生成客户二维码</view>
+        <view class="btn-box {{lastStepBtn ? 'active' : ''}}" bindtap='lastStep'>生成订单</view>
     </view>
 </view>
