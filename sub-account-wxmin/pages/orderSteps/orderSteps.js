@@ -339,7 +339,7 @@ Page({
         }, {
             region: 'SCN',
             uploadURL: 'https://up-z2.qiniup.com',
-            uptokenURL: 'http://192.168.1.5/app/oss/getFileUploadToken',
+            uptokenURL: 'https://admin.vanntech.cn/app/oss/getFileUploadToken',
             domain: 'http://file.vanntech.cn'
         })
     },

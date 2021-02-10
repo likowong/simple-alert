@@ -6,15 +6,13 @@ const METHOD = {
 }
 
 class Request {
-    // _h5BaseUrl = 'http://172.22.5.126:8090'
-    _h5BaseUrl = 'https://admin.vanntech.cn/'
     _header = {
         'content-type': 'application/json',
         'token': null
     }
 
-    // _baseUrl = 'https://admin.vanntech.cn'
-    _baseUrl = 'http://192.168.1.5'
+    _baseUrl = 'https://admin.vanntech.cn'
+    //_baseUrl = 'http://192.168.1.5'
 
     _token = ''
 
@@ -35,9 +33,9 @@ class Request {
     //         .every(f => f(res))
     // }
     intercept(res) {
-        switch(res.data.code){
+        switch (res.data.code) {
             case 0:
-              return true;
+                return true;
             case 500:
                 wx.showToast({
                     icon: 'none',
@@ -45,25 +43,25 @@ class Request {
                 })
                 return false;
             case 403:   // token失效
-              wx.showToast({
-                icon: 'none',
-                title: "登录失效,请重新登录",
-                success:function(){
-                      setTimeout(function () {
-                          wx.reLaunch({
-                              url: '/pages/login/login'
-                          })
-                      }, 2000) //延迟时间
-                }
-              })
+                wx.showToast({
+                    icon: 'none',
+                    title: "登录失效,请重新登录",
+                    success: function () {
+                        setTimeout(function () {
+                            wx.reLaunch({
+                                url: '/pages/login/login'
+                            })
+                        }, 2000) //延迟时间
+                    }
+                })
 
-              return false;
+                return false;
             default:
-              wx.showToast({
-                icon: 'none',
-                title: res.msg,
-              })
-              return false;
+                wx.showToast({
+                    icon: 'none',
+                    title: res.msg,
+                })
+                return false;
         }
     }
 
@@ -74,14 +72,14 @@ class Request {
         })
     }
 
-    request({ url, method, header = {}, data }) {
+    request({url, method, header = {}, data}) {
         return new Promise((resolve, reject) => {
             wx.request({
                 url: (this._baseUrl || '') + url,
                 method: method || METHOD.GET,
                 data: data,
                 header: {
-                    token:header,
+                    token: header,
                 },
                 success: res => this.intercept(res) && resolve(res),
                 fail: res => this.fail() && reject
@@ -91,19 +89,19 @@ class Request {
 
 
     get(url, data, header) {
-        return this.request({ url, method: METHOD.GET, header, data })
+        return this.request({url, method: METHOD.GET, header, data})
     }
 
     post(url, data, header) {
-        return this.request({ url, method: METHOD.POST, header, data })
+        return this.request({url, method: METHOD.POST, header, data})
     }
 
     put(url, data, header) {
-        return this.request({ url, method: METHOD.PUT, header, data })
+        return this.request({url, method: METHOD.PUT, header, data})
     }
 
     delete(url, data, header) {
-        return this.request({ url, method: METHOD.DELETE, header, data })
+        return this.request({url, method: METHOD.DELETE, header, data})
     }
 
     token(token) {
@@ -131,4 +129,4 @@ class Request {
 
 export default new Request
 
-export { METHOD }
+export {METHOD}
