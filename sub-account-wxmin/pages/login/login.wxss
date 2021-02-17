@@ -1,29 +1,46 @@
 /* pages/login/login.wxss */
 .main{
     position: relative;
-    padding: 40rpx 0 0 40rpx;
+    /* padding: 40rpx 0 0 40rpx; */
+}
+.imgBox {
+    display: flex;
+    justify-content: center;
+}
+.logoImg {
+    width: 308rpx;
+    height: 101rpx;
+    margin-top: 160rpx;
+    margin-bottom: 150rpx;
 }
 .input-box{
     position: relative;
     display: flex;
-    height: 120rpx;
-    border-bottom: 1px solid #e7ebee;
+    height: 126rpx;
+    align-items: center;
+    margin: 0rpx 60rpx;
+    border-bottom: 2rpx dashed #e7ebee;
+}
+.input-line {
+    position: relative;
+}
+.loginIcon {
+    width:31rpx;
+    height: 36rpx;
+    vertical-align: middle;
 }
 .input-label{
-    width: 160rpx;
-    font-size: 30rpx;
-    padding-top: 15rpx;
-    line-height: 105rpx;
+    padding: 0 25rpx;
 }
 .font-gray{
     color: #d9dfe3;
 }
 .input-value{
     position: relative;
-    width: calc(100% - 170rpx);
-    padding: 35rpx 0 25rpx;
+    flex: 1;
+    padding: 34rpx 0 32rpx;
 }
-.input-tel{
+.input-code{
     padding-right: 200rpx;
 }
 .input-value input{
@@ -32,25 +49,22 @@
     line-height: 60rpx;
     font-size: 30rpx;
 }
-.test-code{
-    position: absolute;
-    top: 35rpx;
-    right: 20rpx;
-    width: 200rpx;
-    text-align: center;
-    font-size: 30rpx;
-    color: #d9dfe3;
-    padding-left: 30rpx;
-    line-height: 60rpx;
-    border-left: 1px solid #d9dfe3;
+.input-clear {
+    padding-right: 25rpx;
 }
-.test-code.active{
-    color: #00a0e9;
-    border-left-color: #bbbaba;
+.input-clear .loginIcon{
+    width: 39rpx;
+    height: 39rpx;
+}
+.input-VerificationCode {
+    padding-right: 25rpx;
+}
+.input-VerificationCode .code{
+    font-size: 30rpx;
+    color: #5396E9;
 }
 .login-box{
-    margin-top: 100rpx;
-    padding-right: 40rpx;
+    margin-top: 107rpx;
 }
 .btn-box{
     width: 100%;
@@ -64,4 +78,19 @@
 .btn-box.active{
     background-color: #00a0e9;
     color: #fff;
+}
+.loginBtn {
+    margin: 0 60rpx;
+    height: 120rpx;
+    text-align: center;
+    font-size: 34rpx;
+    color: #fff;
+    line-height: 120rpx;
+    border-radius: 60rpx;
+    -webkit-border-radius: 60rpx;
+    -moz-border-radius: 60rpx;
+    -ms-border-radius: 60rpx;
+    -o-border-radius: 60rpx;
+    background: linear-gradient(45deg, #62a5d4, #558fbb, #385c80);
+    box-shadow: 0 10px 3px -1px #e6eaee;
 }

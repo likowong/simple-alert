@@ -1,35 +1,58 @@
 <!--pages/order/order.wxml 提单列表页-->
 <view class="main" style="min-height:{{winHeight}}px">
     <view class="main-header">
-        <!-- <image class="order-none" src="../../images/order-none.png"></image> -->
+        <image src="../../images/car.png" class="bgCar" mode="heightFix"></image>
     </view>
     <view class="main-operate">
-        <button type="default" bindtap="navigateAddOrder" plain="true" size="mini">发起订单</button>
-        <button type="default" bindtap="navigatePriceSetting" plain="true" size="mini">价格设置</button>
-        <button type="default" bindtap="myOrderList" plain="true" size="mini">我的订单</button>
+        <view class="item" bindtap="navigateAddOrder">
+            <view class="item-image">
+                <image src="../../images/operateIcon1.png" class="item-img" mode="aspectFit"></image>
+            </view>
+            <view class="item-desc">发起订单</view>
+        </view>
+        <view class="item" bindtap="navigatePriceSetting">
+            <view class="item-image">
+                <image src="../../images/operateIcon2.png" class="item-img" mode="aspectFit"></image>
+            </view>
+            <view class="item-desc">价格设置</view>
+        </view>
+        <view class="item" bindtap="myOrderList">
+            <view class="item-image">
+                <image src="../../images/operateIcon3.png" class="item-img" mode="aspectFit"></image>
+            </view>
+            <view class="item-desc">
+                我的订单
+            </view>
+        </view>
     </view>
     <view class="main-content">
         <view class="main-content-title">最近订单</view>
         <view class="order-list" wx:for="{{orderMsgs}}" wx:for-item="orderInfo" wx:key="index">
             <view bindtap="navigateOrderDetails" data-orderNo="{{orderInfo.ordernum}}">
-                <view class="order-list-item">
-                    <view class="order-list-item-label">订单号:</view>
-                    <view class="order-list-item-desc">{{orderInfo.ordernum}}</view>
+                <view class="order-list-title">
+                    <image src="../../images/order-icon.png" class="order-icon" mode="aspectFit"></image>
+                    <view class="order-no">订单ID：{{orderInfo.ordernum}}</view>
+                    <view class="order-state" wx:if="{{orderInfo.orderstatus == '1'}}">待签约</view>
+                    <view class="order-state" wx:if="{{orderInfo.orderstatus == '2'}}">待付款</view>
+                    <view class="order-state" wx:if="{{orderInfo.orderstatus == '3'}}">已付款</view>
+                    <view class="order-state" wx:if="{{orderInfo.orderstatus == '4'}}">已退款</view>
+                    <view class="order-state" wx:if="{{orderInfo.orderstatus == '5'}}">已关闭</view>
+                    <image src="../../images/enter-order.png" class="enter-order" mode="aspectFit"></image>
                 </view>
                 <view class="order-list-item">
-                    <view class="order-list-item-label">时间:</view>
-                    <view class="order-list-item-desc">{{orderInfo.createtime}}</view>
-                </view>
-                <view class="order-list-item">
-                    <view class="order-list-item-label">车主姓名:</view>
+                    <view class="order-list-item-label">车主姓名</view>
                     <view class="order-list-item-desc">{{orderInfo.name}}</view>
                 </view>
                 <view class="order-list-item">
-                    <view class="order-list-item-label">车架号:</view>
+                    <view class="order-list-item-label">车架号</view>
                     <view class="order-list-item-desc">{{orderInfo.carframenumber}}</view>
                 </view>
                 <view class="order-list-item">
-                    <view class="order-list-item-label">状态:</view>
+                    <view class="order-list-item-label">时间</view>
+                    <view class="order-list-item-desc">{{orderInfo.createtime}}</view>
+                </view>
+                <view class="order-list-item">
+                    <view class="order-list-item-label">状态</view>
                     <view class="order-list-item-desc" wx:if="{{orderInfo.orderstatus == '1'}}">待签约</view>
                     <view class="order-list-item-desc" wx:if="{{orderInfo.orderstatus == '2'}}">待付款</view>
                     <view class="order-list-item-desc" wx:if="{{orderInfo.orderstatus == '3'}}">已付款</view>
@@ -40,7 +63,17 @@
     </view>
 </view>
 <view class="footer">
-    <view class="footer-btn">主页</view>
-    <view class="footer-btn" bindtap="navigateMine">我的</view>
+    <view class="item">
+        <view class="item-image">
+            <image src="../../images/first-page.png" class="item-img" mode="aspectFit"></image>
+        </view>
+        <view class="item-desc active">主页</view>
+    </view>
+    <view class="item" bindtap="navigateMine">
+        <view class="item-image">
+            <image src="../../images/mine.png" class="item-img" mode="aspectFit"></image>
+        </view>
+        <view class="item-desc">我的</view>
+    </view>
 </view>
 
