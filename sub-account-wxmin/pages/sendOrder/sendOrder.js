@@ -13,7 +13,8 @@ Page({
         cciProducetyenum: '',
         cciproducecode: '',
         isFree: '',
-        producecode: ''
+        producecode: '',
+        productIndex:0
     },
 
     /**
@@ -36,7 +37,8 @@ Page({
                     }
                 }
                 this.setData({
-                    productList: res.data.productRateVos
+                    productList: res.data.productRateVos,
+                    producecode:res.data.productRateVos[0].productCode
                 })
         })
     },
@@ -105,8 +107,10 @@ Page({
         }
     }, selectProduct(e) {
         let productcode = e.currentTarget.dataset.productcode;
+        let index = e.currentTarget.dataset.index;
         this.setData({
-            producecode: productcode
+            producecode: productcode,
+            productIndex:index
         })
     }, toOrderSteps(e) {
         let producecode = this.data.producecode

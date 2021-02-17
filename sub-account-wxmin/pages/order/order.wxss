@@ -51,6 +51,7 @@
     color: #36587C;
     font-weight: bold;
     padding-left: 20rpx;
+    font-weight: bold;
 }
 .main-content .order-list {
     background: #ffffff;

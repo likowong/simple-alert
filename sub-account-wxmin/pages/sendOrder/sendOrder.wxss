@@ -1,23 +1,26 @@
 /* pages/order/order.wxss */
 .main{
-    background-color:#eef2f5;
+    background-color:#f8f9fc;
+}
+.main-content {
+    padding: 44rpx;
+    box-sizing: border-box;
 }
 .main-content .choose-item {
     display: flex;
     width: 100%;
-    box-sizing: border-box;
     flex-direction: row;
-    padding: 30rpx;
     align-items: center;
-    font-size: 30rpx;
-    color: #333;
     flex-wrap: wrap;
     justify-content: space-between;
 }
 .main-content .title {
-    font-size: 36rpx;
+    font-size: 34rpx;
+    border-left: 5px solid #ff761e;
+    color: #36587C;
     font-weight: bold;
-    padding: 20rpx;
+    padding-left: 20rpx;
+    font-weight: bold;
 }
 .main-content .insurance-item {
     width: 45%;
@@ -29,21 +32,19 @@
     -o-border-radius: 6rpx;
     border: 1rpx solid rgb(122, 119, 119);
     text-align: center;
-    font-size: 30rpx;
+    font-size: 26rpx;
     padding: 20rpx 10rpx;
+    color: #8A878A;
     margin-top: 20rpx;
+    background: #fff;
+}
+.main-content .item-active {
+    border: 1rpx solid #36587c;
+    color: #36587C;
+    font-weight: bold;
 }
 
-.main-content .main-content-item .desc {
-    padding-left: 20rpx;
-    flex: 1;
-}
-.main-content .main-content-item .check {
-    padding-right: 20rpx;
-}
-.main-content .confirm {
-    margin: 40rpx 20rpx;
-}
+
 .carAge{
     height: 53rpx;
     text-align: center;
@@ -58,4 +59,49 @@
 .carAge.active{
     color: #fff;
     background-color: #00a0e9;
+}
+.choose-list {
+    background: #fff;
+    margin: 48rpx 0;
+    padding: 4rpx 24rpx;
+}
+.choose-list .sub-title {
+    color: #36587C;
+    font-size: 26rpx;
+    border-bottom: 1rpx dashed #888888;
+    padding: 24rpx 0;
+}
+.choose-list .choose-insu {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    padding: 16rpx;
+}
+.choose-list .last-item {
+    padding: 25rpx 16rpx;
+    border-top: 1px solid #ededed;
+
+}
+.choose-list .label {
+    color: #646464;
+    font-size: 24rpx;
+    flex: 1;
+}
+.main-content .confirm {
+    margin: 65rpx 16rpx 0
+}
+.confirmBtn {
+    height: 92rpx;
+    text-align: center;
+    font-size: 34rpx;
+    color: #fff;
+    line-height: 92rpx;
+    border-radius: 60rpx;
+    -webkit-border-radius: 60rpx;
+    -moz-border-radius: 60rpx;
+    -ms-border-radius: 60rpx;
+    -o-border-radius: 60rpx;
+    background: linear-gradient(45deg, #62a5d4, #558fbb, #385c80);
+    box-shadow: 0 10px 3px -1px #e6eaee;
 }

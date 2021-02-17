@@ -57,6 +57,7 @@
                     <view class="order-list-item-desc" wx:if="{{orderInfo.orderstatus == '2'}}">待付款</view>
                     <view class="order-list-item-desc" wx:if="{{orderInfo.orderstatus == '3'}}">已付款</view>
                     <view class="order-list-item-desc" wx:if="{{orderInfo.orderstatus == '4'}}">已退款</view>
+                    <view class="order-list-item-desc" wx:if="{{orderInfo.orderstatus == '5'}}">已关闭</view>
                 </view>
             </view>
         </view>

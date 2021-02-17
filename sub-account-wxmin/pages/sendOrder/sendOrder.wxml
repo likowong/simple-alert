@@ -2,29 +2,34 @@
 <view class="main" style="min-height:{{winHeight}}px">
     <view class="main-content">
         <view class="title">选择险种</view>
-        <view class="choose-item" wx:for="{{productList}}" wx:for-item="product" wx:key="index">
-            <view class="insurance-item" data-productCode="{{product.productCode}}" data-index="{{index}}"
+        <view class="choose-item">
+            <view wx:for="{{productList}}" wx:for-item="product" wx:key="index"
+                  class="insurance-item {{productIndex == index ?'item-active':''}}"
+                  data-productCode="{{product.productCode}}" data-index="{{index}}"
                   bindtap="selectProduct">{{product.productName}}
             </view>
         </view>
 
-        <view class="label">是否需要搭配代步险</view>
-        <view class="choose-item" wx:for="{{cci.yearrate}}" wx:for-item="cciItem" wx:key="index">
-            <view class="label">{{cciItem.year}}</view>
-            <view class="check">
-                <checkbox bindtap="checkboxChange" data-producecode="{{cci.producecode}}"
-                          data-producetypenum="{{cciItem.producetypenum}}" data-checked="{{cciItem.checked}}"
-                          checked="{{cciItem.checked}}"/>
+        <view class="choose-list">
+            <view class="sub-title">是否需要搭配代步险</view>
+            <view class="choose-insu" wx:for="{{cci.yearrate}}" wx:for-item="cciItem" wx:key="index">
+                <view class="label">{{cciItem.year}}</view>
+                <view class="check">
+                    <checkbox bindtap="checkboxChange" data-producecode="{{cci.producecode}}"
+                              data-producetypenum="{{cciItem.producetypenum}}" data-checked="{{cciItem.checked}}"
+                              checked="{{cciItem.checked}}"/>
+                </view>
+            </view>
+            <view class="choose-insu last-item">
+                <view class="label">是否为店内赠送（勾选该项则客户无须支付）</view>
+                <view class="check">
+                    <checkbox bindtap="isFree" checked="{{isFree}}"/>
+                </view>
             </view>
         </view>
-        <view class="choose-item">
-            <view class="label">是否为店内赠送（勾选该项则客户无须支付）</view>
-            <view class="check">
-                <checkbox bindtap="isFree" checked="{{isFree}}"/>
-            </view>
-        </view>
+
         <view class="confirm">
-            <button type="primary" bindtap="toOrderSteps">确 定</button>
+            <view class="confirmBtn" bindtap="toOrderSteps">确 定</view>
         </view>
     </view>
 </view>
