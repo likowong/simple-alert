@@ -4,7 +4,7 @@
 }
 .main-header {
     height: 260rpx;
-    border: 1px solid rgba( 0, 160, 233, 1);
+    border: 1px solid #385c80;
 }
 .main-content{
     padding: 20rpx 20rpx 100rpx;
@@ -19,7 +19,7 @@
     height: 59rpx;
 }
 .main-operate button {
-    border-color: rgba( 0, 160, 233, 1);
+    border-color: #385c80;
 }
 .main-content-title {
     font-weight: bold;
@@ -64,7 +64,7 @@
     width: 18rpx;
     height: 18rpx;
     border-radius: 50%;
-    background-color: #62cefb;
+    background-color: #385c80;
     transform: translateY(-50%);
 }
 .order-name{
@@ -90,7 +90,7 @@
     height: 44rpx;
     text-align: center;
     line-height: 44rpx;
-    background-color: #00a0e9;
+    background-color: #385c80;
     color: #fff;
     font-size: 24rpx;
     border-top-right-radius: 14rpx;
@@ -103,7 +103,7 @@
     bottom: -9rpx;
     width: 0;
     height: 0;
-    border-color: transparent #00a0e9;
+    border-color: transparent #385c80;
     border-width: 0 0 10rpx 10rpx;
     border-style: solid;
     z-index: 5;
@@ -125,7 +125,7 @@
     height: 90rpx;
     text-align: center;
     line-height: 90rpx;
-    background-color: rgba( 0, 160, 233, 1);
+    background-color: #385c80;
     z-index: 10;
 }
 .footer-btn {
@@ -159,7 +159,7 @@
     height: 90rpx;
     text-align: center;
     line-height: 90rpx;
-    background-color: rgba( 0, 160, 233, 1);
+    background-color: #385c80;
     z-index: 10;
 }
 .footer-btn {

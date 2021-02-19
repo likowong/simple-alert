@@ -45,7 +45,7 @@
     border-left: 1px solid #d9dfe3;
 }
 .test-code.active{
-    color: #00a0e9;
+    color: #385c80;
     border-left-color: #bbbaba;
 }
 .login-box{
@@ -62,6 +62,6 @@
     background-color: #eff3f6;
 }
 .btn-box.active{
-    background-color: #00a0e9;
+    background-color: #385c80;
     color: #fff;
 }

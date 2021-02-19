@@ -163,7 +163,7 @@
             <view class="file-title">购车发票,合格证/行驶证,身份证人像面,身份证国徽面</view>
             <view class="file-btn-box">
                 <view class="file-btn" wx:for="{{images}}" wx:key="item">
-                    <image src="{{item}}"></image>
+                    <image bindtap="previewImage"  data-src="{{item}}" data-imgs="{{images}}" src="{{item}}"></image>
                 </view>
             </view>
         </view>
@@ -171,7 +171,7 @@
             <view class="file-title">车辆拍摄示意图</view>
             <view class="file-btn-box">
                 <view class="file-btn" wx:for="{{dbxImages}}" wx:key="item">
-                    <image src="{{item}}"></image>
+                    <image bindtap="previewImage"  data-src="{{item}}" src="{{item}}"></image>
                 </view>
             </view>
         </view>
@@ -193,7 +193,7 @@
     <view wx:if="{{isUser == false}}">
         <view class="footer">
             <viem class="footer-btn">
-                <button open-type="share">点击转发至客户</button>
+                <button  open-type="share">点击转发至客户</button>
             </viem>
         </view>
     </view>

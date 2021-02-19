@@ -14,8 +14,8 @@ Page({
         orderInfoShow: true,
         userInfoShow: false,
         contentInfoShow: false,
-        images:[],
-        dbxImages:[]
+        images: [],
+        dbxImages: []
     },
 
     /**
@@ -85,10 +85,22 @@ Page({
                     let orderInfo = res.data.orderInfo;
                     let imagemsg = orderInfo.imagemsg.split(",");
                     let dbxdata = orderInfo.dbxdata.split(",");
+                    let images = [];
+                    let dbxImage = [];
+                    for (let i = 0; i < imagemsg.length; i++) {
+                        if (imagemsg[i] != "") {
+                            images.push(imagemsg[i])
+                        }
+                    }
+                    for (let i = 0; i < dbxdata.length; i++) {
+                        if (dbxdata[i] != "") {
+                            dbxImage.push(dbxdata[i])
+                        }
+                    }
                     this.setData({
                         orderInfo: orderInfo,
-                        images:imagemsg,
-                        dbxImages:dbxdata
+                        images: images,
+                        dbxImages: dbxImage
                     })
                 })
         })
@@ -199,4 +211,17 @@ Page({
             contentInfoShow: true,
         })
     }
+    // 查看图片
+    , previewImage(e) {
+        let current = e.target.dataset.src;
+        let imgs = e.target.dataset.imgs;
+        let newImgs = [];
+        imgs.forEach(function (item) {
+            newImgs.push(item);
+        })
+        wx.previewImage({
+            urls: newImgs, // 需要预览的图片http链接列表
+            current: current
+        })
+    },
 })

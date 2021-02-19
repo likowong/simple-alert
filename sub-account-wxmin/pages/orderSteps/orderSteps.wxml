@@ -35,7 +35,7 @@
             <view class="input-box">
                 <view class="input-label">手机号：</view>
                 <view class="input-value">
-                    <input type="text" bindinput="inputData" data-name="phone" placeholder-class="font-gray"/>
+                    <input type="number" bindinput="inputData" data-name="phone" placeholder-class="font-gray"/>
                 </view>
             </view>
         </view>
