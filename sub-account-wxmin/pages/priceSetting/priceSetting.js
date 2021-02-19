@@ -9,7 +9,9 @@ Page({
      */
     data: {
         productList: [],
-        productTypes: []
+        productTypes: [],
+        winHeight: 0,
+        currentIndex:-1
 
     },
 
@@ -17,6 +19,10 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        let winMsg = wx.getSystemInfoSync();
+        this.setData({
+            winHeight: winMsg.windowHeight
+        });
         let token = wx.getStorageSync("token");
         wxRequest.get('/app/subproductrate/list', "", token)
             .then(res => {
@@ -27,8 +33,10 @@ Page({
     },
     //跳转到提单详情页面
     selectProduct(e) {
+        let index = e.currentTarget.dataset.index;
         this.setData({
-            productTypes: this.data.productList[e.currentTarget.dataset.index].subProductRates
+            productTypes: this.data.productList[e.currentTarget.dataset.index].subProductRates,
+            currentIndex:index
         })
     }
     // 跳到价格设置页

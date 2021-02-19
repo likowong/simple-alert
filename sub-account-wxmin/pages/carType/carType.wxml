@@ -1,9 +1,12 @@
-<view class="main">
+<view class="main" style="min-height:{{winHeight}}px">
     
     <view class="list" wx:for="{{carType}}" wx:key="{{index+'-'+item.id}}" wx:for-item="item">
         
         <view class="list-item-type" data-id="{{item.id}}" bindtap="listToggle">
-            <view class="list-item-title">{{item.text}}</view>
+            <view class="list-item-title">
+                <view class="title-desc">{{item.text}}</view>
+                <view class="title-image"><image src="{{item.image}}" class="car-icon" mode="aspectFit"></image></view>
+            </view>
             <view class="list-item-icon {{item.hide ? 'down' : 'up'}}" >
             </view>
         </view>

@@ -8,13 +8,18 @@ Page({
      * 页面的初始数据
      */
     data: {
-        appUser: ''
+        appUser: '',
+        winHeight: 0
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        let winMsg = wx.getSystemInfoSync();
+        this.setData({
+            winHeight: winMsg.windowHeight
+        });
         let token = wx.getStorageSync("token");
         if (token) {
             wxRequest.post('/app/getUser', "", token)

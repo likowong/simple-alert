@@ -1,16 +1,42 @@
 /* pages/applyOrganization/applyOrganization.wxss */
-
+.main{
+    background-color:#f8f9fc;
+}
 .list{
-    border-bottom: 1px solid #e7ebee;
+    padding: 44rpx;
 }
 .list .list-item-title {
-    font-size: 30rpx;
-    font-weight: bold;
-    padding: 20rpx;
+    display: flex;
+    align-items: center;
+    padding: 16rpx 20rpx;
+    position: relative;
     flex: 1;
 }
+.list .title-desc {
+    font-weight: bold;
+    color: #36587C;
+    padding-right: 18rpx;
+}
+.list .title-image {
+    width: 45rpx;
+    height: 45rpx;
+}
+.list .car-icon {
+    width: 100%;
+    height: 100%;
+}
+.list .list-item-title:before{
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 5rpx;
+    height: 32rpx;
+    transform: translateY(-50%);
+    background-color: #ff761e;
+}
 .list .list-item-name {
-    padding-left: 40rpx;
+    padding-left: 20rpx;
     height: 110rpx;
     line-height: 110rpx;
 }
@@ -43,6 +69,9 @@
       -ms-transform: rotate(135deg);
       -o-transform: rotate(135deg);
       margin-bottom: 13rpx;
+}
+.list-item-content {
+    background: #fff;
 }
 .list-item-content.item-hide {
     display: none;

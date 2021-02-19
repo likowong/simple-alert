@@ -9,6 +9,7 @@ Page({
      * 页面的初始数据
      */
     data: {
+        winHeight: 0,
         steps: [
             {
                 text: '基本信息'
@@ -65,6 +66,10 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        let winMsg = wx.getSystemInfoSync();
+        this.setData({
+            winHeight: winMsg.windowHeight
+        });
         let producecode = options.producecode
         let isfree = options.isFree
         let cciProducetyenum = options.cciProducetyenum

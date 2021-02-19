@@ -15,7 +15,11 @@ Page({
         produceTypeNum: '',
         yearOfPrice: '',
         brandList: [],
-        itemHide: 'down'
+        itemHide: 'down',
+        currentItem: '',
+        index: '',
+        childIndex: ''
+
     },
 
     /**
@@ -35,10 +39,32 @@ Page({
                     yearOfPrice: yearOfPrices
                 })
             })
+    }, onShow: function (options) {
+        let updateCarType = wx.getStorageSync('updateCarType');
+        if (updateCarType) {
+            let brandList = this.data.brandList;
+            let index = this.data.index;
+            let childIndex = this.data.childIndex;
+            brandList[index].carTypeList[childIndex].price = updateCarType;
+            this.setData({
+                brandList: brandList
+            })
+        }
+        wx.removeStorageSync('updateCarType');
+
     },
     // 收缩列表
     listToggle(e) {
+        let hide = e.currentTarget.dataset.hide;
         let index = e.currentTarget.dataset.index;
+        let brandList = this.data.brandList;
+        if (hide == true) {
+            brandList[index.split("-")[0]].hide = false
+            this.setData({
+                brandList: brandList
+            })
+            return;
+        }
         let brandid = e.currentTarget.dataset.brandid;
         let brandName = e.currentTarget.dataset.brandname;
         let data = {
@@ -50,22 +76,31 @@ Page({
             "produceTypeNum": this.data.produceTypeNum,
             "yearOfPrice": this.data.yearOfPrice
         }
-        let brandList = this.data.brandList;
         let token = wx.getStorageSync("token");
         wxRequest.post('/app/subdealeruserpricesetting/getList', data, token)
             .then(res => {
+                debugger
                 brandList[index.split("-")[0]].carTypeList = res.data.list
+                brandList[index.split("-")[0]].hide = true
                 this.setData({
-                    brandList: brandList
+                    brandList: brandList,
+                    itemHide: '',
+                    currentItem: index.split("-")[1]
                 })
             })
     },
     // 更新车辆价格
     updatePrice(e) {
         let id = e.currentTarget.dataset.id;
-        let data = {
-            "id": id,
-            "price": "1200"
-        }
+        let price = e.currentTarget.dataset.price;
+        let index = e.currentTarget.dataset.index;
+        let childindex = e.currentTarget.dataset.childindex;
+        this.setData({
+            index: index,
+            childIndex: childindex
+        })
+        wx.navigateTo({
+            url: '../priceCarTypeSetting/priceCarTypeSetting?id=' + id + "&price=" + price
+        })
     }
 })

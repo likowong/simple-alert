@@ -1,30 +1,42 @@
 <!--pages/order/order.wxml 提单列表页-->
 <view class="main" style="min-height:{{winHeight}}px">
-    <view class="main-header">
-        <view class="image"></view>
-        <view class="content">
-            <view class="storeName">{{appUser.dealername}}</view>
-            <view class="userInfo">
-                <view class="name">{{appUser.contactname}}</view>
-                <view class="phone">{{appUser.contactphone}}</view>
+    <image src="../../images/bg.png" class="bgIcon" mode="aspectFit"></image>
+    <view class="main-content">
+        <view class="main-content-header">
+            <view class="bgCar">
+                <image src="../../images/bgcar.png" class="imageSize" mode="aspectFit"></image>
+            </view>
+            <view class="content">
+                <view class="storeName">{{appUser.dealername}}</view>
+                <view class="userInfo">
+                    <view class="desc">{{appUser.contactname}}</view>
+                    <view class="desc">{{appUser.contactphone}}</view>
+                </view>
             </view>
         </view>
-    </view>
-    <view class="main-content">
-        <view class="main-content-item" bindtap="navigateBaseInfo">
+        <view class="main-content-item bottomLine" bindtap="navigateBaseInfo">
+            <view class="editIcon1"><image src="../../images/edit-baseinfo.png" class="imageSize" mode="aspectFit"></image></view>
             <view class="desc">基本信息</view>
-            <view class="icon">></view>
         </view>
         <view class="main-content-item" bindtap="navigatePrice">
+            <view class="editIcon2"><image src="../../images/edit-price.png" class="imageSize" mode="aspectFit"></image></view>
             <view class="desc">价格设置</view>
-            <view class="icon">></view>
         </view>
-        <view class="quit">
-            <button bindtap="loginOut" type="primary">退出登录</button>
-        </view>
+        <view class="quit" bindtap='loginOut'>退出登录</view>
     </view>
+    
 </view>
 <view class="footer">
-    <view class="footer-btn" bindtap="navigateIndex">主页</view>
-    <view class="footer-btn">我的</view>
+    <view class="item" bindtap="navigateIndex">
+        <view class="item-image">
+            <image src="../../images/first-page-active.png" class="item-img" mode="aspectFit"></image>
+        </view>
+        <view class="item-desc">主页</view>
+    </view>
+    <view class="item" bindtap="navigateMine">
+        <view class="item-image">
+            <image src="../../images/mine-active.png" class="item-img" mode="aspectFit"></image>
+        </view>
+        <view class="item-desc active">我的</view>
+    </view>
 </view>

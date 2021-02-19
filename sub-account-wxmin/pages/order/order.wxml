@@ -34,7 +34,7 @@
                     <view class="order-no">订单ID：{{orderInfo.ordernum}}</view>
                     <view class="order-state" wx:if="{{orderInfo.orderstatus == '1'}}">待签约</view>
                     <view class="order-state" wx:if="{{orderInfo.orderstatus == '2'}}">待付款</view>
-                    <view class="order-state" wx:if="{{orderInfo.orderstatus == '3'}}">已付款</view>
+                    <view class="order-state" wx:if="{{orderInfo.orderstatus == '3'}}">已完成</view>
                     <view class="order-state" wx:if="{{orderInfo.orderstatus == '4'}}">已退款</view>
                     <view class="order-state" wx:if="{{orderInfo.orderstatus == '5'}}">已关闭</view>
                     <image src="../../images/enter-order.png" class="enter-order" mode="aspectFit"></image>
@@ -52,12 +52,14 @@
                     <view class="order-list-item-desc">{{orderInfo.createtime}}</view>
                 </view>
                 <view class="order-list-item">
-                    <view class="order-list-item-label">状态</view>
-                    <view class="order-list-item-desc" wx:if="{{orderInfo.orderstatus == '1'}}">待签约</view>
-                    <view class="order-list-item-desc" wx:if="{{orderInfo.orderstatus == '2'}}">待付款</view>
-                    <view class="order-list-item-desc" wx:if="{{orderInfo.orderstatus == '3'}}">已付款</view>
-                    <view class="order-list-item-desc" wx:if="{{orderInfo.orderstatus == '4'}}">已退款</view>
-                    <view class="order-list-item-desc" wx:if="{{orderInfo.orderstatus == '5'}}">已关闭</view>
+                    <view class="order-list-item-label">付款方式</view>
+                    <view class="order-list-item-desc" wx:if="{{orderInfo.isfree == 'y'}}">店内赠送</view>
+                    <view class="order-list-item-desc" wx:if="{{orderInfo.isfree == 'n' && orderInfo.paytype == '1'}}">
+                        线下支付
+                    </view>
+                    <view class="order-list-item-desc" wx:if="{{orderInfo.isfree == 'n' && orderInfo.paytype == '2'}}">
+                        线上支付
+                    </view>
                 </view>
             </view>
         </view>
@@ -66,7 +68,7 @@
 <view class="footer">
     <view class="item">
         <view class="item-image">
-            <image src="../../images/first-page.png" class="item-img" mode="aspectFit"></image>
+            <image src="../../images/first-page-active.png" class="item-img" mode="aspectFit"></image>
         </view>
         <view class="item-desc active">主页</view>
     </view>

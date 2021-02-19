@@ -1,98 +1,131 @@
 /* pages/order/order.wxss */
 .main{
     background-color:#eef2f5;
+    margin-bottom: 100rpx;
 }
-.main-header {
+view, text {
+    color: #373737;
+    font-size: 30rpx;
+}
+.bgIcon {
+    width: 100%;
+    height: 448rpx;
+}
+.main-content-header {
     flex-direction: row;
-    align-items: center;
     position: relative;
-    padding: 20rpx;
     display: flex;
-    height: 180rpx;
-    box-sizing: border-box;
-    border-bottom: 1rpx solid #ccc;
 }
-
-.main-header .image {
-    width:140rpx;
-    height: 140rpx;
-    margin-right: 16rpx;
-    border-radius: 50%;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -ms-border-radius: 50%;
-    -o-border-radius: 50%;
-    background-color: rgba( 0, 160, 233, 1);
+.main-content-header .bgCar {
+    margin: -44rpx 0 44rpx 44rpx;
+    width: 177rpx;
+    height: 177rpx;
 }
-.main-header .content {
+.imageSize {
+    width:100%;
+    height: 100%;
+}
+.main-content-header .content {
     flex: 1;
     display: flex;
     flex-direction: column;
+    padding: 34rpx 50rpx;
 }
-.main-header .storeName {
-    font-size: 30rpx;
+.main-content-header .storeName {
+    font-size: 40rpx;
     font-weight: bold;
-    color: black;
+    color: #36587C;
     flex: 1;
 }
-.main-header .userInfo {
+.main-content-header .userInfo {
     display: flex;
     flex: 1;
     flex-direction: row;
     align-items: center;
+    flex-wrap: wrap;
 }
-.main-header .userInfo .phone{
-    padding-left: 10rpx;
+.main-content-header .userInfo .desc{
+    padding-right: 10rpx;
+    word-break: break-all;
+}
+.main-content {
+    background: #fff;
+    position: fixed;
+    top: 222rpx;
+    left: 44rpx;
+    right: 44rpx;
 }
 .main-content .main-content-item {
-    border-bottom: 1rpx solid #ccc;
-    height: 80rpx;
-    line-height: 80rpx;
+    height: 120rpx;
     display: flex;
     justify-content: space-between;
-    font-size: 34rpx;
-    font-weight: bold;
+    align-items: center;
+    margin: 0 45rpx;
+}
+.main-content .main-content-item.bottomLine {
+    border-bottom: 2rpx dashed #888888;
 }
 .main-content .main-content-item .desc {
-    padding-left: 20rpx;
+    flex: 1;
 }
-.main-content .main-content-item .icon {
-    padding-right: 20rpx;
+.main-content .main-content-item .editIcon1 {
+    width: 35rpx;
+    height: 40rpx;
+    margin-left: 1rpx;
+    margin-right: 30rpx;
+}
+.main-content .main-content-item .editIcon2 {
+    width: 38rpx;
+    height: 38rpx;
+    margin-right: 28rpx;
 }
 .main-content .quit {
-    margin: 40rpx 20rpx;
+    position: absolute;
+    margin-top: 150rpx;
+    left: 16rpx;
+    right: 16rpx;
+    height: 92rpx;
+    text-align: center;
+    font-size: 34rpx;
+    color: #fff;
+    line-height: 92rpx;
+    font-size: 34rpx;
+    border-radius: 46rpx;
+    -webkit-border-radius: 46rpx;
+    -moz-border-radius: 46rpx;
+    -ms-border-radius: 46rpx;
+    -o-border-radius: 46rpx;
+    background: linear-gradient(45deg, #62a5d4, #558fbb, #385c80);
+    box-shadow: 0 10px 3px -1px #e6eaee;
 }
+
 .footer{
     position: fixed;
     display: flex;
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 90rpx;
+    height: 100rpx;
     text-align: center;
-    line-height: 90rpx;
-    background-color: rgba( 0, 160, 233, 1);
+    background: #ffffff;
     z-index: 10;
 }
-.footer-btn {
+.footer .item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16rpx 0;
     flex: 1;
-    font-size: 30rpx;
-    color: #fff;
 }
-.attest-bg{
-    width: 100%;
-    height: auto;
+.footer .item-img {
+    width: 34rpx;
+    height: 39rpx;
 }
-
-.main-order-none{
-    text-align: center;
-    background-color: #fff;
+.footer .item-desc {
+    font-size: 18rpx;
+    color: #808080;
 }
-.order-none{
-    width: 120rpx;
-    height: 155rpx;
-    margin: 270rpx auto 100rpx;
-}
-.subtitle{
-    font-size: 28rpx;
+.footer .item-desc.active {
+    color: #36587C;
+    font-weight: bold;
 }

@@ -1,13 +1,15 @@
 <!--pages/order/order.wxml 提单列表页-->
 <view class="main" style="min-height:{{winHeight}}px" >
     <view class="main-content">
-        <view class="title">选择险种设置价格</view>
-        <view class="main-insurances"  wx:for="{{productList}}" wx:for-item="product" wx:key="index">
-            <view class="insurance-item"  data-index="{{index}}"  bindtap="selectProduct">{{product.productName}}</view>
+        <view class="title">选择服务设置价格</view>
+        <view class="main-insurances">
+            <view class="insurance-item {{currentIndex == index ?'active':''}}"  wx:for="{{productList}}" wx:for-item="product" wx:key="index"
+            data-index="{{index}}"  bindtap="selectProduct">{{product.productName}}</view>
         </view>
-
-        <view class="main-insurances"  wx:for="{{productTypes}}" wx:for-item="productType" wx:key="index">
-            <view class="insurance-item" data-index="{{index}}" bindtap="bindTapPriceCarType" >{{productType.producttype}}</view>
+        <view class="title">选择设置的车辆年限</view>
+        <view class="main-insurances">
+            <view class="insurance-item"  wx:for="{{productTypes}}" wx:for-item="productType" wx:key="index" 
+                data-index="{{index}}" bindtap="bindTapPriceCarType">{{productType.producttype}}</view>
         </view>
     </view>
 </view>

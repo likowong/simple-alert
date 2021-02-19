@@ -8,6 +8,7 @@ Page({
      * 页面的初始数据
      */
     data: {
+        winHeight: 0,
         productList: [],
         cci: {"producecode": '', "yearrate": []},
         cciProducetyenum: '',
@@ -21,6 +22,10 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        let winMsg = wx.getSystemInfoSync();
+        this.setData({
+            winHeight: winMsg.windowHeight
+        });
         let token = wx.getStorageSync("token");
         wxRequest.get('/app/subproductrate/list', "", token)
             .then(res => {

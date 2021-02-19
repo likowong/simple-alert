@@ -1,52 +1,62 @@
 /* pages/orderSteps/orderSteps.wxss */
+.main {
+    background-color:#f8f9fc;
+}
+view, text {
+    color: #8A878A;
+}
 .steps-box{
     height: 194rpx;
     padding: 17px 100rpx 0;
     color: #fff;
-    background: #00a0e9;
+    background: #385c80;
 }
 .tag{
     position: relative;
     padding-left: 20rpx;
-    margin-left: -20rpx;
+    font-size: 34rpx;
+    font-weight: bold;
+    color: #36587C;
 }
 .tag:before{
     content: '';
     position: absolute;
     left: 0;
     top: 50%;
-    width: 6rpx;
-    height: 24rpx;
+    width: 5rpx;
+    height: 32rpx;
     transform: translateY(-50%);
-    background-color: #00a0e8;
+    background-color: #ff761e;
 }
 .step-input-view{
-    padding: 40rpx 0 40rpx 40rpx;
+    padding: 44rpx;
+}
+.owner-info {
+    margin: 28rpx 0 58rpx;
+    background: #fff;
+    padding: 10rpx 24rpx;
 }
 .input-box{
     position: relative;
     display: flex;
-    min-height: 120rpx;
-    border-bottom: 1px solid #e7ebee;
+    min-height: 80rpx;
+    align-items: center;
+    border-bottom: 1px solid #ededed;
 }
 .input-label{
-    width: 250rpx;
-    font-size: 30rpx;
-    padding-top: 15rpx;
-    line-height: 105rpx;
+    width: 270rpx;
+    font-size: 26rpx;
+    color: #373737;
 }
 .font-gray{
     color: #d9dfe3;
 }
 .input-value{
-    width: calc(100% - 170rpx);
-    padding: 35rpx 0 25rpx;
+    flex: 1;
 }
 .input-value input{
-    width: 90%;
-    height:60rpx;
-    line-height:60rpx;
-    font-size:30rpx;
+    width: 100%;
+    font-size: 26rpx;
 }
 .select-organize{
     position: relative;
@@ -68,25 +78,24 @@
     -webkit-transform: rotate(45deg);
     transform: rotate(45deg);
 }
-.select-organize text{
-    color: #d9dfe3;
-}
-.select-organize .selected{
-    color: #333;
-}
 .btn-box{
-    width: 100%;
-    height: 90rpx;
+    margin: 58rpx 16rpx 30rpx;
+    height: 92rpx;
     text-align: center;
-    line-height: 90rpx;
-    margin-top: 90rpx;
-    margin-left: -20rpx;
-    font-size: 30rpx;
-    border-radius: 45rpx;
+    font-size: 34rpx;
+    color: #fff;
+    line-height: 92rpx;
+    font-size: 34rpx;
+    border-radius: 46rpx;
     background-color: #eff3f6;
+    -webkit-border-radius: 46rpx;
+    -moz-border-radius: 46rpx;
+    -ms-border-radius: 46rpx;
+    -o-border-radius: 46rpx;
 }
 .btn-box.active{
-    background-color: #00a0e9;
+    background: linear-gradient(45deg, #62a5d4, #558fbb, #385c80);
+    box-shadow: 0 10px 3px -1px #e6eaee;
     color: #fff;
 }
 
@@ -136,7 +145,7 @@
 }
 .file-title{
     margin-bottom: 30rpx;
-    font-size: 30rpx;
+    font-size: 26rpx;
 }
 .file-btn-box{
     display: flex;
@@ -206,31 +215,25 @@
     display: flex;
     flex-wrap: wrap;
     position: relative;
-    display: flex;
-    min-height: 120rpx;
-    border-bottom: 1px solid #e7ebee;
-    padding: 35rpx 0 25rpx;
+    padding: 28rpx 0 50rpx;
 }
 .carAge{
-    height: 53rpx;
-    text-align: center;
-    line-height: 53rpx;
-    border-radius: 25rpx;
     margin-right: 20rpx;
-    margin-bottom: 24rpx;
-    background-color: #eff3f6;
-    padding-left: 25rpx;
-    padding-right: 25rpx;
+    margin-bottom: 20rpx;
+    background: #fff;
+    color: #8A878A;
+    font-size: 26rpx;
+    padding: 25rpx;
 }
 .carAge.active{
-    color: #fff;
-    background-color: #00a0e9;
+    color: #36587C;
+    border: 1rpx solid #36587c;
 }
 .radio-group {
     line-height: 60rpx;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 .radio-group > label > view {
     display: inline;
@@ -239,8 +242,7 @@
     width: 90%;
 }
 .input-value .date-picker view {
-
     height: 60rpx;
     line-height: 60rpx;
-    font-size: 30rpx;
+    font-size: 26rpx;
 }

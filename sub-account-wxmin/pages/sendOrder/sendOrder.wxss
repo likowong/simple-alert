@@ -16,11 +16,21 @@
 }
 .main-content .title {
     font-size: 34rpx;
-    border-left: 5px solid #ff761e;
     color: #36587C;
     font-weight: bold;
     padding-left: 20rpx;
     font-weight: bold;
+    position: relative;
+}
+.main-content .title:before{
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 5rpx;
+    height: 32rpx;
+    transform: translateY(-50%);
+    background-color: #ff761e;
 }
 .main-content .insurance-item {
     width: 45%;
@@ -97,11 +107,11 @@
     font-size: 34rpx;
     color: #fff;
     line-height: 92rpx;
-    border-radius: 60rpx;
-    -webkit-border-radius: 60rpx;
-    -moz-border-radius: 60rpx;
-    -ms-border-radius: 60rpx;
-    -o-border-radius: 60rpx;
+    border-radius: 46rpx;
+    -webkit-border-radius: 46rpx;
+    -moz-border-radius: 46rpx;
+    -ms-border-radius: 46rpx;
+    -o-border-radius: 46rpx;
     background: linear-gradient(45deg, #62a5d4, #558fbb, #385c80);
     box-shadow: 0 10px 3px -1px #e6eaee;
 }

@@ -7,6 +7,7 @@ Page({
      * 页面的初始数据
      */
     data: {
+        winHeight: 0,
         index: 1,       // 默认显示的序号
         carType: []
     },
@@ -15,6 +16,10 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        let winMsg = wx.getSystemInfoSync();
+        this.setData({
+            winHeight: winMsg.windowHeight
+        });
         let token = wx.getStorageSync("token");
         // 获取品牌信息
         let url = '/app/subdealerbrand/getList'
