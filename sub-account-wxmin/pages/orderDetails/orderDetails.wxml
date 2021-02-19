@@ -1,7 +1,20 @@
 <!--pages/order/order.wxml 提单列表页-->
 <view class="main" style="min-height:{{winHeight}}px">
 
-    <view class="main-content">
+    <view class="main-operate">
+        <view class="item" bindtap="orderInfo">
+
+            <view class="item-desc">订单信息</view>
+        </view>
+        <view class="item" bindtap="userInfo">
+
+            <view class="item-desc">客户信息</view>
+        </view>
+        <view class="item" bindtap="contentInfo">
+            <view class="item-desc">上传资料</view>
+        </view>
+    </view>
+    <view class="main-content" wx:if="{{orderInfoShow == true}}">
         <view class="order-list-item-label">订单信息:</view>
         <view class="order-list">
             <view bindtap="navigateOrderDetails" data-orderNo="{{orderInfo.ordernum}}">
@@ -25,9 +38,25 @@
                     <view class="order-list-item-label">状态:</view>
                     <view class="order-list-item-desc" wx:if="{{orderInfo.orderstatus == '1'}}">待签约</view>
                     <view class="order-list-item-desc" wx:if="{{orderInfo.orderstatus == '2'}}">待付款</view>
-                    <view class="order-list-item-desc" wx:if="{{orderInfo.orderstatus == '3'}}">已付款</view>
+                    <view class="order-list-item-desc" wx:if="{{orderInfo.orderstatus == '3'}}">已完成</view>
                     <view class="order-list-item-desc" wx:if="{{orderInfo.orderstatus == '4'}}">已退款</view>
                     <view class="order-list-item-desc" wx:if="{{orderInfo.orderstatus == '5'}}">已关闭</view>
+                </view>
+                <view class="order-list-item">
+                    <view class="order-list-item-label">价格:</view>
+                    <view class="order-list-item-desc">{{orderInfo.orderprice}}</view>
+                </view>
+                <view wx:if="{{orderInfo.orderstatus == '3' || orderInfo.orderstatus == '4'}}">
+                    <view class="order-list-item">
+                        <view class="order-list-item-label">合同:</view>
+                        <view class="order-list-item-desc">合同下载</view>
+                        <view class="order-list-item-desc" wx:if="{{orderInfo.dbxyear != '' }}">代步险合同下载</view>
+                    </view>
+                    <view class="order-list-item" wx:if="{{orderInfo.orderstatus == '3'}}">
+                        <view class="order-list-item-label">保单凭证:</view>
+                        <view class="order-list-item-desc">保单凭证</view>
+                        <view class="order-list-item-desc" wx:if="{{orderInfo.dbxyear != '' }}">代步险补偿服务保单凭证</view>
+                    </view>
                 </view>
             </view>
         </view>
@@ -37,7 +66,7 @@
         <view class="order-list">
             <view bindtap="navigateOrderDetails" data-orderNo="{{orderInfo.ordernum}}">
                 <view class="order-list-item">
-                    <view class="order-list-item-label">购买服务:</view>
+                    <view class="order-list-item-label">购买服务1:</view>
                     <view class="order-list-item-desc">{{orderInfo.producetype}}</view>
                 </view>
                 <view class="order-list-item">
@@ -45,7 +74,7 @@
                     <view class="order-list-item-desc">{{orderInfo.insuranceperiod}}个月</view>
                 </view>
                 <view class="order-list-item">
-                    <view class="order-list-item-desc">点击查看汽车置换服务协议:</view>
+                    <view class="order-list-item-desc">点击查看汽车置换服务协议</view>
                 </view>
                 <view wx:if="{{orderInfo.dbxyear != ''}}">
                     <view class="order-list-item">
@@ -57,15 +86,103 @@
                         <view class="order-list-item-desc">{{orderInfo.dbxyear}}个月</view>
                     </view>
                     <view class="order-list-item">
-                        <view class="order-list-item-label">点击查看代步车补偿服务协议:</view>
+                        <view class="order-list-item-label">点击查看代步车补偿服务协议</view>
                     </view>
+                </view>
+                <view class="order-list-item">
+                    <view class="order-list-item-desc">点击查看重点提示条款</view>
                 </view>
             </view>
         </view>
     </view>
+
+    <view class="main-content" wx:if="{{userInfoShow == true}}">
+        <view class="order-list-item-label">车主信息:</view>
+        <view class="order-list">
+            <view bindtap="navigateOrderDetails" data-orderNo="{{orderInfo.ordernum}}">
+                <view class="order-list-item">
+                    <view class="order-list-item-label">姓名:</view>
+                    <view class="order-list-item-desc">{{orderInfo.name}}</view>
+                </view>
+                <view class="order-list-item">
+                    <view class="order-list-item-label">身份证号:</view>
+                    <view class="order-list-item-desc">{{orderInfo.idcard}}</view>
+                </view>
+                <view class="order-list-item">
+                    <view class="order-list-item-label">手机号:</view>
+                    <view class="order-list-item-desc">{{orderInfo.phone}}</view>
+                </view>
+            </view>
+        </view>
+
+
+        <view class="order-list-item-label">车辆信息:</view>
+        <view class="order-list">
+            <view bindtap="navigateOrderDetails" data-orderNo="{{orderInfo.ordernum}}">
+                <view class="order-list-item">
+                    <view class="order-list-item-label">车辆品牌:</view>
+                    <view class="order-list-item-desc">{{orderInfo.carbrand}}</view>
+                </view>
+                <view class="order-list-item">
+                    <view class="order-list-item-label">车辆型号 :</view>
+                    <view class="order-list-item-desc">{{orderInfo.cartype}}个月</view>
+                </view>
+                <view class="order-list-item">
+                    <view class="order-list-item-label">营运性质 :</view>
+                    <view class="order-list-item-desc" wx:if="{{orderInfo.operationmode == '1'}}">非运营车</view>
+                    <view class="order-list-item-desc" wx:if="{{orderInfo.operationmode == '2'}}">营运车</view>
+
+                </view>
+                <view class="order-list-item">
+                    <view class="order-list-item-label">车架号 :</view>
+                    <view class="order-list-item-desc">{{orderInfo.carframenumber}}</view>
+                </view>
+                <view class="order-list-item">
+                    <view class="order-list-item-label">发动机号 :</view>
+                    <view class="order-list-item-desc">{{orderInfo.carenginenumber}}</view>
+                </view>
+                <view class="order-list-item">
+                    <view class="order-list-item-label">车牌号 :</view>
+                    <view class="order-list-item-desc">{{orderInfo.carnumber}}</view>
+                </view>
+                <view class="order-list-item">
+                    <view class="order-list-item-label">车辆发票日期 :</view>
+                    <view class="order-list-item-desc">{{orderInfo.carbuytime}}</view>
+                </view>
+                <view class="order-list-item">
+                    <view class="order-list-item-label">车辆发票价格(含税) :</view>
+                    <view class="order-list-item-desc">{{orderInfo.carbuyprice}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <view class="main-content" wx:if="{{contentInfoShow == true}}">
+        <view class="tag">上传资料</view>
+        <view class="file-list">
+            <view class="file-title">购车发票,合格证/行驶证,身份证人像面,身份证国徽面</view>
+            <view class="file-btn-box">
+                <view class="file-btn" wx:for="{{images}}" wx:key="item">
+                    <image src="{{item}}"></image>
+                </view>
+            </view>
+        </view>
+        <view class="file-list file-list-last" wx:if="{{orderInfo.dbxyear}}">
+            <view class="file-title">车辆拍摄示意图</view>
+            <view class="file-btn-box">
+                <view class="file-btn" wx:for="{{dbxImages}}" wx:key="item">
+                    <image src="{{item}}"></image>
+                </view>
+            </view>
+        </view>
+    </view>
+
+
     <view wx:if="{{isUser == true}}">
         <view class="footer" wx:if="{{orderInfo.orderstatus == '1'}}">
-            <view class="footer-btn" bindtap="navigateToSign" wx:if="{{orderInfo.orderstatus == '1'}}">点击进入签约页面{{orderInfo.dbxyear != ''?'(包含代步险)':''}}</view>
+            <view class="footer-btn" bindtap="navigateToSign" wx:if="{{orderInfo.orderstatus == '1'}}">
+                点击进入签约页面{{orderInfo.dbxyear != ''?'(包含代步险)':''}}
+            </view>
         </view>
     </view>
     <view wx:if="{{isUser == true}}">

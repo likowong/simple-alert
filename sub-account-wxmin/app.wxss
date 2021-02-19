@@ -1,7 +1,11 @@
 /**app.wxss**/
+page {
+  height: 100%;
+  background-color:#eef2f5;
+}
 view,text{
   box-sizing:border-box;
-  color: #333;
+  color: #373737;
   font-family: "PingFang"; 
 }
 text{

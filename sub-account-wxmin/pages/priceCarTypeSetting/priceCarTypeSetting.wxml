@@ -3,7 +3,7 @@
     <view class="input-box">
         <view class="input-label">修改金额：</view>
         <view class="input-value">
-            <input type="text" bindinput="inputData" data-name="updatePrice" placeholder-class="font-gray"/>
+            <input type="text" bindinput="inputData" data-name="updatePrice"/>
             <view>已设置金额{{price}}</view>
         </view>
         <view class="btn-box" data-id="{{id}}" bindtap='updatePrice'>确定</view>

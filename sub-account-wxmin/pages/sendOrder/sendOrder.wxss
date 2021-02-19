@@ -1,7 +1,5 @@
 /* pages/order/order.wxss */
-.main{
-    background-color:#f8f9fc;
-}
+
 .main-content {
     padding: 44rpx;
     box-sizing: border-box;

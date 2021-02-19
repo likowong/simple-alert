@@ -10,7 +10,12 @@ Page({
     data: {
         orderNumber: '',   // 订单号
         orderInfo: {},    // 订单信息
-        isUser: false
+        isUser: false,
+        orderInfoShow: true,
+        userInfoShow: false,
+        contentInfoShow: false,
+        images:[],
+        dbxImages:[]
     },
 
     /**
@@ -78,8 +83,12 @@ Page({
             wxRequest.get('/app/suborderinfo/getOrder?orderNo=' + orderno, '', '')
                 .then(res => {
                     let orderInfo = res.data.orderInfo;
+                    let imagemsg = orderInfo.imagemsg.split(",");
+                    let dbxdata = orderInfo.dbxdata.split(",");
                     this.setData({
-                        orderInfo: orderInfo
+                        orderInfo: orderInfo,
+                        images:imagemsg,
+                        dbxImages:dbxdata
                     })
                 })
         })
@@ -171,5 +180,23 @@ Page({
                     })
                 }
             })
+    }, orderInfo() {
+        this.setData({
+            orderInfoShow: true,
+            userInfoShow: false,
+            contentInfoShow: false
+        })
+    }, userInfo() {
+        this.setData({
+            orderInfoShow: false,
+            userInfoShow: true,
+            contentInfoShow: false,
+        })
+    }, contentInfo() {
+        this.setData({
+            orderInfoShow: false,
+            userInfoShow: false,
+            contentInfoShow: true,
+        })
     }
 })

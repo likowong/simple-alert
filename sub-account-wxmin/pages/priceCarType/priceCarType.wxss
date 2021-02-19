@@ -11,10 +11,10 @@
     padding: 16rpx 20rpx;
     position: relative;
     flex: 1;
-    font-weight: bold;
-    color: #36587C;
 }
 .list .title-desc {
+    font-weight: bold;
+    color: #36587C;
     padding-right: 18rpx;
 }
 .list .title-image {

@@ -16,9 +16,9 @@ Page({
         yearOfPrice: '',
         brandList: [],
         itemHide: 'down',
-        currentItem: '',
         index: '',
-        childIndex: ''
+        idx: '',
+        childIdx: ''
 
     },
 
@@ -39,13 +39,15 @@ Page({
                     yearOfPrice: yearOfPrices
                 })
             })
-    }, onShow: function (options) {
+    },
+    onShow: function (options) {
         let updateCarType = wx.getStorageSync('updateCarType');
         if (updateCarType) {
             let brandList = this.data.brandList;
             let index = this.data.index;
-            let childIndex = this.data.childIndex;
-            brandList[index].carTypeList[childIndex].price = updateCarType;
+            let idx = this.data.idx;
+            let childIdx = this.data.childIdx;
+            brandList[index].carTypeList[idx].subDealeruserPriceSettingList[childIdx].price = updateCarType;
             this.setData({
                 brandList: brandList
             })
@@ -59,7 +61,7 @@ Page({
         let index = e.currentTarget.dataset.index;
         let brandList = this.data.brandList;
         if (hide == true) {
-            brandList[index.split("-")[0]].hide = false
+            brandList[index].hide = false
             this.setData({
                 brandList: brandList
             })
@@ -79,25 +81,42 @@ Page({
         let token = wx.getStorageSync("token");
         wxRequest.post('/app/subdealeruserpricesetting/getList', data, token)
             .then(res => {
-                debugger
-                brandList[index.split("-")[0]].carTypeList = res.data.list
-                brandList[index.split("-")[0]].hide = true
+                brandList[index].carTypeList = res.data.list
+                brandList[index].hide = true
                 this.setData({
                     brandList: brandList,
                     itemHide: '',
-                    currentItem: index.split("-")[1]
                 })
             })
+    },
+    childListToggle(e) {
+        let hide = e.currentTarget.dataset.hide;
+        let index = e.currentTarget.dataset.index;
+        let parentIndex = e.currentTarget.dataset.parentindex;
+        let brandList = this.data.brandList;
+        if (hide == true) {
+            brandList[parentIndex].carTypeList[index].hide = false
+            this.setData({
+                brandList: brandList
+            })
+            return;
+        }
+        brandList[parentIndex].carTypeList[index].hide = true
+        this.setData({
+            brandList: brandList
+        })
     },
     // 更新车辆价格
     updatePrice(e) {
         let id = e.currentTarget.dataset.id;
         let price = e.currentTarget.dataset.price;
         let index = e.currentTarget.dataset.index;
-        let childindex = e.currentTarget.dataset.childindex;
+        let idx = e.currentTarget.dataset.idx;
+        let childidx = e.currentTarget.dataset.childidx;
         this.setData({
             index: index,
-            childIndex: childindex
+            idx: idx,
+            childIdx: childidx,
         })
         wx.navigateTo({
             url: '../priceCarTypeSetting/priceCarTypeSetting?id=' + id + "&price=" + price

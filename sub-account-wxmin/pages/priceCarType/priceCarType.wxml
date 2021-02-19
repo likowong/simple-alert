@@ -1,26 +1,38 @@
 <view class="main">
 
-    <view class="list" wx:for="{{brandList}}" wx:key="{{index+'-'+item.id}}" wx:for-item="item">
+    <view class="list" wx:for="{{brandList}}" wx:key="index" wx:for-item="item">
 
         <view class="list-item-type" data-brandname="{{item.brandname}}" data-brandid="{{item.brandid}}"
-              data-index="{{index+'-'+item.id}}" data-hide="{{item.hide}}" bindtap="listToggle">
-            <view class="list-item-title">{{item.brandname}}</view>
+              data-index="{{index}}" data-hide="{{item.hide}}" bindtap="listToggle">
+            <view class="list-item-title">
+                <view class="title-desc">{{item.brandname}}</view>
+                <view class="title-image"><image src="{{item.image}}" class="car-icon" mode="aspectFit"></image></view>
+            </view>
             <view class="list-item-icon {{item.hide ? 'down' : 'up'}}">
             </view>
         </view>
         <view class="list-item-content {{item.hide ?'':'item-hide'}}">
-            <view wx:for="{{item.carTypeList}}" wx:for-index="idx" wx:key="{{idx+'-'+carTypeChild.id}}"wx:for-item="carTypeChild">
-                <view class="list-item-type" data-brandname="{{item.brandname}}" data-brandid="{{item.brandid}}"
-                      data-index="{{index+'-'+item.id}}" data-hide="{{item.hide}}" bindtap="listToggle">
+            <view wx:for="{{item.carTypeList}}" wx:for-index="idx" wx:key="idx" wx:for-item="carTypeChild">
+                <view class="list-item-type"
+                      data-parentindex="{{index}}"
+                      data-index="{{idx}}"
+                      data-hide="{{carTypeChild.hide}}" bindtap="childListToggle">
                     <view class="list-item-title">{{carTypeChild.carTypeName}}</view>
-<!--                    <view class="list-item-icon {{item.hide ? 'down' : 'up'}}">-->
-<!--                    </view>-->
+                    <view class="list-item-icon {{carTypeChild.hide ? 'down' : 'up'}}">
+                    </view>
                 </view>
-                <view wx:for="{{item.carTypeList.subDealeruserPriceSettingList}}" wx:for-index="childIdx" wx:key="{{childIdx+'-'+child.id}}" wx:for-item="child">
+                <view class="list-item-content {{carTypeChild.hide ?'':'item-hide'}}">
+                    <view wx:for="{{carTypeChild.subDealeruserPriceSettingList}}" wx:for-index="childIdx"
+                          wx:key="childIdx" wx:for-item="child">
 
-                    <view class="list-item-name" bindtap="updatePrice" data-index="{{index}}" data-childindex="{{idx}}"
-                          data-price="{{child.price}}" data-id="{{child.id}}">
-                        {{child.yearofprice}}个月 {{child.price}} 修改
+                        <view class="list-item-name" bindtap="updatePrice"
+                              data-index="{{index}}"
+                              data-idx="{{idx}}"
+                              data-childidx="{{childIdx}}"
+                              data-price="{{child.price}}"
+                              data-id="{{child.id}}">
+                            {{child.yearofprice}}个月 {{child.price}} 修改
+                        </view>
                     </view>
                 </view>
             </view>

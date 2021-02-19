@@ -1,5 +1,5 @@
 <!--pages/order/order.wxml 提单列表页-->
-<view class="main" style="min-height:{{winHeight}}px">
+<view class="main" style="min-height:{{winHeight}}rpx">
     <image src="../../images/bg.png" class="bgIcon" mode="aspectFit"></image>
     <view class="main-content">
         <view class="main-content-header">
