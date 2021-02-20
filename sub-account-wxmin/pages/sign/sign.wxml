@@ -24,7 +24,4 @@
     <view class="login-box">
         <view class="btn-box {{buttonStatus ? 'active' : ''}}" bindtap="{{!buttonClicked?'toSign':''}}">进入签约</view>
     </view>
-    <view class="login-box" wx:if="{{isDBX == true}}">
-        <view class="btn-box {{buttonStatus ? 'active' : ''}}" bindtap="{{!buttonClicked?'toDBXSign':''}}">进入签约</view>
-    </view>
 </view>

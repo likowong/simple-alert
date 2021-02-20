@@ -2,13 +2,13 @@
 <view class="main" style="min-height:{{winHeight}}px">
 
     <view class="main-operate">
-        <view class="item active" bindtap="orderInfo">
+        <view class="item {{orderInfoShow == true?'active':''}}" bindtap="orderInfo">
             订单信息
         </view>
-        <view class="item" bindtap="userInfo">
+        <view class="item {{userInfoShow == true?'active':''}}" bindtap="userInfo">
             客户信息
         </view>
-        <view class="item" bindtap="contentInfo">
+        <view class="item {{contentInfoShow == true?'active':''}}" bindtap="contentInfo">
             上传资料
         </view>
     </view>
