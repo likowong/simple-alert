@@ -173,8 +173,8 @@
     </view>
 
 
-    <view wx:if="{{isUser == true && orderInfo.orderstatus == '1'}}" class="btn-box">点击进入签约页面{{orderInfo.dbxyear != ''?'(包含代步险)':''}}</view>
-    <view wx:if="{{isUser == true && orderInfo.orderstatus == '2'}}" class="btn-box">支付费用</view>
+    <view wx:if="{{isUser == true && orderInfo.orderstatus == '1'}}" class="btn-box" bindtap="navigateToSign">点击进入签约页面{{orderInfo.dbxyear != ''?'(包含代步险)':''}}</view>
+    <view wx:if="{{isUser == true && orderInfo.orderstatus == '2'}}" class="btn-box" bindtap="navigateToPay">支付费用</view>
     <button  wx:if="{{isUser == false}}" class="btn-box" open-type="share">点击转发至客户</button>
 </view>
 
