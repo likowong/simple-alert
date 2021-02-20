@@ -12,27 +12,26 @@
             </view>
         </view>
         <view class="list-item-content {{item.hide ?'':'item-hide'}}">
-            <view wx:for="{{item.carTypeList}}" wx:for-index="idx" wx:key="idx" wx:for-item="carTypeChild">
-                <view class="list-item-type"
+            <view class="list-item-subtitle" wx:for="{{item.carTypeList}}" wx:for-index="idx" wx:key="idx" wx:for-item="carTypeChild">
+                <view class="list-item-type bottomLine"
                       data-parentindex="{{index}}"
                       data-index="{{idx}}"
                       data-hide="{{carTypeChild.hide}}" bindtap="childListToggle">
-                    <view class="list-item-title">{{carTypeChild.carTypeName}}</view>
+                    <view class="list-item-title fontSize30">{{carTypeChild.carTypeName}}</view>
                     <view class="list-item-icon {{carTypeChild.hide ? 'down' : 'up'}}">
                     </view>
                 </view>
                 <view class="list-item-content {{carTypeChild.hide ?'':'item-hide'}}">
-                    <view wx:for="{{carTypeChild.subDealeruserPriceSettingList}}" wx:for-index="childIdx"
-                          wx:key="childIdx" wx:for-item="child">
-
-                        <view class="list-item-name" bindtap="updatePrice"
-                              data-index="{{index}}"
-                              data-idx="{{idx}}"
-                              data-childidx="{{childIdx}}"
-                              data-price="{{child.price}}"
-                              data-id="{{child.id}}">
-                            {{child.yearofprice}}个月 {{child.price}} 修改
-                        </view>
+                    <view class="list-item-row" wx:for="{{carTypeChild.subDealeruserPriceSettingList}}" wx:for-index="childIdx"
+                        wx:key="childIdx" wx:for-item="child">
+                        <view class="list-item-money">{{child.price}}</view>
+                        <view class="list-item-month">{{child.yearofprice}}个月</view>
+                        <view class="list-item-edit" bindtap="updatePrice"
+                            data-index="{{index}}"
+                            data-idx="{{idx}}"
+                            data-childidx="{{childIdx}}"
+                            data-price="{{child.price}}"
+                            data-id="{{child.id}}">修改</view>
                     </view>
                 </view>
             </view>

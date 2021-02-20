@@ -16,6 +16,7 @@
     font-weight: bold;
     color: #36587C;
     padding-right: 18rpx;
+    font-size: 34rpx;
 }
 .list .title-image {
     width: 45rpx;
@@ -36,7 +37,6 @@
     background-color: #ff761e;
 }
 .list .list-item-name {
-    padding-left: 20rpx;
     height: 110rpx;
     line-height: 110rpx;
 }
@@ -44,6 +44,34 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+}
+.bottomLine {
+    border-bottom: 2rpx dashed #E0E0E0;
+}
+.fontSize30 {
+    font-size: 30rpx;
+}
+.list-item-subtitle {
+    min-height: 110rpx;
+}
+.list-item-row {
+    display: flex;
+    flex-direction: row;
+    height: 110rpx;
+    align-items: center;
+}
+.list-item-money {
+    font-size: 30rpx;
+    font-weight: bold;
+    color: #FF7214;
+    flex: 1;
+}
+.list-item-month {
+    color: #8A878A;
+    width: 27%;
+}
+.list-item-edit {
+    color: #36587C;
 }
 .list-item-icon {
     border-right: 2px solid #343c99;

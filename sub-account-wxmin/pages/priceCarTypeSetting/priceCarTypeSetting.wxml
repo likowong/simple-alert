@@ -1,12 +1,14 @@
 <view class="main">
 
-    <view class="input-box">
-        <view class="input-label">修改金额：</view>
-        <view class="input-value">
-            <input type="text" bindinput="inputData" data-name="updatePrice"/>
-            <view>已设置金额{{price}}</view>
+    <view class="content">
+        <view class="tag">修改金额：</view>
+        <view class="setting">
+            <view class="unit">¥</view>
+            <input type="text" bindinput="inputData" data-name="updatePrice" placeholder="请输入修改金额"/>
         </view>
-        <view class="btn-box" data-id="{{id}}" bindtap='updatePrice'>确定</view>
-
+        <view class="setted">
+            已设置金额<view class="price">{{price}}元</view>
+        </view>
     </view>
+    <view class="btn-box" data-id="{{id}}" bindtap='updatePrice'>确定</view>
 </view>

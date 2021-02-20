@@ -1,5 +1,5 @@
 <!--pages/order/order.wxml 提单列表页-->
-<view class="main" style="min-height:{{winHeight}}px">
+<view class="main" style="min-height:{{winHeight}}rpx">
     <view class="main-header">
         <image src="../../images/car.png" class="bgCar" mode="heightFix"></image>
     </view>
