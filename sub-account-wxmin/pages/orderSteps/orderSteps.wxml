@@ -92,7 +92,7 @@
             <view class="input-box">
                 <view class="input-label">车辆发票价格(含税)：</view>
                 <view class="input-value">
-                    <input type="text" bindinput="inputData" data-name="carbuyprice" placeholder-class="font-gray"/>
+                    <input type="number" bindinput="inputData" data-name="carbuyprice" placeholder-class="font-gray"/>
                 </view>
             </view>
             <view class="input-box">

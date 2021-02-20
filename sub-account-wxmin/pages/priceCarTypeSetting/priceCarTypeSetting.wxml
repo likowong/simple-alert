@@ -4,7 +4,7 @@
         <view class="tag">修改金额：</view>
         <view class="setting">
             <view class="unit">¥</view>
-            <input type="text" bindinput="inputData" data-name="updatePrice" placeholder="请输入修改金额"/>
+            <input type="number" bindinput="inputData" data-name="updatePrice" placeholder="请输入修改金额"/>
         </view>
         <view class="setted">
             已设置金额<view class="price">{{price}}元</view>

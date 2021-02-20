@@ -7,7 +7,7 @@
     padding: 44rpx;
 }
 .main-operate {
-    padding: 0 66rpx;
+    padding: 20rpx 66rpx;
     display: flex;
     height: 100rpx;
     justify-content: space-between;
