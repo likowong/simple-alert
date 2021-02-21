@@ -121,7 +121,7 @@
             </view>
             <view class="order-list-item">
                 <view class="order-list-item-label">车辆型号 :</view>
-                <view class="order-list-item-desc">{{orderInfo.cartype}}个月</view>
+                <view class="order-list-item-desc">{{orderInfo.cartype}}</view>
             </view>
             <view class="order-list-item">
                 <view class="order-list-item-label">营运性质 :</view>
