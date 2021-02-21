@@ -47,8 +47,8 @@
                 <view class="order-list-item">
                     <view class="order-list-item-label">合同:</view>
                     <view class="order-list-item-desc-list">
-                        <view class="order-list-item-desc contract">合同下载</view>
-                        <view class="order-list-item-desc contract" wx:if="{{orderInfo.dbxyear != '' }}">代步险合同下载</view>
+                        <view class="order-list-item-desc contract" bindtap="contractUrlType1">合同下载</view>
+                        <view class="order-list-item-desc contract" bindtap="contractUrlType2" wx:if="{{orderInfo.dbxyear != '' }}">代步险合同下载</view>
                     </view>
                 </view>
                 <view class="order-list-item" wx:if="{{orderInfo.orderstatus == '3'}}">

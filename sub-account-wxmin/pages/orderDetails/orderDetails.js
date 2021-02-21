@@ -243,5 +243,31 @@ Page({
                     })
                 }
             })
+    }, downloadFile(url) {
+        wx.setClipboardData({
+            data: url,
+            success: function (res) {
+                wx.getClipboardData({
+                    success: function (res) {
+                        wx.showToast({
+                            title: '下载链接已复制成功'
+                        })
+                    }
+                })
+            }
+        })
+    }, contractUrlType1() {
+        let orderNumber = this.data.orderNumber;
+        wxRequest.get('/app/suborderinfo/downSignPdf?orderNo=' + orderNumber + '&type=1', '', '')
+            .then(res => {  //请求成功
+                this.downloadFile(res.data.downUrl)
+            })
+    }
+    , contractUrlType2() {
+        let orderNumber = this.data.orderNumber;
+        wxRequest.get('/app/suborderinfo/downSignPdf?orderNo=' + orderNumber + '&type=2', '', '')
+            .then(res => {  //请求成功
+                this.downloadFile(res.data.downUrl)
+            })
     }
 })
