@@ -15,7 +15,8 @@ Page({
         userInfoShow: false,
         contentInfoShow: false,
         images: [],
-        dbxImages: []
+        dbxImages: [],
+        isDBXSign: false
     },
 
     /**
@@ -102,6 +103,14 @@ Page({
                         images: images,
                         dbxImages: dbxImage
                     })
+                    // 加载是否有代步险合同签约
+                    let isDBX = false
+                    if (orderInfo.dbxyear) {
+                        isDBX = true
+                    }
+                    if (orderInfo.orderstatus == 1) {
+                        this.querySignStatus(orderInfo.ordernum, 1, isDBX);
+                    }
                 })
         })
     }
@@ -224,4 +233,15 @@ Page({
             current: current
         })
     },
+    querySignStatus(orderNo, type, isDBX) {
+        wxRequest.get('/app/suborderinfo/querySignStatus?orderNo=' + orderNo + '&type=' + type + '', '', '')
+            .then(res => {  //请求成功
+                let isSign = res.data.signStatus.aboolean;
+                if (isSign && isDBX) {
+                    this.setData({
+                        isDBXSign: true
+                    })
+                }
+            })
+    }
 })

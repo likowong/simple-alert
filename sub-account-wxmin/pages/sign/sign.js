@@ -145,38 +145,55 @@ Page({
                                             })
                                             wx.showToast({
                                                 icon: 'none',
-                                                title: '正在签署代步险合同',
-                                                duration:3000
+                                                title: '正在签署代步险合同页面',
+                                                duration: 3000,
+                                                success: function () {
+                                                    setTimeout(function () {
+                                                        var enCodeDBXSignUrl = encodeURIComponent(dbxSignUrl)
+                                                        wx.navigateTo({
+                                                            url: '../signPage/signPage?signUrl=' + enCodeDBXSignUrl
+                                                        })
+                                                    }, 2000) //延迟时间
+                                                }
                                             })
-                                            var enCodeDBXSignUrl = encodeURIComponent(dbxSignUrl)
-                                            wx.navigateTo({
-                                                url: '../signPage/signPage?signUrl=' + enCodeDBXSignUrl
-                                            })
+
                                         })
                                 } else {
-                                    // 签约成功,进入查看
-                                    wx.navigateTo({
-                                        url: '../signPage/signPage?signUrl=' + enCodeSignUrl
+                                    util.hideLoading();
+                                    wx.showToast({
+                                        icon: 'none',
+                                        title: '签约成功,进入查看',
+                                        duration: 3000,
+                                        success: function () {
+                                            setTimeout(function () {
+                                                // 签约成功,进入查看
+                                                wx.navigateTo({
+                                                    url: '../signPage/signPage?signUrl=' + enCodeSignUrl
+                                                })
+                                            }, 2000) //延迟时间
+                                        }
                                     })
                                 }
                             } else {
-                                // 未签约,进入签约页面
                                 util.hideLoading();
-                                wx.navigateTo({
-                                    url: '../signPage/signPage?signUrl=' + enCodeSignUrl
+                                wx.showToast({
+                                    icon: 'none',
+                                    title: '正在进入签署页面',
+                                    duration: 3000,
+                                    success: function () {
+                                        setTimeout(function () {
+                                            // 签约成功,进入查看
+                                            wx.navigateTo({
+                                                url: '../signPage/signPage?signUrl=' + enCodeSignUrl
+                                            })
+                                        }, 2000) //延迟时间
+                                    }
                                 })
                             }
                         })
-
                 })
         } else {
             return false;
         }
-    }, querySignStatus(orderNo, type) {
-        wxRequest.get('/app/suborderinfo/querySignStatus?orderNo=' + orderNo + '&type=' + type + '', '', '')
-            .then(res => {  //请求成功
-                let isSign = res.data.signStatus.aboolean;
-                return isSign;
-            })
     }
 })
