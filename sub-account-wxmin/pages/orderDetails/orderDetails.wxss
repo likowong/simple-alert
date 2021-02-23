@@ -7,7 +7,7 @@
     padding: 44rpx;
 }
 .main-operate {
-    padding: 20rpx 66rpx;
+    padding:0 66rpx;
     display: flex;
     height: 100rpx;
     justify-content: space-between;
@@ -18,8 +18,12 @@
     color: #8A878A;
     font-size: 30rpx;
     position: relative;
-    height: 100%;
-    line-height: 100%;
+    height: 100rpx;
+    line-height: 100rpx;
+}
+.main-operate .item.active{
+    font-weight: bold;
+    color: #36587C;
 }
 .main-operate .item.active:before{
     content: '';

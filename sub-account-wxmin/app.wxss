@@ -1,18 +1,16 @@
 /**app.wxss**/
 page {
   height: 100%;
-  background-color:#eef2f5;
+  background-color:#F8F9FC;
 }
 view,text{
   box-sizing:border-box;
   color: #373737;
   font-family: "PingFang"; 
+  font-size:26rpx;
 }
 text{
   display:inline-block;
-}
-view,text{
-  font-size:26rpx;
 }
 .container {
   height: 100%;

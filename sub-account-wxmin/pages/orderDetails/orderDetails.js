@@ -16,7 +16,8 @@ Page({
         contentInfoShow: false,
         images: [],
         dbxImages: [],
-        isDBXSign: false
+        isDBXSign: false,
+        winHeight: 0
     },
 
     /**
