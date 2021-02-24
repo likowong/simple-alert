@@ -31,6 +31,9 @@ view, text {
 .step-input-view{
     padding: 44rpx;
 }
+.step-input-view.hide{
+    display: none;
+}
 .owner-info {
     margin: 28rpx 0 58rpx;
     background: #fff;

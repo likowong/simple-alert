@@ -247,14 +247,14 @@ Page({
                     dbxImagemsgStr = dbxImagemsgStr + dbxImagemsg[i].url + ","
                 }
             }
-            this.sendData(imagemsgStr,dbxImagemsgStr).then((res) => {
+            this.sendData(imagemsgStr, dbxImagemsgStr).then((res) => {
                 let orderNo = res.data.orderNo;
                 wx.reLaunch({
                     url: '../orderDetails/orderDetails?orderno=' + orderNo
                 })
             });
             this.setData({
-                ['form.dbxImagemsg']:dbxImagemsg,
+                ['form.dbxImagemsg']: dbxImagemsg,
                 ['form.imagemsg']: imagemsg
 
             })
@@ -394,14 +394,14 @@ Page({
     },
 
     // 提交数据
-    sendData(imagemsgStr,dbxImagemsgStr) {
+    sendData(imagemsgStr, dbxImagemsgStr) {
         util.showLoading('');
         let form = this.data.form;
         form.imagemsg = imagemsgStr
         form.dbxdata = dbxImagemsgStr
         let token = wx.getStorageSync("token");
         return new Promise((resolve, reject) => {
-            wxRequest.post('/app/suborderinfo/save', JSON.stringify(form),token)
+            wxRequest.post('/app/suborderinfo/save', JSON.stringify(form), token)
                 .then(res => {  //请求成功
                     util.hideLoading();
                     resolve(res);
@@ -416,5 +416,9 @@ Page({
                 })
         })
 
+    }, backLastStep() {
+        this.setData({
+            active: 0
+        });
     }
 })

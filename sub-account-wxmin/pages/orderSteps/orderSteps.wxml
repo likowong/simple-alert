@@ -4,7 +4,7 @@
         <van-steps steps="{{steps}}" active="{{active}}"></van-steps>
     </view>
 
-    <view class="step-input-view" wx:if="{{active == 0}}">
+    <view class="step-input-view {{active == 1 ?'hide':''}}" >
         <view class="tag">车辆年限</view>
         <view class="car-age-box">
             <view class="carAge {{form.carage == item.producetypenum ? 'active' : ''}}"
@@ -111,7 +111,7 @@
         
         <view class="btn-box {{firstStepBtn ? 'active' : ''}}" bindtap='firstStep'>下一步</view>
     </view>
-    <view class="step-input-view" wx:else>
+    <view class="step-input-view {{active == 0 ?'hide':''}}" >
         <view class="tag">上传资料</view>
         <view class="file-list">
             <view class="file-title">购车发票,合格证/行驶证,身份证人像面,身份证国徽面</view>
@@ -142,5 +142,6 @@
             </view>
         </view>
         <view class="btn-box {{lastStepBtn ? 'active' : ''}}" bindtap='lastStep'>生成订单</view>
+        <view class="btn-box active" bindtap='backLastStep'>返回上一步</view>
     </view>
 </view>
