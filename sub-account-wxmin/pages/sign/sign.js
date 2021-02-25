@@ -25,9 +25,15 @@ Page({
     onLoad: function (options) {
         let orderno = options.orderno;
         let isDBX = options.isDBX;
+        let name = options.name;
+        let idcard = options.idcard;
+        let phone = options.phone;
         this.setData({
             orderNo: orderno,
-            isDBX: isDBX
+            isDBX: isDBX,
+            name: name,
+            idCard: idcard,
+            phone: phone,
         })
         let data = wx.getStorageSync("data");
         if (data) {

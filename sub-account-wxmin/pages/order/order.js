@@ -22,6 +22,14 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+
+        wx.login({
+            success(res) {
+                if (res.code) {
+                    console.log(res.code)
+                }
+            }
+        })
         //如果不存在token
         if (!wx.getStorageSync("token")) {
             wx.reLaunch({  //跳转到登录页面
