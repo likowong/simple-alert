@@ -11,8 +11,8 @@ class Request {
         'token': null
     }
 
-    //_baseUrl = 'https://admin.vanntech.cn'
-    _baseUrl = 'http://192.168.1.5'
+    _baseUrl = 'https://admin.vanntech.cn'
+    //_baseUrl = 'http://192.168.1.5'
 
     _token = ''
 
