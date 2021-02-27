@@ -3,6 +3,9 @@ import wxRequest from '../../utils/request'
 import util from '../../utils/util'
 import wxVaildate from '../../utils/wx_validate'
 
+var WxParse = require('../../wxParse/wxParse.js');
+
+
 Page({
 
     /**
@@ -15,39 +18,40 @@ Page({
         phone: '',
         isDBX: false,
         signUrl: '',
-        dbxSignUrl: ''
-
+        dbxSignUrl: '',
+        buttonStatus: true,
+        signContent: '',
+        second: 10,          //倒计时时间
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+
+
         let orderno = options.orderno;
         let isDBX = options.isDBX;
         let name = options.name;
         let idcard = options.idcard;
         let phone = options.phone;
+        let projectCode = options.projectCode;
         this.setData({
             orderNo: orderno,
             isDBX: isDBX,
             name: name,
             idCard: idcard,
             phone: phone,
+            projectCode: projectCode,
         })
-        let data = wx.getStorageSync("data");
-        if (data) {
-            this.setData({
-                name: data.name,
-                idCard: data.idCard,
-                phone: data.phone
+        // 获取签约重要提示
+        wxRequest.get('/app/suborderinfo/getSignContent?orderNo=' + orderno + "&projectCode=" + projectCode, "", '')
+            .then(res => {
+                var that = this;
+                var htmlTpl = res.data.signContent;
+                WxParse.wxParse('article', 'html', htmlTpl, that, 5);
+                this.timer();
             })
-            if (data.name && data.idCard && data.phone) {
-                this.setData({
-                    buttonStatus: true
-                })
-            }
-        }
     },
 
     /**
@@ -201,5 +205,25 @@ Page({
         } else {
             return false;
         }
+    }// 显示倒计时
+    , timer: function () {
+        let promise = new Promise((resolve, reject) => {
+            let setTimer = setInterval(
+                () => {
+                    this.setData({
+                        second: this.data.second - 1
+                    })
+                    if (this.data.second <= 0) {
+                        this.setData({
+                            second: ''
+                        })
+                        resolve(setTimer)
+                    }
+                }
+                , 1000)
+        })
+        promise.then((setTimer) => {
+            clearInterval(setTimer)
+        })
     }
 })

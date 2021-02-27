@@ -10,7 +10,7 @@ Page({
     data: {
         orderNumber: '',   // 订单号
         orderInfo: {},    // 订单信息
-        isUser: false,
+        isUser: true,
         orderInfoShow: true,
         userInfoShow: false,
         contentInfoShow: false,
@@ -130,12 +130,17 @@ Page({
         let name = this.data.orderInfo.name;
         let idcard = this.data.orderInfo.idcard;
         let phone = this.data.orderInfo.phone;
+        let isDBXSign = this.data.isDBXSign;
+        let projectCode = this.data.orderInfo.producecode;
+        if(isDBXSign){
+            projectCode = "CCI"
+        }
         let isDBX = false
         if (this.data.orderInfo.dbxyear) {
             isDBX = true
         }
         wx.navigateTo({
-            url: '../sign/sign?orderno=' + orderNumber + "&isDBX=" + isDBX+ "&name=" + name+ "&idcard=" + idcard+ "&phone=" + phone
+            url: '../sign/sign?orderno=' + orderNumber + "&isDBX=" + isDBX+ "&name=" + name+ "&idcard=" + idcard+ "&phone=" + phone+ "&projectCode=" + projectCode
         })
     }
     ,

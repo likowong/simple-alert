@@ -1,9 +1,16 @@
 <!--pages/login/login.wxml-->
+<import src="../../wxParse/wxParse.wxml"/>
 <view class="main" style="min-height:{{winHeight}}px">
-    <view class="input-box">
-            阅读重要提示
+    <!-- 授权内容弹窗 -->
+    <view class="offer-detail">
+        <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
     </view>
-    <view class="login-box">
-        <view class="btn-box {{buttonStatus ? 'active' : ''}}" bindtap="{{!buttonClicked?'toSign':''}}">进入签约</view>
+</view>
+<view class="login-box">
+    <view class="btn-box {{buttonStatus ? 'active' : ''}}" bindtap="{{!buttonClicked?'toSign':''}}"
+          wx:if="{{second != ''}}">{{second}}s
+    </view>
+    <view class="btn-box {{buttonStatus ? 'active' : ''}}" bindtap="{{!buttonClicked?'toSign':''}}"
+          wx:if="{{second == ''}}">进入签约
     </view>
 </view>

@@ -51,15 +51,16 @@ Page({
             productname: '',
             productprice: '',
             producttypename: '车损险',
+            confirm: ''
         },
         carTypeName: '',
         active: 0,
         firstStepBtn: false,   //第一步按钮的状态
-        lastStepBtn: false,   //最后一步按钮的状态
-        operationNature: [
-            {value: '1', text: '非运营车'},
-            {value: '2', text: '运营车'}
-        ],
+        lastStepBtn: false   //最后一步按钮的状态
+        // operationNature: [
+        //     {value: '1', text: '非运营车'},
+        //     {value: '2', text: '运营车'}
+        // ],
     },
 
     /**
@@ -110,13 +111,18 @@ Page({
             })
             wx.removeStorageSync('carType');
         }
+        let company = wx.getStorageSync('hxc-company');
+        if (company) {
+            this.setData({['form.productcompany']: company})
+            wx.removeStorageSync('hxc-company');
+        }
         this.activeFirstBtn();
     },
 
     // 监控第一步按钮的状态
     activeFirstBtn: function () {
-        let {carage, carbrandid, cartypeid, carbrand, cartype, carbuyprice, carbuytime, carenginenumber, carframenumber, idcard, insuranceperiod, name, operationmode, phone, producecode, productcompany} = this.data.form;
-        if (carage && carbrandid && cartypeid && carbrand && cartype && carbuyprice && carbuytime && carenginenumber && carframenumber && idcard && insuranceperiod && name && operationmode && phone && producecode && productcompany) {
+        let {carage, carbrandid, cartypeid, carbrand, cartype, carbuyprice, carbuytime, carenginenumber, carframenumber, idcard, insuranceperiod, name, operationmode, phone, producecode, productcompany, confirm} = this.data.form;
+        if (carage && carbrandid && cartypeid && carbrand && cartype && carbuyprice && carbuytime && carenginenumber && carframenumber && idcard && insuranceperiod && name && operationmode && phone && producecode && productcompany && confirm) {
             this.setData({
                 firstStepBtn: true
             })
@@ -213,13 +219,34 @@ Page({
         this.activeFirstBtn();
     },
 
+    // 修改运营性质
+    changeOperationMode: function (e) {
+        let arr = e.detail.value
+        this.setData({
+            ['form.' + e.target.dataset.name]: arr.length > 0 ? arr[0] : ''
+        })
+        this.activeFirstBtn();
+    },
     // 选择车辆品牌
     selectCarType: function () {
         wx.navigateTo({
             url: '../carType/carType'
         })
     },
-
+    // 选择保险公司
+    selectCompnay: function () {
+        wx.navigateTo({
+            url: '../insuranceCompany/insuranceCompany'
+        })
+    },
+    // 修改确认客户已购买车损险
+    changeConfirm: function (e) {
+        let arr = e.detail.value
+        this.setData({
+            ['form.' + e.target.dataset.name]: arr.length > 0 ? arr[0] : ''
+        })
+        this.activeFirstBtn();
+    },
 
     // 第一步
     firstStep() {
@@ -420,5 +447,105 @@ Page({
         this.setData({
             active: 0
         });
+    },
+    // 校验
+
+    // 检验姓名
+    validName: function (e) {
+        const chinese = /[^\u4E00-\u9FA5]/g
+        if ((chinese.test(e.detail.value))) {
+            wx.showToast({title: "只允许输入中文", icon: "none"});
+            this.setData({
+                ['form.' + e.target.dataset.name]: ''
+            })
+            return;
+        }
+        this.setData({
+            ['form.' + e.target.dataset.name]: e.detail.value
+        })
+        this.activeFirstBtn();
+    },
+    validcarframenumber: function (e) {
+        const englishAndNum = /[\W]/g
+        if ((englishAndNum.test(this.data.username))) {
+            wx.showToast({title: "只允许输入英文加数字", icon: "none"});
+            this.setData({
+                ['form.' + e.target.dataset.name]: ''
+            })
+            return;
+        }
+        if (e.detail.value.length == 17) {
+            this.setData({
+                ['form.' + e.target.dataset.name]: e.detail.value
+            })
+            this.activeFirstBtn();
+        }
+
+    },
+    validcarenginenumber: function (e) {
+        const englishAndNum = /[\W]/g
+        if ((englishAndNum.test(this.data.username))) {
+            wx.showToast({title: "只允许输入英文加数字", icon: "none"});
+            this.setData({
+                ['form.' + e.target.dataset.name]: ''
+            })
+            return;
+        }
+        if (e.detail.value.length <= 10) {
+            this.setData({
+                ['form.' + e.target.dataset.name]: e.detail.value
+            })
+            this.activeFirstBtn();
+        }
+
+    },
+    validPhoneNum: function (e) {
+        if (e.detail.value.length === 11) {
+            this.setData({
+                ['form.' + e.target.dataset.name]: e.detail.value
+            })
+            this.activeFirstBtn();
+        }
+    },
+    validIdCard: function (e) {
+        if (e.detail.value.length === 18) {
+            this.setData({
+                ['form.' + e.target.dataset.name]: e.detail.value
+            })
+            this.activeFirstBtn();
+        }
+    },
+    validgetCarDate: function (e) {
+        let carage = this.data.form.carage;
+        if (!carage) {
+            wx.showToast({title: "请选择车辆年限", icon: "none"});
+            return
+        }
+        let nowDate = new Date().toLocaleDateString();
+        let value = e.detail.value;
+        let days = this.checkDate(value, nowDate);
+        if (days <= 0) {
+            wx.showToast({title: "与所选车辆年限不符，请确认后重新选择", icon: "none"});
+            return
+        }
+        let time2 = days - (carage / 12 * 365);
+        if (time2 <= 0) {
+            wx.showToast({title: "与所选车辆年限不符，请确认后重新选择", icon: "none"});
+            return
+        }
+        this.setData({
+            ['form.' + e.target.dataset.name]: e.detail.value
+        })
+        this.activeFirstBtn();
+    }, checkDate: function (startTime, endTime) {
+
+        //日期格式化
+        var start_date = new Date(startTime.replace(/-/g, "/"));
+        var end_date = new Date(endTime.replace(/-/g, "/"));
+        //转成毫秒数，两个日期相减
+        var ms = end_date.getTime() - start_date.getTime();
+        //转换成天数
+        var day = parseInt(ms / (1000 * 60 * 60 * 24));
+        return day
     }
 })

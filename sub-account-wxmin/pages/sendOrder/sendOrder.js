@@ -15,7 +15,8 @@ Page({
         cciproducecode: '',
         isFree: '',
         producecode: '',
-        productIndex:0
+        productIndex:null,
+        chooseAgencyInsurance: false
     },
 
     /**
@@ -43,7 +44,7 @@ Page({
                 }
                 this.setData({
                     productList: res.data.productRateVos,
-                    producecode:res.data.productRateVos[0].productCode
+                    //producecode:res.data.productRateVos[0].productCode
                 })
         })
     },
@@ -133,5 +134,22 @@ Page({
         wx.navigateTo({
             url: '../orderSteps/orderSteps?producecode=' + producecode + "&isFree=" + isFree + "&cciproducecode=" + cciproducecode + "&cciProducetyenum=" + cciProducetyenum
         })
+    },
+    checkSetting(e) {
+        let self = this
+        this.setData({
+            chooseAgencyInsurance: !self.data.chooseAgencyInsurance
+        })
+        if (!this.data.chooseAgencyInsurance) {
+            const cci = this.data.cci
+            for (let j = 0; j < cci.yearrate.length; j++) {
+                cci.yearrate[j].checked = ''
+            }
+            this.setData({
+                cciProducetyenum: '',
+                cciProducecode: '',
+                cci: cci
+            })
+        }
     }
 })

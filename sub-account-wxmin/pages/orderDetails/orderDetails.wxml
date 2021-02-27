@@ -198,18 +198,8 @@
                     <view class="order-list-item-desc">{{orderInfo.cartype}}</view>
                 </view>
                 <view class="order-list-item">
-                    <view class="order-list-item-label">营运性质 :</view>
-                    <view class="order-list-item-desc" wx:if="{{orderInfo.operationmode == '1'}}">非运营车</view>
-                    <view class="order-list-item-desc" wx:if="{{orderInfo.operationmode == '2'}}">营运车</view>
-
-                </view>
-                <view class="order-list-item">
                     <view class="order-list-item-label">车架号 :</view>
                     <view class="order-list-item-desc">{{orderInfo.carframenumber}}</view>
-                </view>
-                <view class="order-list-item">
-                    <view class="order-list-item-label">发动机号 :</view>
-                    <view class="order-list-item-desc">{{orderInfo.carenginenumber}}</view>
                 </view>
                 <view class="order-list-item">
                     <view class="order-list-item-label">车牌号 :</view>
@@ -228,7 +218,7 @@
             <view class="order-list" bindtap="navigateOrderDetails" data-orderNo="{{orderInfo.ordernum}}">
                 <view class="order-list-item">
                     <view class="order-list-item-label">购买服务1:</view>
-                    <view class="order-list-item-desc">{{orderInfo.producetype}}</view>
+                    <view class="order-list-item-desc">全损置换服务</view>
                 </view>
                 <view class="order-list-item">
                     <view class="order-list-item-label">服务期限 :</view>
@@ -237,7 +227,7 @@
                 <view wx:if="{{orderInfo.dbxyear != ''}}">
                     <view class="order-list-item">
                         <view class="order-list-item-label">购买服务2:</view>
-                        <view class="order-list-item-desc">代步车补偿服务</view>
+                        <view class="order-list-item-desc">代步车服务</view>
                     </view>
                     <view class="order-list-item">
                         <view class="order-list-item-label">服务期限 :</view>
