@@ -153,15 +153,15 @@ Page({
                                             this.setData({
                                                 dbxSignUrl: dbxSignUrl
                                             })
+                                            var enCodeDBXSignUrl = encodeURIComponent(dbxSignUrl)
                                             wx.showToast({
                                                 icon: 'none',
                                                 title: '正在签署代步险合同页面',
                                                 duration: 3000,
                                                 success: function () {
                                                     setTimeout(function () {
-                                                        var enCodeDBXSignUrl = encodeURIComponent(dbxSignUrl)
                                                         wx.navigateTo({
-                                                            url: '../signPage/signPage?signUrl=' + enCodeDBXSignUrl
+                                                            url: '/pages/signPage/signPage?signUrl=' + enCodeDBXSignUrl
                                                         })
                                                     }, 2000) //延迟时间
                                                 }

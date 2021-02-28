@@ -12,7 +12,8 @@
     "pages/priceCarType/priceCarType",
     "pages/myOrder/myOrder",
     "pages/carType/carType",
-    "pages/priceCarTypeSetting/priceCarTypeSetting"
+    "pages/priceCarTypeSetting/priceCarTypeSetting",
+    "pages/signPage/signPage"
   ],
   "window": {
     "backgroundTextStyle": "light",

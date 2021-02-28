@@ -24,11 +24,20 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        debugger
         let orderno = options.orderno;
         if (orderno) {
+            let strings = orderno.split(",");
             this.setData({
-                orderNumber: orderno
+                orderNumber: strings[0]
             })
+            if (strings.length == 2) {
+                this.setData({
+                    isUser: true
+                })
+                this.onShow();
+                return
+            }
             this.loadDate(orderno);
         } else {
             wx.showToast({
@@ -132,7 +141,7 @@ Page({
         let phone = this.data.orderInfo.phone;
         let isDBXSign = this.data.isDBXSign;
         let projectCode = this.data.orderInfo.producecode;
-        if(isDBXSign){
+        if (isDBXSign) {
             projectCode = "CCI"
         }
         let isDBX = false
@@ -140,7 +149,7 @@ Page({
             isDBX = true
         }
         wx.navigateTo({
-            url: '../sign/sign?orderno=' + orderNumber + "&isDBX=" + isDBX+ "&name=" + name+ "&idcard=" + idcard+ "&phone=" + phone+ "&projectCode=" + projectCode
+            url: '../sign/sign?orderno=' + orderNumber + "&isDBX=" + isDBX + "&name=" + name + "&idcard=" + idcard + "&phone=" + phone + "&projectCode=" + projectCode
         })
     }
     ,
