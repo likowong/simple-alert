@@ -7,8 +7,7 @@
     </view>
 </view>
 <view class="login-box">
-    <view class="btn-box {{buttonStatus ? 'active' : ''}}" bindtap="{{!buttonClicked?'toSign':''}}"
-          wx:if="{{second != ''}}">{{second}}s
+    <view class="btn-box}}"  wx:if="{{second != ''}}">{{second}}s
     </view>
     <view class="btn-box {{buttonStatus ? 'active' : ''}}" bindtap="{{!buttonClicked?'toSign':''}}"
           wx:if="{{second == ''}}">进入签约

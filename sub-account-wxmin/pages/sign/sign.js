@@ -45,9 +45,9 @@ Page({
             projectCode: projectCode,
         })
         // 获取签约重要提示
+        var that = this;
         wxRequest.get('/app/suborderinfo/getSignContent?orderNo=' + orderno + "&projectCode=" + projectCode, "", '')
             .then(res => {
-                var that = this;
                 var htmlTpl = res.data.signContent;
                 WxParse.wxParse('article', 'html', htmlTpl, that, 5);
                 this.timer();
