@@ -528,8 +528,7 @@ Page({
             wx.showToast({title: "与所选车辆年限不符，请确认后重新选择", icon: "none"});
             return
         }
-        let time2 = days - (carage / 12 * 365);
-        if (time2 <= 0) {
+        if (days > (carage / 12 * 365)) {
             wx.showToast({title: "与所选车辆年限不符，请确认后重新选择", icon: "none"});
             return
         }

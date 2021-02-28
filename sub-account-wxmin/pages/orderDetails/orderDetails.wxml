@@ -257,7 +257,7 @@
                     <view class="order-list-item-label">价格:</view>
                     <view class="order-list-item-desc price">￥{{orderInfo.orderprice}}</view>
                 </view>
-                <view wx:if="{{orderInfo.orderstatus == '3' || orderInfo.orderstatus == '4'}}">
+                <view wx:if="{{orderInfo.orderstatus == '3'}}">
                     <view class="order-list-item">
                         <view class="order-list-item-label">合同:</view>
                         <view class="order-list-item-desc-list">
