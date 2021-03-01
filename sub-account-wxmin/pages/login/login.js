@@ -94,11 +94,6 @@ Page({
                 })
                 this.activeButton();
             }
-        } else {
-            this.setData({
-                accountCode: '',
-                sendCode: false
-            })
         }
     },
 
@@ -126,6 +121,11 @@ Page({
             code: e.detail.value
         })
         this.activeButton();
+    },
+    cleanPhone:function(e){
+        this.setData({
+            accountCode: ''
+        })
     },
 
     // 登录

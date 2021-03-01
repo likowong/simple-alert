@@ -6,9 +6,9 @@
     <view class="input-box">
         <view class="input-label"><image src="../../images/loginIcon1.png" class="loginIcon" mode="aspectFit"></image></view>
         <view class="input-value">
-            <input type="number" bindinput="inputPhoneNum" placeholder="请输入手机号码" maxlength="11" placeholder-class="font-gray"/>
+            <input type="number" bindinput="inputPhoneNum" value="{{accountCode}}" placeholder="请输入手机号码" maxlength="11" placeholder-class="font-gray"/>
         </view>
-        <view class="input-clear"><image src="../../images/loginIcon3.png" class="loginIcon" mode="aspectFit"></image></view>
+        <view class="input-clear" bindtap="cleanPhone"><image src="../../images/loginIcon3.png" class="loginIcon"  mode="aspectFit"></image></view>
     </view>
     <!-- <view class="input-line"><image src="../../images/loginLine.png" class="loginLine" mode="aspectFit"></image></view> -->
     <view class="input-box">

@@ -70,9 +70,6 @@
                     <view class="order-list-item-label">服务期限 :</view>
                     <view class="order-list-item-desc">{{orderInfo.insuranceperiod}}个月</view>
                 </view>
-                <view class="order-list-item">
-                    <view class="order-list-item-desc onerow">点击查看汽车置换服务协议</view>
-                </view>
                 <view wx:if="{{orderInfo.dbxyear != ''}}">
                     <view class="order-list-item">
                         <view class="order-list-item-label">购买服务2:</view>
@@ -81,9 +78,6 @@
                     <view class="order-list-item">
                         <view class="order-list-item-label">服务期限 :</view>
                         <view class="order-list-item-desc">{{orderInfo.dbxyear}}个月</view>
-                    </view>
-                    <view class="order-list-item">
-                        <view class="order-list-item-desc onerow">点击查看代步车补偿服务协议</view>
                     </view>
                 </view>
             </view>

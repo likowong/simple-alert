@@ -1,6 +1,7 @@
 // pages/orderSteps/orderSteps.js
 import wxRequest from '../../utils/request'
 import util from '../../utils/util'
+import wxVaildate from '../../utils/wx_validate'
 
 const qiniuUploader = require("../../utils/qiniuUploader");
 Page({
@@ -250,6 +251,94 @@ Page({
 
     // 第一步
     firstStep() {
+
+        if (this.data.form.carage == '') {
+            wx.showToast({title: '请选择车辆年限', icon: 'none'})
+            return
+        }
+        if (this.data.form.insuranceperiod == '') {
+            wx.showToast({title: '请选择服务期限', icon: 'none'})
+            return
+        }
+        if (this.data.form.name == '') {
+            wx.showToast({title: '姓名只能输入中文和英文并不超过10个字', icon: 'none'})
+            return
+        } else {
+            if (!(/^[\u4E00-\u9FA5A-Za-z]+$/.test(this.data.form.name)) || this.data.form.name.length > 10) {
+                wx.showToast({title: '姓名只能输入中文和英文并不超过10个字', icon: 'none'})
+                return
+            }
+        }
+        if (this.data.form.phone == '') {
+            wx.showToast({title: '手机号不能填空', icon: 'none'})
+            return
+        } else {
+            if (this.data.form.phone.length != 11) {
+                wx.showToast({title: '手机号只能位11位', icon: 'none'})
+                return
+            }
+            let checkedNum = wxVaildate.checkPhoneNum(this.data.form.phone)
+            if (!checkedNum) {
+                return
+            }
+        }
+        if (this.data.form.idcard == '') {
+            wx.showToast({title: '身份证不能为空', icon: 'none'})
+            return
+        } else {
+            if (this.data.form.idcard.length != 18) {
+                wx.showToast({title: '身份证只能为18位', icon: 'none'})
+                return
+            }
+            let checkedNum = wxVaildate.checkIdcard(this.data.form.idcard)
+            if (!checkedNum) {
+                return
+            }
+        }
+        if (this.data.form.carframenumber == '') {
+            wx.showToast({title: '车架号不能填空', icon: 'none'})
+            return
+        } else {
+            const englishAndNum = /[\W]/g
+            if ((englishAndNum.test(this.data.form.carframenumber))) {
+                wx.showToast({title: '车架号为17位数字+英文', icon: 'none'})
+                return
+            }
+            if (this.data.form.carframenumber.length != 17) {
+                wx.showToast({title: '车架号为17位数字+英文', icon: 'none'})
+                return
+            }
+        }
+        if (this.data.form.carenginenumber == '') {
+            wx.showToast({title: '发动机号最多10位数字+英文', icon: 'none'})
+            return
+        } else {
+            const englishAndNum = /[\W]/g
+            if ((englishAndNum.test(this.data.form.carenginenumber))) {
+                wx.showToast({title: '发动机号最多10位数字+英文', icon: 'none'})
+                return
+            }
+            if (this.data.form.carenginenumber.length > 10) {
+                wx.showToast({title: '发动机号最多10位数字+英文', icon: 'none'})
+                return
+            }
+        }
+        if (this.data.form.confirm == '') {
+            wx.showToast({title: '勾选确认客户已购买车损险', icon: 'none'})
+            return
+        }
+        if (this.data.form.operationmode == '') {
+            wx.showToast({title: '勾选确认客户车辆性质为非营运车辆', icon: 'none'})
+            return
+        }
+        if (this.data.form.cartype == '') {
+            wx.showToast({title: '请选择车辆品牌', icon: 'none'})
+            return
+        }
+        if (this.data.form.carbuytime == '') {
+            wx.showToast({title: '请选择购置日期', icon: 'none'})
+            return
+        }
         if (this.data.firstStepBtn) {
             this.setData({
                 active: 1
@@ -449,71 +538,35 @@ Page({
         });
     },
     // 校验
-
-    // 检验姓名
     validName: function (e) {
-        const chinese = /[^\u4E00-\u9FA5]/g
-        if ((chinese.test(e.detail.value))) {
-            wx.showToast({title: "只允许输入中文", icon: "none"});
-            this.setData({
-                ['form.' + e.target.dataset.name]: ''
-            })
-            return;
-        }
         this.setData({
             ['form.' + e.target.dataset.name]: e.detail.value
         })
         this.activeFirstBtn();
     },
     validcarframenumber: function (e) {
-        const englishAndNum = /[\W]/g
-        if ((englishAndNum.test(this.data.username))) {
-            wx.showToast({title: "只允许输入英文加数字", icon: "none"});
-            this.setData({
-                ['form.' + e.target.dataset.name]: ''
-            })
-            return;
-        }
-        if (e.detail.value.length == 17) {
-            this.setData({
-                ['form.' + e.target.dataset.name]: e.detail.value
-            })
-            this.activeFirstBtn();
-        }
-
+        this.setData({
+            ['form.' + e.target.dataset.name]: e.detail.value
+        })
+        this.activeFirstBtn();
     },
     validcarenginenumber: function (e) {
-        const englishAndNum = /[\W]/g
-        if ((englishAndNum.test(this.data.username))) {
-            wx.showToast({title: "只允许输入英文加数字", icon: "none"});
-            this.setData({
-                ['form.' + e.target.dataset.name]: ''
-            })
-            return;
-        }
-        if (e.detail.value.length <= 10) {
-            this.setData({
-                ['form.' + e.target.dataset.name]: e.detail.value
-            })
-            this.activeFirstBtn();
-        }
-
+        this.setData({
+            ['form.' + e.target.dataset.name]: e.detail.value
+        })
+        this.activeFirstBtn();
     },
     validPhoneNum: function (e) {
-        if (e.detail.value.length === 11) {
-            this.setData({
-                ['form.' + e.target.dataset.name]: e.detail.value
-            })
-            this.activeFirstBtn();
-        }
+        this.setData({
+            ['form.' + e.target.dataset.name]: e.detail.value
+        })
+        this.activeFirstBtn();
     },
     validIdCard: function (e) {
-        if (e.detail.value.length === 18) {
-            this.setData({
-                ['form.' + e.target.dataset.name]: e.detail.value
-            })
-            this.activeFirstBtn();
-        }
+        this.setData({
+            ['form.' + e.target.dataset.name]: e.detail.value
+        })
+        this.activeFirstBtn();
     },
     validgetCarDate: function (e) {
         let carage = this.data.form.carage;
@@ -536,7 +589,8 @@ Page({
             ['form.' + e.target.dataset.name]: e.detail.value
         })
         this.activeFirstBtn();
-    }, checkDate: function (startTime, endTime) {
+    },
+    checkDate: function (startTime, endTime) {
 
         //日期格式化
         var start_date = new Date(startTime.replace(/-/g, "/"));

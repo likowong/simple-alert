@@ -24,20 +24,17 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        debugger
+        let isUser = wx.getStorageSync("isUser");
+        if (isUser) {
+            this.setData({
+                isUser: isUser
+            })
+        }
         let orderno = options.orderno;
         if (orderno) {
-            let strings = orderno.split(",");
             this.setData({
-                orderNumber: strings[0]
+                orderNumber: orderno
             })
-            if (strings.length == 2) {
-                this.setData({
-                    isUser: true
-                })
-                this.onShow();
-                return
-            }
             this.loadDate(orderno);
         } else {
             wx.showToast({
@@ -46,9 +43,22 @@ Page({
             })
         }
         if (options.isUser == "true") {
+            wx.setStorageSync('isUser', true);
             this.setData({
                 isUser: true
             })
+        }
+        // 判断是否是用户
+        let token = wx.getStorageSync("token");
+        if (token) {
+            this.setData({
+                isUser: false
+            })
+        } else {
+            // 订单为待支付,并且不是从分享页面跳的则执行支付
+            if (this.data.orderInfo.orderstatus = 2 && options.isUser != "true") {
+                this.navigateToPay();
+            }
         }
     }
     ,

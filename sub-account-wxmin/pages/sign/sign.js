@@ -28,8 +28,6 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
-
         let orderno = options.orderno;
         let isDBX = options.isDBX;
         let name = options.name;
@@ -120,6 +118,7 @@ Page({
         }
     },// 签约
     toSign: function (e) {
+
         if (this.data.buttonStatus) {
             util.buttonClicked(this);
 

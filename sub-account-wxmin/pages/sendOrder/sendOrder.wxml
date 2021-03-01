@@ -1,7 +1,7 @@
 <!--pages/order/order.wxml 提单列表页-->
 <view class="main" style="min-height:{{winHeight}}px">
     <view class="main-content">
-        <view class="title">选择险种</view>
+        <view class="title">选择服务种类</view>
         <view class="choose-item">
             <view wx:for="{{productList}}" wx:for-item="product" wx:key="index"
                   class="insurance-item {{productIndex == index ?'item-active':''}}"
@@ -12,7 +12,7 @@
 
         <view class="choose-list">
             <view class="sub-title">
-                <view class="label">是否需要搭配代步险</view>
+                <view class="label">是否需要搭配代步车补偿服务</view>
                 <view class="check">
                     <checkbox bindtap="checkSetting"/>
                 </view>
