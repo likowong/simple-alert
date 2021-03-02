@@ -63,7 +63,7 @@
 .input-value .input-control{
     width: 100%;
     font-size: 26rpx;
-    padding-left: 270rpx;
+    padding-left: 150rpx;
     box-sizing: border-box;
     color: #8A878A;
 }
@@ -263,4 +263,32 @@
     font-size: 26rpx;
     padding-left: 270rpx;
     color: #8A878A;
+}
+
+.image-list {
+    display: flex;
+    background: #fff;
+    margin-top: 52rpx;
+    padding: 20rpx;
+    margin-bottom: 30rpx;
+}
+.image-list .image-item-box {
+    flex: 1;
+    height: 191rpx;
+    position: relative;
+}
+.image-list .image-item-box:last-child {
+    margin-left: 28rpx;
+}
+.image-list .image-item-box .image-item {
+    width: 100%;
+    height: 100%;
+}
+.image-list .image-item-box .image-item-desc {
+    color: #8A878A;
+    position: absolute;
+    font-size: 22rpx;
+    bottom: 19rpx;
+    width: 100%;
+    text-align: center;
 }

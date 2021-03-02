@@ -37,6 +37,13 @@ Page({
             dbxyear: '',
             extmsg: '',
             idcard: '',
+            imagemsg1: [],
+            imagemsg2: [],
+            imagemsg3: [],
+            imagemsg4: [],
+            imagemsg5: [],
+            imagemsg6: [],
+            imagemsg7: [],
             imagemsg: [],
             dbxImagemsg: [],
             insuranceperiod: '',
@@ -136,8 +143,8 @@ Page({
     // 监控最后一步按钮的状态
     activeLastBtn: function () {
         if (this.data.form.dbxyear) {
-            let {imagemsg, dbxImagemsg} = this.data.form;
-            if (imagemsg.length > 0 && dbxImagemsg.length > 0) {
+            let {imagemsg1, imagemsg2, imagemsg3, imagemsg4, imagemsg5,imagemsg6,imagemsg7,dbxImagemsg} = this.data.form;
+            if (imagemsg1.length > 0 && imagemsg2.length > 0 && imagemsg3.length > 0 && imagemsg4.length > 0 && imagemsg5.length > 0 && imagemsg6.length > 0 && imagemsg7.length > 0 && dbxImagemsg.length > 0) {
                 this.setData({
                     lastStepBtn: true
                 })
@@ -147,8 +154,8 @@ Page({
                 })
             }
         } else {
-            let {imagemsg} = this.data.form;
-            if (imagemsg.length > 0) {
+            let {imagemsg1, imagemsg2, imagemsg3, imagemsg4, imagemsg5,imagemsg6,imagemsg7} = this.data.form;
+            if (imagemsg1.length > 0 && imagemsg2.length > 0 && imagemsg3.length > 0 && imagemsg4.length > 0 && imagemsg5.length > 0 && imagemsg6.length > 0 && imagemsg7.length > 0) {
                 this.setData({
                     lastStepBtn: true
                 })
@@ -343,6 +350,11 @@ Page({
             this.setData({
                 active: 1
             })
+            if (wx.pageScrollTo) {
+                wx.pageScrollTo({
+                    scrollTop: 0
+                })
+            }
         } else {
             return false;
         }
@@ -351,17 +363,18 @@ Page({
     // 最后一步
     lastStep() {
         if (this.data.lastStepBtn) {
-            let imagemsg = this.formatImgArr(this.data.form.imagemsg);
+            let imagemsg1 = this.formatImgArr(this.data.form.imagemsg1);
+            let imagemsg2 = this.formatImgArr(this.data.form.imagemsg2);
+            let imagemsg3 = this.formatImgArr(this.data.form.imagemsg3);
+            let imagemsg4 = this.formatImgArr(this.data.form.imagemsg4);
+            let imagemsg5 = this.formatImgArr(this.data.form.imagemsg5);
+            let imagemsg6 = this.formatImgArr(this.data.form.imagemsg6);
+            let imagemsg7 = this.formatImgArr(this.data.form.imagemsg7);
+            let imagemsgStr = imagemsg1[0].url + ","+imagemsg2[0].url + ","+imagemsg3[0].url + ","+imagemsg4[0].url + ","+imagemsg5[0].url+ ","+imagemsg6[0].url+ ","+imagemsg7[0].url;
             let dbxImagemsg = this.formatImgArr(this.data.form.dbxImagemsg);
-            let imagemsgStr = "";
-            let dbxImagemsgStr = "";
-            for (var i = 0; i < imagemsg.length; i++) {
-                imagemsgStr = imagemsgStr + imagemsg[i].url + ","
-            }
-            if (dbxImagemsg) {
-                for (var i = 0; i < dbxImagemsg.length; i++) {
-                    dbxImagemsgStr = dbxImagemsgStr + dbxImagemsg[i].url + ","
-                }
+            let dbxImagemsgStr = ''
+            if(dbxImagemsg.length > 0 ){
+                dbxImagemsgStr =  dbxImagemsg[0].url
             }
             this.sendData(imagemsgStr, dbxImagemsgStr).then((res) => {
                 let orderNo = res.data.orderNo;
@@ -371,8 +384,6 @@ Page({
             });
             this.setData({
                 ['form.dbxImagemsg']: dbxImagemsg,
-                ['form.imagemsg']: imagemsg
-
             })
         } else {
             return false;
@@ -384,7 +395,7 @@ Page({
         let imgName = e.currentTarget.dataset.imgname;
         let that = this;
         wx.chooseImage({
-            count: 6,
+            count: 1,
             sizeType: ['original', 'compressed'],
             sourceType: ['album', 'camera'],
             success(res) {
@@ -428,17 +439,77 @@ Page({
             let imgMsg = {};
             imgMsg.url = res.imageURL;
 
-            if (imgName == 'imagemsg') {
-                if (that.data.form.imagemsg.length < 6) {
-                    that.data.form.imagemsg.push(imgMsg);
+            if (imgName == 'imagemsg1') {
+                if (that.data.form.imagemsg1.length < 6) {
+                    that.data.form.imagemsg1.push(imgMsg);
                     that.setData({
-                        ['form.imagemsg']: that.data.form.imagemsg
+                        ['form.imagemsg1']: that.data.form.imagemsg1
                     })
                 } else {
                     util.hideLoading();
                     return;
                 }
-            } else if (imgName == 'dbxImagemsg') {
+            } else if (imgName == 'imagemsg2') {
+                if (that.data.form.imagemsg2.length < 6) {
+                    that.data.form.imagemsg2.push(imgMsg);
+                    that.setData({
+                        ['form.imagemsg2']: that.data.form.imagemsg2
+                    })
+                } else {
+                    util.hideLoading();
+                    return;
+                }
+            } else if (imgName == 'imagemsg3') {
+                if (that.data.form.imagemsg3.length < 6) {
+                    that.data.form.imagemsg3.push(imgMsg);
+                    that.setData({
+                        ['form.imagemsg3']: that.data.form.imagemsg3
+                    })
+                } else {
+                    util.hideLoading();
+                    return;
+                }
+            } else if (imgName == 'imagemsg4') {
+                if (that.data.form.imagemsg4.length < 6) {
+                    that.data.form.imagemsg4.push(imgMsg);
+                    that.setData({
+                        ['form.imagemsg4']: that.data.form.imagemsg4
+                    })
+                } else {
+                    util.hideLoading();
+                    return;
+                }
+            } else if (imgName == 'imagemsg5') {
+                if (that.data.form.imagemsg5.length < 6) {
+                    that.data.form.imagemsg5.push(imgMsg);
+                    that.setData({
+                        ['form.imagemsg5']: that.data.form.imagemsg5
+                    })
+                } else {
+                    util.hideLoading();
+                    return;
+                }
+            }  else if (imgName == 'imagemsg6') {
+                if (that.data.form.imagemsg6.length < 6) {
+                    that.data.form.imagemsg6.push(imgMsg);
+                    that.setData({
+                        ['form.imagemsg6']: that.data.form.imagemsg6
+                    })
+                } else {
+                    util.hideLoading();
+                    return;
+                }
+            } else if (imgName == 'imagemsg7') {
+                if (that.data.form.imagemsg7.length < 6) {
+                    that.data.form.imagemsg7.push(imgMsg);
+                    that.setData({
+                        ['form.imagemsg7']: that.data.form.imagemsg7
+                    })
+                } else {
+                    util.hideLoading();
+                    return;
+                }
+            }else if (imgName == 'dbxImagemsg') {
                 if (that.data.form.dbxImagemsg.length < 6) {
                     that.data.form.dbxImagemsg.push(imgMsg);
                     that.setData({
@@ -470,12 +541,42 @@ Page({
         let imgIndex = e.currentTarget.dataset.index;
         let imgName = e.currentTarget.dataset.imgname;
 
-        if (imgName == 'imagemsg') {
-            this.data.form.imagemsg.splice(imgIndex, 1);
+        if (imgName == 'imagemsg1') {
+            this.data.form.imagemsg1.splice(imgIndex, 1);
             this.setData({
-                ['form.imagemsg']: this.data.form.imagemsg
+                ['form.imagemsg1']: this.data.form.imagemsg1
             });
-        } else if (imgName == 'dbxImagemsg') {
+        } else if (imgName == 'imagemsg2') {
+            this.data.form.imagemsg2.splice(imgIndex, 1);
+            this.setData({
+                ['form.imagemsg2']: this.data.form.imagemsg2
+            });
+        } else if (imgName == 'imagemsg3') {
+            this.data.form.imagemsg3.splice(imgIndex, 1);
+            this.setData({
+                ['form.imagemsg3']: this.data.form.imagemsg3
+            });
+        } else if (imgName == 'imagemsg4') {
+            this.data.form.imagemsg4.splice(imgIndex, 1);
+            this.setData({
+                ['form.imagemsg4']: this.data.form.imagemsg4
+            });
+        } else if (imgName == 'imagemsg5') {
+            this.data.form.imagemsg5.splice(imgIndex, 1);
+            this.setData({
+                ['form.imagemsg5']: this.data.form.imagemsg5
+            });
+        } else if (imgName == 'imagemsg6') {
+            this.data.form.imagemsg6.splice(imgIndex, 1);
+            this.setData({
+                ['form.imagemsg6']: this.data.form.imagemsg6
+            });
+        }  else if (imgName == 'imagemsg7') {
+            this.data.form.imagemsg7.splice(imgIndex, 1);
+            this.setData({
+                ['form.imagemsg7']: this.data.form.imagemsg7
+            });
+        }  else if (imgName == 'dbxImagemsg') {
             this.data.form.dbxImagemsg.splice(imgIndex, 1);
             this.setData({
                 ['form.dbxImagemsg']: this.data.form.dbxImagemsg

@@ -15,7 +15,7 @@ Page({
         cciproducecode: '',
         isFree: '',
         producecode: '',
-        productIndex:null,
+        productIndex: null,
         chooseAgencyInsurance: false
     },
 
@@ -46,7 +46,7 @@ Page({
                     productList: res.data.productRateVos,
                     //producecode:res.data.productRateVos[0].productCode
                 })
-        })
+            })
     },
     checkboxChange(e) {
         let checked = e.currentTarget.dataset.checked;
@@ -116,7 +116,7 @@ Page({
         let index = e.currentTarget.dataset.index;
         this.setData({
             producecode: productcode,
-            productIndex:index
+            productIndex: index
         })
     }, toOrderSteps(e) {
         let producecode = this.data.producecode
@@ -125,6 +125,13 @@ Page({
             wx.showToast({
                 icon: 'none',
                 title: "请选择产品"
+            })
+            return
+        }
+        if (this.data.chooseAgencyInsurance == true && this.data.cciProducetyenum == '') {
+            wx.showToast({
+                icon: 'none',
+                title: "请选择代步险产品"
             })
             return
         }
