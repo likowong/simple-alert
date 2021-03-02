@@ -100,8 +100,15 @@ Page({
 // 加载详情页的信息
     loadDate(orderno) {
         // 请求订单详情
+        let phone = wx.getStorageSync("phone");
+        let url;
+        if(phone){
+            url= '/app/suborderinfo/getOrder?orderNo=' + orderno + '&phone=' + phone
+        }else{
+            url= '/app/suborderinfo/getOrder?orderNo=' + orderno + '&phone=';
+        }
         return new Promise((resolve) => {
-            wxRequest.get('/app/suborderinfo/getOrder?orderNo=' + orderno, '', '')
+            wxRequest.get(url, '', '')
                 .then(res => {
                     let orderInfo = res.data.orderInfo;
                     let imagemsg = orderInfo.imagemsg.split(",");
