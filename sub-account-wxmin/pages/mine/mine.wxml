@@ -29,7 +29,7 @@
 <view class="footer">
     <view class="item" bindtap="navigateIndex">
         <view class="item-image">
-            <image src="../../images/first-page-active.png" class="item-img" mode="aspectFit"></image>
+            <image src="../../images/first-page.png" class="item-img" mode="aspectFit"></image>
         </view>
         <view class="item-desc">主页</view>
     </view>

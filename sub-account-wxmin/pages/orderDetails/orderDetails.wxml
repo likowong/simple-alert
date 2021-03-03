@@ -48,14 +48,18 @@
                         <view class="order-list-item-label">合同:</view>
                         <view class="order-list-item-desc-list">
                             <view class="order-list-item-desc contract" bindtap="contractUrlType1">合同下载</view>
-                            <view class="order-list-item-desc contract" bindtap="contractUrlType2" wx:if="{{orderInfo.dbxyear != '' }}">代步险合同下载</view>
+                            <view class="order-list-item-desc contract" bindtap="contractUrlType2"
+                                  wx:if="{{orderInfo.dbxyear != '' }}">代步险合同下载
+                            </view>
                         </view>
                     </view>
                     <view class="order-list-item" wx:if="{{orderInfo.orderstatus == '3'}}">
                         <view class="order-list-item-label">保单凭证:</view>
                         <view class="order-list-item-desc-list">
-                            <view class="order-list-item-desc voucher">保单凭证</view>
-                            <view class="order-list-item-desc voucher" wx:if="{{orderInfo.dbxyear != '' }}">代步险补偿服务保单凭证</view>
+                            <view class="order-list-item-desc voucher" bindtap="serviceProve1">保单凭证下载</view>
+                            <view class="order-list-item-desc voucher" bindtap="serviceProve2" wx:if="{{orderInfo.dbxyear != '' }}">
+                                代步险保单凭证下载
+                            </view>
                         </view>
                     </view>
                 </view>
@@ -86,7 +90,7 @@
         <view class="main-content" wx:if="{{userInfoShow == true}}">
             <view class="order-list-name">车主信息:</view>
             <view class="order-list" bindtap="navigateOrderDetails" data-orderNo="{{orderInfo.ordernum}}">
-                <view >
+                <view>
                     <view class="order-list-item">
                         <view class="order-list-item-label">姓名:</view>
                         <view class="order-list-item-desc">{{orderInfo.name}}</view>
@@ -148,7 +152,7 @@
                 <view class="file-title">购车发票,合格证/行驶证,身份证人像面,身份证国徽面</view>
                 <view class="file-btn-box">
                     <view class="file-btn" wx:for="{{images}}" wx:key="item">
-                        <image bindtap="previewImage"  data-src="{{item}}" data-imgs="{{images}}" src="{{item}}"></image>
+                        <image bindtap="previewImage" data-src="{{item}}" data-imgs="{{images}}" src="{{item}}"></image>
                     </view>
                 </view>
             </view>
@@ -156,7 +160,7 @@
                 <view class="file-title">车辆拍摄示意图</view>
                 <view class="file-btn-box">
                     <view class="file-btn" wx:for="{{dbxImages}}" wx:key="item">
-                        <image bindtap="previewImage"  data-src="{{item}}" src="{{item}}"></image>
+                        <image bindtap="previewImage" data-src="{{item}}" src="{{item}}"></image>
                     </view>
                 </view>
             </view>
@@ -166,7 +170,7 @@
         <view class="main-content">
             <view class="order-list-name">车主信息:</view>
             <view class="order-list" bindtap="navigateOrderDetails" data-orderNo="{{orderInfo.ordernum}}">
-                <view >
+                <view>
                     <view class="order-list-item">
                         <view class="order-list-item-label">姓名:</view>
                         <view class="order-list-item-desc">{{orderInfo.name}}</view>
@@ -256,14 +260,18 @@
                         <view class="order-list-item-label">合同:</view>
                         <view class="order-list-item-desc-list">
                             <view class="order-list-item-desc contract" bindtap="contractUrlType1">合同下载</view>
-                            <view class="order-list-item-desc contract" bindtap="contractUrlType2" wx:if="{{orderInfo.dbxyear != '' }}">代步险合同下载</view>
+                            <view class="order-list-item-desc contract" bindtap="contractUrlType2"
+                                  wx:if="{{orderInfo.dbxyear != '' }}">代步险合同下载
+                            </view>
                         </view>
                     </view>
                     <view class="order-list-item" wx:if="{{orderInfo.orderstatus == '3'}}">
                         <view class="order-list-item-label">保单凭证:</view>
                         <view class="order-list-item-desc-list">
-                            <view class="order-list-item-desc voucher">保单凭证</view>
-                            <view class="order-list-item-desc voucher" wx:if="{{orderInfo.dbxyear != '' }}">代步险补偿服务保单凭证</view>
+                            <view class="order-list-item-desc voucher" bindtap="serviceProve1">保单凭证下载</view>
+                            <view class="order-list-item-desc voucher" bindtap="serviceProve2"
+                                  wx:if="{{orderInfo.dbxyear != '' }}">代步险保单凭证下载
+                            </view>
                         </view>
                     </view>
                 </view>
@@ -272,8 +280,10 @@
 
     </view>
 
-    <view wx:if="{{isUser == true && orderInfo.orderstatus == '1'}}" class="btn-box" bindtap="navigateToSign">{{isDBXSign == false?'点击进入签约页面':'点击进入代步险签约页面'}}</view>
+    <view wx:if="{{isUser == true && orderInfo.orderstatus == '1'}}" class="btn-box" bindtap="navigateToSign">
+        {{isDBXSign == false?'点击进入签约页面':'点击进入代步险签约页面'}}
+    </view>
     <view wx:if="{{isUser == true && orderInfo.orderstatus == '2'}}" class="btn-box" bindtap="navigateToPay">支付费用</view>
-    <button  wx:if="{{isUser == false}}" class="btn-box" open-type="share">点击转发至客户</button>
+    <button wx:if="{{isUser == false}}" class="btn-box" open-type="share">点击转发至客户</button>
 </view>
 

@@ -304,5 +304,19 @@ Page({
             .then(res => {  //请求成功
                 this.downloadFile(res.data.downUrl)
             })
+    }, serviceProve1() {
+        let orderNumber = this.data.orderNumber;
+        let projectCode = this.data.orderInfo.producecode;
+        wxRequest.get('/app/suborderinfo/getOrderServiceProve?orderNo=' + orderNumber + '&projectCode='+projectCode+'', '', '')
+            .then(res => {  //请求成功
+                this.downloadFile(res.data.serviceProveUrl)
+            })
+    }
+    , serviceProve2() {
+        let orderNumber = this.data.orderNumber;
+        wxRequest.get('/app/suborderinfo/getOrderServiceProve?orderNo=' + orderNumber + '&projectCode=CCI', '', '')
+            .then(res => {  //请求成功
+                this.downloadFile(res.data.serviceProveUrl)
+            })
     }
 })
