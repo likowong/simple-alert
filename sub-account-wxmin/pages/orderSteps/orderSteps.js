@@ -41,9 +41,6 @@ Page({
             imagemsg2: [],
             imagemsg3: [],
             imagemsg4: [],
-            imagemsg5: [],
-            imagemsg6: [],
-            imagemsg7: [],
             imagemsg: [],
             dbxImagemsg: [],
             insuranceperiod: '',
@@ -143,8 +140,8 @@ Page({
     // 监控最后一步按钮的状态
     activeLastBtn: function () {
         if (this.data.form.dbxyear) {
-            let {imagemsg1, imagemsg2, imagemsg3, imagemsg4, imagemsg5,imagemsg6,imagemsg7,dbxImagemsg} = this.data.form;
-            if (imagemsg1.length > 0 && imagemsg2.length > 0 && imagemsg3.length > 0 && imagemsg4.length > 0 && imagemsg5.length > 0 && imagemsg6.length > 0 && imagemsg7.length > 0 && dbxImagemsg.length > 0) {
+            let {imagemsg1, imagemsg2, imagemsg3, imagemsg4,dbxImagemsg} = this.data.form;
+            if (imagemsg1.length > 0 && imagemsg2.length > 0 && imagemsg3.length > 0 && imagemsg4.length > 0  && dbxImagemsg.length > 0) {
                 this.setData({
                     lastStepBtn: true
                 })
@@ -154,8 +151,8 @@ Page({
                 })
             }
         } else {
-            let {imagemsg1, imagemsg2, imagemsg3, imagemsg4, imagemsg5,imagemsg6,imagemsg7} = this.data.form;
-            if (imagemsg1.length > 0 && imagemsg2.length > 0 && imagemsg3.length > 0 && imagemsg4.length > 0 && imagemsg5.length > 0 && imagemsg6.length > 0 && imagemsg7.length > 0) {
+            let {imagemsg1, imagemsg2, imagemsg3, imagemsg4} = this.data.form;
+            if (imagemsg1.length > 0 && imagemsg2.length > 0 && imagemsg3.length > 0 && imagemsg4.length > 0 ) {
                 this.setData({
                     lastStepBtn: true
                 })
@@ -367,10 +364,7 @@ Page({
             let imagemsg2 = this.formatImgArr(this.data.form.imagemsg2);
             let imagemsg3 = this.formatImgArr(this.data.form.imagemsg3);
             let imagemsg4 = this.formatImgArr(this.data.form.imagemsg4);
-            let imagemsg5 = this.formatImgArr(this.data.form.imagemsg5);
-            let imagemsg6 = this.formatImgArr(this.data.form.imagemsg6);
-            let imagemsg7 = this.formatImgArr(this.data.form.imagemsg7);
-            let imagemsgStr = imagemsg1[0].url + ","+imagemsg2[0].url + ","+imagemsg3[0].url + ","+imagemsg4[0].url + ","+imagemsg5[0].url+ ","+imagemsg6[0].url+ ","+imagemsg7[0].url;
+            let imagemsgStr = imagemsg1[0].url + ","+imagemsg2[0].url + ","+imagemsg3[0].url + ","+imagemsg4[0].url;
             let dbxImagemsg = this.formatImgArr(this.data.form.dbxImagemsg);
             let dbxImagemsgStr = ''
             if(dbxImagemsg.length > 0 ){
@@ -479,36 +473,6 @@ Page({
                     util.hideLoading();
                     return;
                 }
-            } else if (imgName == 'imagemsg5') {
-                if (that.data.form.imagemsg5.length < 6) {
-                    that.data.form.imagemsg5.push(imgMsg);
-                    that.setData({
-                        ['form.imagemsg5']: that.data.form.imagemsg5
-                    })
-                } else {
-                    util.hideLoading();
-                    return;
-                }
-            }  else if (imgName == 'imagemsg6') {
-                if (that.data.form.imagemsg6.length < 6) {
-                    that.data.form.imagemsg6.push(imgMsg);
-                    that.setData({
-                        ['form.imagemsg6']: that.data.form.imagemsg6
-                    })
-                } else {
-                    util.hideLoading();
-                    return;
-                }
-            } else if (imgName == 'imagemsg7') {
-                if (that.data.form.imagemsg7.length < 6) {
-                    that.data.form.imagemsg7.push(imgMsg);
-                    that.setData({
-                        ['form.imagemsg7']: that.data.form.imagemsg7
-                    })
-                } else {
-                    util.hideLoading();
-                    return;
-                }
             }else if (imgName == 'dbxImagemsg') {
                 if (that.data.form.dbxImagemsg.length < 6) {
                     that.data.form.dbxImagemsg.push(imgMsg);
@@ -561,22 +525,7 @@ Page({
             this.setData({
                 ['form.imagemsg4']: this.data.form.imagemsg4
             });
-        } else if (imgName == 'imagemsg5') {
-            this.data.form.imagemsg5.splice(imgIndex, 1);
-            this.setData({
-                ['form.imagemsg5']: this.data.form.imagemsg5
-            });
-        } else if (imgName == 'imagemsg6') {
-            this.data.form.imagemsg6.splice(imgIndex, 1);
-            this.setData({
-                ['form.imagemsg6']: this.data.form.imagemsg6
-            });
-        }  else if (imgName == 'imagemsg7') {
-            this.data.form.imagemsg7.splice(imgIndex, 1);
-            this.setData({
-                ['form.imagemsg7']: this.data.form.imagemsg7
-            });
-        }  else if (imgName == 'dbxImagemsg') {
+        } else if (imgName == 'dbxImagemsg') {
             this.data.form.dbxImagemsg.splice(imgIndex, 1);
             this.setData({
                 ['form.dbxImagemsg']: this.data.form.dbxImagemsg

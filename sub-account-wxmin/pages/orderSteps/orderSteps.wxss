@@ -18,6 +18,13 @@
     font-weight: bold;
     color: #36587C;
 }
+.tag2{
+    position: relative;
+    padding-left: 20rpx;
+    font-size: 34rpx;
+    font-weight: bold;
+    color: #36587C;
+}
 .tag:before{
     content: '';
     position: absolute;
@@ -289,6 +296,13 @@
     position: absolute;
     font-size: 22rpx;
     bottom: 19rpx;
+    width: 100%;
+    text-align: center;
+}
+.image-list .image-item-box .image-item-desc2 {
+    color: #8A878A;
+    position: absolute;
+    font-size: 22rpx;
     width: 100%;
     text-align: center;
 }
