@@ -82,7 +82,7 @@
             <view class="input-box">
                 <view class="input-label">车辆购置日期：</view>
                 <view class="input-value">
-                    <picker mode="date" value="{{form.getCarDate}}" class="date-picker" data-name="carbuytime"
+                    <picker mode="date" value="{{form.getCarDate}}" class="date-picker" end="{{nowDate}}" data-name="carbuytime"
                             bindchange="validgetCarDate">
                         <view class="picker">{{ form.carbuytime }}</view>
                     </picker>

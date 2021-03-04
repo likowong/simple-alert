@@ -2,7 +2,15 @@
 import wxRequest from '/utils/request'
 import util from '/utils/util'
 App({
-  onLaunch: function () {
+  onLaunch: function (option) {
+    console.log(option)
+    if(option && option.query && option.query.orderno){
+      wx.setStorageSync('clientOrderNumber', option.query.orderno);
+      wx.reLaunch({
+        url: '/pages/orderDetails/orderDetails?orderno=' + option.query.orderno + "&isUser=true"
+      })
+      return
+    }
     this.loadPage();
     this.updateVersion();
   },

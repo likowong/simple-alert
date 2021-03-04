@@ -19,6 +19,7 @@ Page({
                 text: '上传资料'
             }
         ],
+        nowDate:util.formatTime2(new Date()),
         productList: [], // 产品信息,
         currentCarAge: '',
         form: {

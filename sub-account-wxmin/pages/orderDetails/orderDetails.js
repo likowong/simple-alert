@@ -24,16 +24,22 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        console.info('onLoad', options)
         // 判断是否是分享进入的用户
         if (options.isUser) {
             this.setData({
                 isUser: true
             })
         }
+        console.info('onLoad.data', this.data)
+        console.info('onLoad.options', options.orderno)
+        console.info('onLoad.clientOrderNumber', wx.getStorageSync('clientOrderNumber'))
         // 获取订单
         let orderno = options.orderno;
         if (orderno) {
             wx.setStorageSync('clientOrderNumber', orderno);
+        } else if (this.data.orderNumber) {
+            orderno = this.data.orderNumber;
         } else {
             orderno = wx.getStorageSync('clientOrderNumber');
         }
@@ -75,8 +81,15 @@ Page({
                 }
             });
         }
-        let orderno = wx.getStorageSync('clientOrderNumber');
+        console.info('onShow.data', this.data)
+        console.info('onShow.clientOrderNumber', wx.getStorageSync('clientOrderNumber'))
+        let orderno = "";
+        if (this.data.orderNumber) {
+            orderno = this.data.orderNumber;
+        } else {
+            orderno = wx.getStorageSync('clientOrderNumber');
 
+        }
         // 获取订单信息
         this.loadDate(orderno)
     }, /**
@@ -96,6 +109,7 @@ Page({
 
 // 加载详情页的信息
     loadDate(orderno) {
+        orderno = orderno.split(",")[0]
         // 请求订单详情
         let phone = wx.getStorageSync("phone");
         let url;
@@ -170,6 +184,7 @@ Page({
     navigateToPay(e) {
         let that = this;
         let orderNumber = this.data.orderNumber;
+        orderNumber = orderNumber.split(",")[0]
         wx.login({
             success(res) {
                 if (res.code) {
