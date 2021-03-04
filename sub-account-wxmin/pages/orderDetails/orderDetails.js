@@ -24,12 +24,13 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        let isUser = wx.getStorageSync("isUser");
-        if (isUser) {
+        // 判断是否是分享进入的用户
+        if (options.isUser) {
             this.setData({
-                isUser: isUser
+                isUser: true
             })
         }
+        // 加载订单
         let orderno = options.orderno;
         if (orderno) {
             this.setData({
@@ -42,13 +43,7 @@ Page({
                 title: "订单号不存在",
             })
         }
-        if (options.isUser == "true") {
-            wx.setStorageSync('isUser', true);
-            this.setData({
-                isUser: true
-            })
-        }
-        // 判断是否是用户
+        // 判断是否是店员
         let token = wx.getStorageSync("token");
         if (token) {
             this.setData({
@@ -102,10 +97,10 @@ Page({
         // 请求订单详情
         let phone = wx.getStorageSync("phone");
         let url;
-        if(phone){
-            url= '/app/suborderinfo/getOrder?orderNo=' + orderno + '&phone=' + phone
-        }else{
-            url= '/app/suborderinfo/getOrder?orderNo=' + orderno + '&phone=';
+        if (phone) {
+            url = '/app/suborderinfo/getOrder?orderNo=' + orderno + '&phone=' + phone
+        } else {
+            url = '/app/suborderinfo/getOrder?orderNo=' + orderno + '&phone=';
         }
         return new Promise((resolve) => {
             wxRequest.get(url, '', '')
@@ -307,7 +302,7 @@ Page({
     }, serviceProve1() {
         let orderNumber = this.data.orderNumber;
         let projectCode = this.data.orderInfo.producecode;
-        wxRequest.get('/app/suborderinfo/getOrderServiceProve?orderNo=' + orderNumber + '&projectCode='+projectCode+'', '', '')
+        wxRequest.get('/app/suborderinfo/getOrderServiceProve?orderNo=' + orderNumber + '&projectCode=' + projectCode + '', '', '')
             .then(res => {  //请求成功
                 this.downloadFile(res.data.serviceProveUrl)
             })
