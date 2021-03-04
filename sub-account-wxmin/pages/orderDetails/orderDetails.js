@@ -10,7 +10,7 @@ Page({
     data: {
         orderNumber: '',   // 订单号
         orderInfo: {},    // 订单信息
-        isUser: false,
+        isUser: true,
         orderInfoShow: true,
         userInfoShow: false,
         contentInfoShow: false,
@@ -30,19 +30,19 @@ Page({
                 isUser: true
             })
         }
-        // 加载订单
+        // 获取订单
         let orderno = options.orderno;
         if (orderno) {
-            this.setData({
-                orderNumber: orderno
-            })
-            this.loadDate(orderno);
+            wx.setStorageSync('clientOrderNumber', orderno);
         } else {
-            wx.showToast({
-                icon: 'none',
-                title: "订单号不存在",
-            })
+            orderno = wx.getStorageSync('clientOrderNumber');
         }
+        // 设置订单号
+        this.setData({
+            orderNumber: orderno
+        })
+        // 加载订单
+        this.loadDate(orderno);
         // 判断是否是店员
         let token = wx.getStorageSync("token");
         if (token) {
@@ -51,7 +51,7 @@ Page({
             })
         } else {
             // 订单为待支付,并且不是从分享页面跳的则执行支付
-            if (this.data.orderInfo.orderstatus = 2 && options.isUser != "true") {
+            if (this.data.orderInfo.orderstatus == "2" && options.isUser != "true") {
                 this.navigateToPay();
             }
         }
