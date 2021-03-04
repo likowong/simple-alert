@@ -75,8 +75,10 @@ Page({
                 }
             });
         }
+        let orderno = wx.getStorageSync('clientOrderNumber');
+
         // 获取订单信息
-        this.loadDate(this.data.orderNumber)
+        this.loadDate(orderno)
     }, /**
      * 页面相关事件处理函数--监听用户下拉动作
      */

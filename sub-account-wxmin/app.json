@@ -13,7 +13,8 @@
     "pages/myOrder/myOrder",
     "pages/carType/carType",
     "pages/priceCarTypeSetting/priceCarTypeSetting",
-    "pages/signPage/signPage"
+    "pages/signPage/signPage",
+    "pages/insuranceCompany/insuranceCompany"
   ],
   "window": {
     "backgroundTextStyle": "light",

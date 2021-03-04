@@ -235,13 +235,13 @@ Page({
     // 选择车辆品牌
     selectCarType: function () {
         wx.navigateTo({
-            url: '../carType/carType'
+            url: '/pages/carType/carType'
         })
     },
     // 选择保险公司
     selectCompnay: function () {
         wx.navigateTo({
-            url: '../insuranceCompany/insuranceCompany'
+            url: '/pages/insuranceCompany/insuranceCompany'
         })
     },
     // 修改确认客户已购买车损险
