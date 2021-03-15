@@ -43,6 +43,14 @@ Page({
                 })
         }
     },
+    // 用户点击右上角分享
+    onShareAppMessage: function () {
+        let orderNumber = this.data.orderNumber;
+        return {
+            title: "焕新车首页",
+            path: '/pages/order/order'
+        }
+    },
     /**
      * 页面相关事件处理函数--监听用户下拉动作
      */

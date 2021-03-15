@@ -43,7 +43,14 @@ Page({
             }
         });
     },
-
+    // 用户点击右上角分享
+    onShareAppMessage: function () {
+        let orderNumber = this.data.orderNumber;
+        return {
+            title: "焕新车",
+            path: '/pages/login/login'
+        }
+    },
     // 控制登录按钮的显示状态
     activeButton: function () {
         let {accountCode, code} = this.data;

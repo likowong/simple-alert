@@ -16,7 +16,8 @@ Page({
         isFree: '',
         producecode: '',
         productIndex: null,
-        chooseAgencyInsurance: false
+        chooseAgencyInsurance: false,
+        isSCCI:false   //  是否是独立的CCI
     },
 
     /**
@@ -118,6 +119,17 @@ Page({
             producecode: productcode,
             productIndex: index
         })
+        if(productcode == "SCCI"){
+            this.setData({
+                isSCCI: true,
+                cciProducetyenum: '',
+                cciProducecode: '',
+            })
+        }else {
+            this.setData({
+                isSCCI: false
+            })
+        }
     }, toOrderSteps(e) {
         let producecode = this.data.producecode
 

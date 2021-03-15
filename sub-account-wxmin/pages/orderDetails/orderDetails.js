@@ -10,7 +10,7 @@ Page({
     data: {
         orderNumber: '',   // 订单号
         orderInfo: {},    // 订单信息
-        isUser: true,
+        isUser: false,
         orderInfoShow: true,
         userInfoShow: false,
         contentInfoShow: false,

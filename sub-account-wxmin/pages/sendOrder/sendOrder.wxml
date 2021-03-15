@@ -10,7 +10,7 @@
             </view>
         </view>
 
-        <view class="choose-list">
+        <view class="choose-list" wx:if="{{isSCCI == false}}">
             <view class="sub-title">
                 <view class="label">是否需要搭配代步车补偿服务</view>
                 <view class="check">

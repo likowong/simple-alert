@@ -39,3 +39,20 @@
     box-shadow: 0 10px 3px -1px #e6eaee;
     color: #fff;
 }
+.wxParse-table {
+    margin-right: -45px;
+    border: 0px solid darkgray;
+}
+.wxParse-tr {
+    background: #E6F3F9;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    height: 3rem;
+    align-items: center;
+}
+.wxParse-td {
+    width:40%;
+    justify-content: center;
+    text-align: center;
+}

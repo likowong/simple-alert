@@ -19,7 +19,7 @@ Page({
                 text: '上传资料'
             }
         ],
-        nowDate:util.formatTime2(new Date()),
+        nowDate: util.formatTime2(new Date()),
         productList: [], // 产品信息,
         currentCarAge: '',
         form: {
@@ -141,8 +141,8 @@ Page({
     // 监控最后一步按钮的状态
     activeLastBtn: function () {
         if (this.data.form.dbxyear) {
-            let {imagemsg1, imagemsg2, imagemsg3, imagemsg4,dbxImagemsg} = this.data.form;
-            if (imagemsg1.length > 0 && imagemsg2.length > 0 && imagemsg3.length > 0 && imagemsg4.length > 0  && dbxImagemsg.length > 0) {
+            let {imagemsg1, imagemsg2, imagemsg3, imagemsg4, dbxImagemsg} = this.data.form;
+            if (imagemsg1.length > 0 && imagemsg2.length > 0 && imagemsg3.length > 0 && imagemsg4.length > 0 && dbxImagemsg.length > 0) {
                 this.setData({
                     lastStepBtn: true
                 })
@@ -153,7 +153,7 @@ Page({
             }
         } else {
             let {imagemsg1, imagemsg2, imagemsg3, imagemsg4} = this.data.form;
-            if (imagemsg1.length > 0 && imagemsg2.length > 0 && imagemsg3.length > 0 && imagemsg4.length > 0 ) {
+            if (imagemsg1.length > 0 && imagemsg2.length > 0 && imagemsg3.length > 0 && imagemsg4.length > 0) {
                 this.setData({
                     lastStepBtn: true
                 })
@@ -257,11 +257,11 @@ Page({
     // 第一步
     firstStep() {
 
-        if (this.data.form.carage == '') {
+        if (this.data.form.carage === '') {
             wx.showToast({title: '请选择车辆年限', icon: 'none'})
             return
         }
-        if (this.data.form.insuranceperiod == '') {
+        if (this.data.form.insuranceperiod === '') {
             wx.showToast({title: '请选择服务期限', icon: 'none'})
             return
         }
@@ -344,6 +344,10 @@ Page({
             wx.showToast({title: '请选择购置日期', icon: 'none'})
             return
         }
+        if (this.data.form.carbuyprice === '') {
+            wx.showToast({title: '请输入购置价格', icon: 'none'})
+            return
+        }
         if (this.data.firstStepBtn) {
             this.setData({
                 active: 1
@@ -365,11 +369,11 @@ Page({
             let imagemsg2 = this.formatImgArr(this.data.form.imagemsg2);
             let imagemsg3 = this.formatImgArr(this.data.form.imagemsg3);
             let imagemsg4 = this.formatImgArr(this.data.form.imagemsg4);
-            let imagemsgStr = imagemsg1[0].url + ","+imagemsg2[0].url + ","+imagemsg3[0].url + ","+imagemsg4[0].url;
+            let imagemsgStr = imagemsg1[0].url + "," + imagemsg2[0].url + "," + imagemsg3[0].url + "," + imagemsg4[0].url;
             let dbxImagemsg = this.formatImgArr(this.data.form.dbxImagemsg);
             let dbxImagemsgStr = ''
-            if(dbxImagemsg.length > 0 ){
-                dbxImagemsgStr =  dbxImagemsg[0].url
+            if (dbxImagemsg.length > 0) {
+                dbxImagemsgStr = dbxImagemsg[0].url
             }
             this.sendData(imagemsgStr, dbxImagemsgStr).then((res) => {
                 let orderNo = res.data.orderNo;
@@ -474,7 +478,7 @@ Page({
                     util.hideLoading();
                     return;
                 }
-            }else if (imgName == 'dbxImagemsg') {
+            } else if (imgName == 'dbxImagemsg') {
                 if (that.data.form.dbxImagemsg.length < 6) {
                     that.data.form.dbxImagemsg.push(imgMsg);
                     that.setData({
@@ -620,21 +624,23 @@ Page({
         this.activeFirstBtn();
     },
     validgetCarDate: function (e) {
-        let carage = this.data.form.carage;
-        if (!carage) {
-            wx.showToast({title: "请选择车辆年限", icon: "none"});
-            return
-        }
-        let nowDate = new Date().toLocaleDateString();
-        let value = e.detail.value;
-        let days = this.checkDate(value, nowDate);
-        if (days <= 0) {
-            wx.showToast({title: "与所选车辆年限不符，请确认后重新选择", icon: "none"});
-            return
-        }
-        if (days > (carage / 12 * 365)) {
-            wx.showToast({title: "与所选车辆年限不符，请确认后重新选择", icon: "none"});
-            return
+        if (this.data.form.producecode != "SCCI") {
+            let carage = this.data.form.carage;
+            if (!carage) {
+                wx.showToast({title: "请选择车辆年限", icon: "none"});
+                return
+            }
+            let nowDate = new Date().toLocaleDateString();
+            let value = e.detail.value;
+            let days = this.checkDate(value, nowDate);
+            if (days <= 0) {
+                wx.showToast({title: "与所选车辆年限不符，请确认后重新选择", icon: "none"});
+                return
+            }
+            if (days > (carage / 12 * 365)) {
+                wx.showToast({title: "与所选车辆年限不符，请确认后重新选择", icon: "none"});
+                return
+            }
         }
         this.setData({
             ['form.' + e.target.dataset.name]: e.detail.value
