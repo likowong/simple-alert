@@ -282,10 +282,6 @@ Page({
                 wx.showToast({title: '手机号只能位11位', icon: 'none'})
                 return
             }
-            let checkedNum = wxVaildate.checkPhoneNum(this.data.form.phone)
-            if (!checkedNum) {
-                return
-            }
         }
         if (this.data.form.idcard == '') {
             wx.showToast({title: '身份证不能为空', icon: 'none'})
